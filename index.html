@@ -3,1286 +3,1842 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>החיפוש – אדם סיני</title>
+<title>החיפוש – הרב אדם סיני</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --teal-dark: #2a7a6e;
-    --teal-mid: #3d9e8f;
-    --teal-light: #7ec8bb;
-    --sand: #d4c5a9;
-    --sand-light: #f0e8d8;
-    --cream: #faf7f2;
-    --ink: #1a1a1a;
-    --ink-soft: #3a3a3a;
-    --ink-faded: #7a7a7a;
-    --gold: #b8964a;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  /* ── NAVBAR ── */
-  .navbar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 900;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 32px;
-    background: rgba(30, 92, 84, 0.88);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-  .navbar-logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    text-decoration: none;
-  }
-  .navbar-logo img {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 2px 14px rgba(0,0,0,0.3);
-  }
-  .navbar-logo-sub {
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 0.7rem;
-    font-weight: 400;
-    color: rgba(255,255,255,0.6);
-    letter-spacing: 0.15em;
-    margin-top: -2px;
-  }
-  .navbar-logo-text {
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 0.88rem;
-    font-weight: 700;
-    color: rgba(255,255,255,0.92);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-  /* push hero content below navbar */
-  .hero { padding-top: 80px; }
-
-  body {
-    font-family: 'Heebo', sans-serif;
-    background: var(--cream);
-    color: var(--ink);
-    direction: rtl;
-    overflow-x: hidden;
-  }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-left {
-    background: linear-gradient(160deg, #1e5c54 0%, #2a7a6e 40%, #3d9e8f 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 80px 60px;
-    position: relative;
-  }
-
-  .hero-left::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.5;
-  }
-
-  .hero-badge {
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 0.75rem;
-    font-weight: 400;
-    color: var(--teal-light);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
-  }
-
-  .hero-title {
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: clamp(4rem, 7vw, 7rem);
-    font-weight: 900;
-    color: #fff;
-    line-height: 1;
-    margin-bottom: 20px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.4s forwards;
-  }
-
-  .hero-subtitle {
-    font-size: 1.4rem;
-    color: var(--teal-light);
-    font-weight: 300;
-    margin-bottom: 12px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.6s forwards;
-  }
-
-  .hero-tagline {
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 1rem;
-    color: rgba(255,255,255,0.6);
-    font-weight: 300;
-    margin-bottom: 50px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.7s forwards;
-  }
-
-  .hero-author {
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 1.15rem;
-    color: rgba(255,255,255,0.85);
-    margin-bottom: 40px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.85s forwards;
-  }
-
-  .btn-primary {
-    display: inline-block;
-    background: var(--gold);
-    color: #fff;
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 1.1rem;
-    font-weight: 500;
-    padding: 16px 40px;
-    border-radius: 2px;
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: all 0.25s;
-    border: none;
-    cursor: pointer;
-    opacity: 0;
-    animation: fadeUp 0.8s 1s forwards;
-  }
-
-  .btn-primary:hover {
-    background: #a07a35;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-  }
-
-  .hero-right {
-    background: var(--sand-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 40px;
-    position: relative;
-  }
-
-  .hero-right::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--teal-dark), var(--teal-light));
-  }
-
-  .book-wrapper {
-    position: relative;
-    opacity: 0;
-    animation: bookReveal 1.2s 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-  }
-
-  .book-img {
-    width: 480px;
-    max-width: 95%;
-    box-shadow: 
-      -8px 8px 0 var(--teal-light),
-      -16px 16px 0 rgba(61,158,143,0.3),
-      0 30px 80px rgba(0,0,0,0.15);
-    border-radius: 2px;
-    display: block;
-  }
-
-  .book-edition {
-    position: absolute;
-    bottom: -30px;
-    right: -20px;
-    background: var(--teal-dark);
-    color: #fff;
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 0.8rem;
-    padding: 8px 16px;
-    border-radius: 2px;
-  }
-
-  /* ── QUOTE BAND ── */
-  .quote-band {
-    background: var(--ink);
-    padding: 70px 40px;
-    text-align: center;
-  }
-
-  .quote-mark {
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 5rem;
-    color: var(--teal-mid);
-    line-height: 0;
-    margin-bottom: 30px;
-    display: block;
-  }
-
-  .quote-text {
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: clamp(1.4rem, 2.5vw, 2rem);
-    color: #fff;
-    max-width: 700px;
-    margin: 0 auto 30px;
-    line-height: 1.7;
-    font-weight: 300;
-  }
-
-  .quote-source {
-    font-size: 0.9rem;
-    color: var(--teal-light);
-    letter-spacing: 0.1em;
-  }
-
-  /* ── ABOUT BOOK ── */
-  .about-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 500px;
-  }
-
-  .about-text {
-    padding: 80px 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .section-label {
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--teal-dark);
-    margin-bottom: 20px;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 24px;
-    color: var(--ink);
-  }
-
-  .section-body {
-    font-size: 1.05rem;
-    line-height: 1.9;
-    color: var(--ink-soft);
-    font-weight: 300;
-  }
-
-  .about-visual {
-    background: linear-gradient(135deg, #2a7a6e, #1e5c54);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .wave-text {
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 8rem;
-    font-weight: 900;
-    color: rgba(255,255,255,0.06);
-    position: absolute;
-    white-space: nowrap;
-    animation: drift 12s linear infinite;
-  }
-
-  @keyframes drift {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  .about-visual-inner {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 40px;
-  }
-
-  .big-num {
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 7rem;
-    font-weight: 900;
-    color: rgba(255,255,255,0.15);
-    line-height: 1;
-  }
-
-  .big-num-label {
-    font-size: 1rem;
-    color: var(--teal-light);
-    margin-top: 10px;
-  }
-
-  /* ── AUTHOR ── */
-  .author-section {
-    background: var(--sand-light);
-    padding: 80px 40px;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 60px;
-    max-width: 900px;
-    margin: 0 auto;
-    align-items: start;
-  }
-
-  .author-avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--teal-dark), var(--teal-light));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: #fff;
-    flex-shrink: 0;
-  }
-
-  .author-title {
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-
-  .author-role {
-    font-size: 0.85rem;
-    color: var(--teal-dark);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-
-  .author-bio {
-    font-size: 1rem;
-    line-height: 1.9;
-    color: var(--ink-soft);
-    font-weight: 300;
-  }
-
-  /* ── EXCERPTS ── */
-  .excerpts-section {
-    background: var(--cream);
-    padding: 80px 40px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .excerpts-header {
-    text-align: center;
-    margin-bottom: 60px;
-  }
-
-  .excerpt-card {
-    border-right: 4px solid var(--teal-dark);
-    padding: 30px 30px 30px 20px;
-    margin-bottom: 30px;
-    background: #fff;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-    position: relative;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .excerpt-card:hover {
-    transform: translateX(-4px);
-    box-shadow: 4px 4px 30px rgba(42,122,110,0.1);
-  }
-
-  .excerpt-number {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 3rem;
-    font-weight: 900;
-    color: rgba(42,122,110,0.08);
-    line-height: 1;
-  }
-
-  .excerpt-text {
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 1.15rem;
-    line-height: 1.9;
-    color: var(--ink-soft);
-    font-weight: 400;
-    font-style: italic;
-  }
-
-  /* ── ENDORSEMENTS ── */
-  .endorsements-section {
-    background: var(--ink);
-    padding: 80px 40px;
-  }
-
-  .endorsements-header {
-    text-align: center;
-    margin-bottom: 60px;
-  }
-
-  .endorsements-header .section-label { color: var(--teal-light); }
-  .endorsements-header .section-title { color: #fff; }
-
-  .endorsements-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .endorsement-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    padding: 28px;
-    border-radius: 4px;
-    transition: background 0.2s;
-  }
-
-  .endorsement-card:hover {
-    background: rgba(61,158,143,0.08);
-  }
-
-  .stars {
-    color: var(--gold);
-    font-size: 0.9rem;
-    margin-bottom: 14px;
-    letter-spacing: 2px;
-  }
-
-  .endorsement-text {
-    font-size: 0.95rem;
-    line-height: 1.8;
-    color: rgba(255,255,255,0.75);
-    margin-bottom: 18px;
-    font-weight: 300;
-  }
-
-  .endorsement-name {
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 1rem;
-    color: var(--teal-light);
-    font-weight: 500;
-  }
-
-  .endorsement-role {
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.4);
-    margin-top: 4px;
-  }
-
-  /* ── FOR WHOM ── */
-  .forwho-section {
-    padding: 80px 40px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .forwho-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-top: 40px;
-  }
-
-  .forwho-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 24px;
-    background: #fff;
-    border-radius: 4px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-  }
-
-  .forwho-icon {
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, var(--teal-dark), var(--teal-light));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 1.1rem;
-  }
-
-  .forwho-text {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: var(--ink-soft);
-  }
-
-  /* ── GIFT ── */
-  .gift-section {
-    background: linear-gradient(135deg, #1e5c54 0%, #2a7a6e 50%, #3d9e8f 100%);
-    padding: 80px 40px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .gift-section::before {
-    content: '🎁';
-    position: absolute;
-    font-size: 20rem;
-    opacity: 0.04;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .gift-section .section-title {
-    color: #fff;
-    max-width: 600px;
-    margin: 0 auto 24px;
-  }
-
-  .gift-section .section-label {
-    color: var(--teal-light);
-  }
-
-  .gift-reasons {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin: 40px 0 50px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .gift-reason {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 16px 24px;
-    border-radius: 2px;
-    color: #fff;
-    font-size: 0.9rem;
-    backdrop-filter: blur(10px);
-  }
-
-  /* ── FINAL CTA ── */
-  .final-cta {
-    background: var(--cream);
-    padding: 100px 40px;
-    text-align: center;
-    border-top: 1px solid rgba(0,0,0,0.06);
-  }
-
-  .final-cta .section-title {
-    max-width: 500px;
-    margin: 0 auto 16px;
-  }
-
-  .price-tag {
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--teal-dark);
-    margin: 20px 0;
-  }
-
-  .price-sub {
-    font-size: 0.85rem;
-    color: var(--ink-faded);
-    margin-bottom: 40px;
-  }
-
-  .btn-large {
-    display: inline-block;
-    background: var(--teal-dark);
-    color: #fff;
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 1.25rem;
-    font-weight: 500;
-    padding: 20px 60px;
-    border-radius: 2px;
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: all 0.25s;
-    border: none;
-    cursor: pointer;
-  }
-
-  .btn-large:hover {
-    background: var(--teal-mid);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(42,122,110,0.3);
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--ink);
-    padding: 40px;
-    text-align: center;
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.3);
-  }
-
-  footer a { color: var(--teal-light); text-decoration: none; }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes bookReveal {
-    from { opacity: 0; transform: perspective(600px) rotateY(-20deg) translateX(30px); }
-    to   { opacity: 1; transform: perspective(600px) rotateY(0deg) translateX(0); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-right { padding: 50px 30px; }
-    .hero-left { padding: 60px 30px; }
-    .about-section { grid-template-columns: 1fr; }
-    .about-visual { min-height: 200px; }
-    .author-section { grid-template-columns: 1fr; gap: 30px; }
-    .endorsements-grid { grid-template-columns: 1fr; }
-    .forwho-grid { grid-template-columns: 1fr; }
-  }
-
-  /* ── FIREBASE ENDORSEMENTS ── */
-  .add-endorsement-btn {
-    display: block;
-    margin: 40px auto 0;
-    background: transparent;
-    border: 2px solid rgba(255,255,255,0.3);
-    color: #fff;
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 1rem;
-    padding: 14px 36px;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: all 0.25s;
-    letter-spacing: 0.05em;
-  }
-  .add-endorsement-btn:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: var(--teal-light);
-    color: var(--teal-light);
-  }
-
-  /* Modal */
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.7);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(4px);
-  }
-  .modal-overlay.open { display: flex; }
-
-  .modal-box {
-    background: var(--cream);
-    width: 90%;
-    max-width: 520px;
-    border-radius: 4px;
-    padding: 40px;
-    position: relative;
-    direction: rtl;
-  }
-  .modal-close {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    background: none;
-    border: none;
-    font-size: 1.4rem;
-    cursor: pointer;
-    color: var(--ink-faded);
-    line-height: 1;
-  }
-  .modal-title {
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: var(--ink);
-  }
-  .modal-sub {
-    font-size: 0.9rem;
-    color: var(--ink-faded);
-    margin-bottom: 28px;
-  }
-  .google-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    width: 100%;
-    padding: 14px;
-    border: 2px solid var(--sand);
-    border-radius: 2px;
-    background: #fff;
-    cursor: pointer;
-    font-size: 1rem;
-    font-family: 'Heebo', sans-serif;
-    color: var(--ink);
-    transition: border-color 0.2s, box-shadow 0.2s;
-    margin-bottom: 24px;
-  }
-  .google-btn:hover { border-color: var(--teal-mid); box-shadow: 0 2px 12px rgba(42,122,110,0.1); }
-  .google-btn svg { flex-shrink: 0; }
-
-  .modal-form { display: none; }
-  .modal-form.active { display: block; }
-
-  .user-greeting {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    padding: 12px 16px;
-    background: rgba(42,122,110,0.06);
-    border-radius: 2px;
-  }
-  .user-greeting img {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-  }
-  .user-greeting-text { font-size: 0.9rem; color: var(--ink-soft); }
-  .user-greeting-text strong { color: var(--teal-dark); }
-
-  .form-group { margin-bottom: 16px; }
-  .form-group label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 500;
-    margin-bottom: 6px;
-    color: var(--ink-soft);
-  }
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
-    width: 100%;
-    padding: 10px 14px;
-    border: 1px solid var(--sand);
-    border-radius: 2px;
-    font-family: 'Heebo', sans-serif;
-    font-size: 0.95rem;
-    color: var(--ink);
-    background: #fff;
-    transition: border-color 0.2s;
-    direction: rtl;
-  }
-  .form-group input:focus,
-  .form-group textarea:focus,
-  .form-group select:focus {
-    outline: none;
-    border-color: var(--teal-mid);
-  }
-  .form-group textarea { resize: vertical; min-height: 100px; }
-
-  .star-picker { display: flex; gap: 6px; font-size: 1.5rem; cursor: pointer; direction: ltr; justify-content: flex-end; }
-  .star-picker span { color: var(--sand); transition: color 0.15s; }
-  .star-picker span.active { color: var(--gold); }
-
-  .submit-btn {
-    width: 100%;
-    padding: 14px;
-    background: var(--teal-dark);
-    color: #fff;
-    font-family: 'Frank Ruhl Libre', serif;
-    font-size: 1.05rem;
-    border: none;
-    border-radius: 2px;
-    cursor: pointer;
-    margin-top: 8px;
-    transition: background 0.2s;
-  }
-  .submit-btn:hover { background: var(--teal-mid); }
-  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-
-  .success-msg {
-    display: none;
-    text-align: center;
-    padding: 20px 0;
-  }
-  .success-msg.show { display: block; }
-  .success-icon { font-size: 3rem; margin-bottom: 12px; }
-  .success-msg p { font-size: 1.05rem; color: var(--ink-soft); line-height: 1.7; }
-
-  /* Dynamic endorsements */
-  #dynamic-endorsements {
-    max-width: 900px;
-    margin: 30px auto 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-  .endorsement-pending {
-    opacity: 0.6;
-    border: 1px dashed rgba(255,255,255,0.2) !important;
-  }
-  .pending-badge {
-    display: inline-block;
-    font-size: 0.72rem;
-    background: rgba(184,150,74,0.2);
-    color: var(--gold);
-    padding: 2px 8px;
-    border-radius: 10px;
-    margin-top: 6px;
-  }
-
-  @media (max-width: 768px) {
-    #dynamic-endorsements { grid-template-columns: 1fr; }
-    .modal-box { padding: 28px 20px; }
-  }
-
-  /* Config notice */
-  .firebase-config-notice {
-    background: #fff3cd;
-    border: 1px solid #ffc107;
-    border-radius: 4px;
-    padding: 16px 20px;
-    margin: 20px auto;
-    max-width: 900px;
-    font-size: 0.9rem;
-    color: #856404;
-    text-align: right;
-    direction: rtl;
-  }
-  .firebase-config-notice strong { color: #533f03; }
-  .firebase-config-notice code {
-    background: rgba(0,0,0,0.08);
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-family: monospace;
-    direction: ltr;
-    display: inline-block;
-  }
+:root {
+  --blue: #0066ff;
+  --blue-light: #e6f0ff;
+  --cream: #fbf9f5;
+  --ink: #0F172A;
+  --ink-soft: #1E293B;
+  --ink-faded: #64748B;
+  --gold: #F59E0B;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Heebo', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  direction: rtl;
+  line-height: 1.6;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0; right: 0; left: 0;
+  z-index: 100;
+  background: rgba(251,249,245,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  height: 68px;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+}
+.navbar-inner {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.nav-logo img {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+.nav-logo-old {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.nav-logo span {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--ink-faded);
+  font-size: 0.95rem;
+  font-weight: 400;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--blue); }
+.nav-cta {
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 24px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: opacity 0.2s;
+}
+.nav-cta:hover { opacity: 0.88; }
+
+/* ===== HERO ===== */
+.hero {
+  padding-top: 100px;
+  padding-bottom: 80px;
+  padding-right: 40px;
+  padding-left: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px 280px;
+  gap: 40px;
+  align-items: center;
+}
+.hero-badge {
+  display: inline-block;
+  background: var(--blue-light);
+  color: var(--blue);
+  border-radius: 50px;
+  padding: 6px 18px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+.hero-title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+.hero-title span { color: var(--blue); }
+.hero-body {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--ink-faded);
+  margin-bottom: 32px;
+  line-height: 1.75;
+}
+.hero-btn {
+  display: inline-block;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 50px;
+  padding: 14px 36px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.hero-btn:hover { opacity: 0.88; }
+.hero-btn-secondary {
+  display: inline-block;
+  color: var(--ink-faded);
+  font-size: 0.95rem;
+  margin-right: 18px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.book-pill {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.book-pill img {
+  width: 260px;
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(0,102,255,0.18);
+}
+.book-pill-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.social-proof {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.avatars-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: var(--blue-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--blue);
+  margin-right: -10px;
+}
+.avatar:first-child { margin-right: 0; }
+.stars-row {
+  display: flex;
+  gap: 3px;
+}
+.star { color: var(--gold); font-size: 1.1rem; }
+.rating-text {
+  font-size: 0.9rem;
+  color: var(--ink-faded);
+  margin-top: 4px;
+}
+.store-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.store-badge {
+  background: var(--ink);
+  color: #fff;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: center;
+}
+.proof-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* ===== ATMOSPHERE BREAK ===== */
+.atmosphere {
+  width: 100%;
+  height: 420px;
+  margin-bottom: 0;
+  background: linear-gradient(rgba(10,15,30,0.62), rgba(10,15,30,0.62)), url("art1.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.atmosphere::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(0,102,255,0.12) 0%, transparent 70%);
+}
+.atmosphere-headline {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.25;
+  max-width: 700px;
+  position: relative;
+  z-index: 1;
+}
+.atmosphere-headline span { color: var(--gold); }
+
+/* ===== WHAT SECTION ===== */
+.what-section {
+  width: 100%;
+  padding: 0;
+}
+
+
+#what p, #what .section-body, #what .section-body * {
+  color: #ffffff !important;
+  font-weight: 900 !important;
+}
+.what-section .section-label { color: #ffffff !important; font-weight: 900 !important; font-size: 1.4rem !important; letter-spacing: 0.1em; text-transform: none !important; }
+.what-section .section-title { color: #F59E0B !important; font-weight: 900 !important; text-shadow: 0 2px 12px rgba(0,0,0,0.6) !important; }
+.what-section .section-body { color: #ffffff !important; font-weight: 900 !important; text-shadow: 0 2px 6px rgba(0,0,0,0.8) !important; }
+.what-section .text-highlight { color: #fff; }
+
+.what-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  color: #fff;
+}
+.section-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.section-body {
+  font-size: 1rem;
+  color: var(--ink-faded);
+  line-height: 1.8;
+  font-weight: 300;
+}
+.dark-panel {
+  background: rgba(0,0,0,0.35);
+  border-radius: 24px;
+  padding: 48px 40px;
+  color: #fff;
+  border-right: 4px solid var(--blue);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.dark-panel-quote {
+  font-size: 1.3rem;
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 24px;
+  font-style: italic;
+  color: rgba(255,255,255,0.85);
+}
+.dark-panel-caption {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.4);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ===== QUESTIONS SECTION ===== */
+.questions-section {
+  background: var(--ink);
+  padding: 80px 40px;
+}
+.questions-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.questions-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.questions-sub {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 48px;
+  font-weight: 300;
+}
+.questions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.question-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 28px 24px;
+  text-align: right;
+  transition: background 0.3s;
+}
+.question-card:hover { background: rgba(0,102,255,0.15); }
+.question-card .q-num {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.question-card .q-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.4;
+}
+
+/* ===== BENEFITS ===== */
+.benefits-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  text-align: center;
+}
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 48px;
+}
+.benefit-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 36px 28px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  text-align: right;
+}
+.benefit-icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+.benefit-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.benefit-body {
+  font-size: 0.92rem;
+  color: var(--ink-faded);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ===== CINEMATIC EXCERPTS ===== */
+.excerpts-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+.excerpts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.excerpt-card {
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  min-height: 320px;
+  background: linear-gradient(135deg, #0a0f1e 0%, #1a2a4a 100%);
+  display: flex;
+  align-items: flex-end;
+}
+.excerpt-card:first-child {
+  background: linear-gradient(135deg, #0d1a3a 0%, #0a1428 100%);
+}
+.excerpt-card:last-child {
+  background: linear-gradient(135deg, #1a0a2e 0%, #0d1428 100%);
+}
+.excerpt-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%);
+  position: absolute;
+  inset: 0;
+}
+.excerpt-content {
+  position: relative;
+  z-index: 1;
+  padding: 32px;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(4px);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  margin: 24px;
+  border-radius: 16px;
+  width: calc(100% - 48px);
+}
+.excerpt-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+.excerpt-text {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* ===== TESTIMONIALS ===== */
+.testimonials-section {
+  background: linear-gradient(rgba(251,249,245,0.52), rgba(251,249,245,0.52)), url("art3.png") center/cover no-repeat fixed;
+  padding: 80px 40px;
+}
+.testimonials-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.testimonials-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 48px;
+  max-width: 100%;
+}
+.testimonial-card {
+  width: 100%;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(6px);
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  align-items: start;
+  gap: 24px;
+  padding: 20px 28px;
+  border-radius: 24px;
+  padding: 28px 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+.testimonial-stars {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+  padding-top: 2px;
+}
+.testimonial-text {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 16px;
+  font-style: italic;
+  margin-bottom: 0;
+}
+.testimonial-author {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 80px;
+  text-align: center;
+  padding-top: 2px;
+}
+.t-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--blue-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--blue);
+  flex-shrink: 0;
+}
+.t-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+.t-role {
+  font-size: 0.78rem;
+  color: var(--ink-faded);
+}
+#dynamic-endorsements {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.endorse-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.endorse-stars { display: flex; gap: 2px; margin-bottom: 8px; }
+.endorse-text { font-size: 0.88rem; color: var(--ink-soft); margin-bottom: 10px; font-style: italic; }
+.endorse-author { font-size: 0.8rem; font-weight: 700; color: var(--ink-faded); }
+.write-endorsement-btn {
+  display: block;
+  margin: 32px auto 0;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 36px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.write-endorsement-btn:hover { opacity: 0.85; }
+
+/* ===== AUTHOR ===== */
+.author-section { color: #fff;
+}
+.author-section {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  text-align: center;
+}
+.author-avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: var(--blue-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--blue);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.author-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.author-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+.author-name {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.author-bio {
+  font-size: 0.97rem;
+  color: var(--ink-faded);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+
+
+
+/* ===== VIDEO TESTIMONIALS ===== */
+.video-section {
+  background: var(--ink);
+  padding: 80px 40px;
+}
+.video-section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+.video-card {
+  border-radius: 24px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.video-card video {
+  width: 100%;
+  display: block;
+  max-height: 400px;
+  object-fit: cover;
+  background: #000;
+}
+.video-card-info {
+  padding: 20px 24px;
+}
+.video-card-name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.video-card-role {
+  font-size: 0.82rem;
+  color: var(--blue);
+  font-weight: 500;
+}
+@media (max-width: 768px) {
+  .video-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== EXCERPT ENHANCEMENTS ===== */
+.excerpt-read-more {
+  display: inline-block;
+  margin-top: 20px;
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.4);
+  color: #fff;
+  font-family: 'Heebo', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 10px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.excerpt-read-more:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: #fff;
+}
+
+/* Excerpt Popup */
+.excerpt-popup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10,15,30,0.82);
+  z-index: 1100;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  backdrop-filter: blur(8px);
+}
+.excerpt-popup-overlay.open { display: flex; }
+.excerpt-popup-box {
+  background: #fff;
+  border-radius: 24px;
+  max-width: 680px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  direction: rtl;
+}
+.excerpt-popup-hero {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(rgba(10,15,30,0.5), rgba(10,15,30,0.5)), url("art4.png") center/cover no-repeat;
+  border-radius: 24px 24px 0 0;
+}
+.excerpt-popup-close {
+  position: sticky;
+  top: 0;
+  float: left;
+  margin: 16px 16px 0 0;
+  background: rgba(0,0,0,0.06);
+  border: none;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--ink-faded);
+  z-index: 10;
+  transition: background 0.2s;
+}
+.excerpt-popup-close:hover { background: rgba(0,0,0,0.12); }
+.excerpt-popup-header {
+  padding: 32px 36px 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+.excerpt-popup-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue);
+  display: block;
+  margin-bottom: 8px;
+}
+.excerpt-popup-title {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--ink);
+}
+.excerpt-popup-body {
+  padding: 28px 36px;
+}
+.excerpt-popup-body p {
+  font-size: 1rem;
+  line-height: 2;
+  color: var(--ink-soft);
+  font-weight: 300;
+  margin-bottom: 18px;
+}
+.excerpt-popup-speech {
+  background: var(--blue-light);
+  border-right: 3px solid var(--blue);
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px !important;
+  font-style: italic;
+}
+.excerpt-popup-footer {
+  padding: 20px 36px 32px;
+  border-top: 1px solid rgba(0,0,0,0.07);
+  text-align: center;
+}
+.excerpt-popup-cta {
+  display: inline-block;
+  background: var(--blue);
+  color: #fff;
+  font-family: 'Heebo', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 14px 36px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+
+.text-highlight {
+  color: #fff;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.excerpt-highlight {
+  color: var(--blue);
+  font-weight: 800;
+  font-style: normal;
+}
+.excerpt-popup-speech .excerpt-highlight {
+  color: #0044cc;
+}
+
+.excerpt-popup-cta:hover {
+  background: var(--blue-mid);
+  transform: translateY(-2px);
+}
+
+/* ===== BOOK ORIGIN SECTION ===== */
+.origin-section {
+  background: transparent;
+  padding: 100px 0;
+  border-top: none;
+}
+.origin-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+
+#author p, #author .author-bio, #origin p, #origin .origin-body p,
+#origin .origin-closing p, #origin .origin-title, #origin .origin-subtitle {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.8) !important;
+}
+#origin .origin-title { font-size: clamp(1.8rem,3vw,2.4rem) !important; }
+
+.origin-section .section-label { color: rgba(255,255,255,0.5) !important; }
+.origin-section .origin-title { color: #fff !important; }
+.origin-section .origin-subtitle { color: var(--blue) !important; }
+.origin-section .origin-body p { color: rgba(255,255,255,0.85) !important; font-weight: 500 !important; }
+
+.origin-quote-mark {
+  font-size: 6rem;
+  font-weight: 900;
+  color: var(--blue);
+  line-height: 0.6;
+  display: block;
+  margin-bottom: 32px;
+  opacity: 0.15;
+}
+.origin-title {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.origin-subtitle {
+  font-size: 1rem;
+  color: var(--blue);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+.origin-body {
+  font-size: 1.05rem;
+  line-height: 2;
+  color: var(--ink-soft);
+  font-weight: 300;
+}
+.origin-body p { margin-bottom: 20px; }
+.origin-closing {
+  margin-top: 40px;
+  padding: 32px;
+  background: var(--ink);
+  border-radius: 24px;
+  border-right: 4px solid var(--blue);
+}
+.origin-closing p {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: rgba(255,255,255,0.75);
+  font-weight: 300;
+  margin-bottom: 12px;
+}
+.origin-closing p:last-child { margin-bottom: 0; }
+.origin-closing strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ===== LEAD MAGNET ===== */
+.lead-section {
+  background: linear-gradient(135deg, #001a4d 0%, #0033a0 60%, #0066ff 100%);
+  padding: 80px 40px;
+  text-align: center;
+}
+.lead-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.lead-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border-radius: 50px;
+  padding: 6px 18px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.lead-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+.lead-sub {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 36px;
+  font-weight: 300;
+}
+.lead-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.lead-form input {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 1rem;
+  color: #fff;
+  outline: none;
+  text-align: right;
+  direction: rtl;
+  transition: border-color 0.2s;
+}
+.lead-form input::placeholder { color: rgba(255,255,255,0.5); }
+.lead-form input:focus { border-color: rgba(255,255,255,0.6); }
+.lead-submit {
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  border-radius: 50px;
+  padding: 15px 36px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: opacity 0.2s;
+}
+.lead-submit:hover { opacity: 0.88; }
+
+/* ===== FINAL CTA ===== */
+.final-cta-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  text-align: center;
+}
+.final-cta-section .section-title {
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+}
+.final-cta-sub {
+  font-size: 1rem;
+  color: var(--ink-faded);
+  margin-bottom: 60px;
+  font-weight: 300;
+}
+.final-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.price-col {
+  text-align: center;
+}
+.price-label {
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.price-amount {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.price-original {
+  font-size: 1rem;
+  color: var(--ink-faded);
+  text-decoration: line-through;
+  margin-bottom: 28px;
+}
+.final-cta-btn {
+  display: block;
+  width: 100%;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 16px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: opacity 0.2s;
+  margin-bottom: 14px;
+}
+.final-cta-btn:hover { opacity: 0.88; }
+.guarantee-text {
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+}
+.final-book-img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.15);
+}
+.features-list {
+  text-align: right;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.features-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+.feat-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--blue-light);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ===== CONTINUE ===== */
+.continue-section {
+  background: var(--blue-light);
+  padding: 60px 40px;
+  text-align: center;
+}
+.continue-title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.continue-body {
+  font-size: 1rem;
+  color: var(--ink-faded);
+  font-weight: 300;
+  margin-bottom: 28px;
+}
+.continue-btn {
+  display: inline-block;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 50px;
+  padding: 13px 32px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.continue-btn:hover { opacity: 0.88; }
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.5);
+  padding: 40px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+.footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+.footer a:hover { color: #fff; }
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 16px;
+  list-style: none;
+}
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: #fff;
+  border-radius: 24px;
+  padding: 40px;
+  max-width: 480px;
+  width: 90%;
+  direction: rtl;
+  text-align: right;
+  position: relative;
+}
+.modal-close {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--ink-faded);
+}
+.modal-title {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.modal-sub {
+  font-size: 0.9rem;
+  color: var(--ink-faded);
+  margin-bottom: 24px;
+}
+.modal-google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 13px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: opacity 0.2s;
+}
+.modal-google-btn:hover { opacity: 0.88; }
+.star-picker { display: flex; gap: 6px; margin-bottom: 16px; direction: ltr; }
+.star-pick {
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: #ddd;
+  transition: color 0.15s;
+}
+.star-pick.active { color: var(--gold); }
+.modal-textarea {
+  width: 100%;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 0.95rem;
+  resize: vertical;
+  min-height: 100px;
+  direction: rtl;
+  margin-bottom: 16px;
+  outline: none;
+}
+.modal-submit {
+  width: 100%;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 14px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.modal-submit:hover { opacity: 0.85; }
+#modal-user-info {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: var(--blue-light);
+  border-radius: 12px;
+}
+#modal-user-info img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+#modal-user-name { font-weight: 700; font-size: 0.9rem; color: var(--ink); }
+
+/* ===== REVEAL ANIMATION ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .book-pill { display: none; }
+  .social-proof { flex-direction: row; flex-wrap: wrap; }
+  .what-grid, .excerpts-grid, .final-grid { grid-template-columns: 1fr; }
+  .author-section { color: #fff;
+}
+.author-section { grid-template-columns: 1fr; text-align: center; }
+  .author-avatar { margin: 0 auto; }
+
+  .benefits-grid { grid-template-columns: 1fr 1fr; }
+  .questions-grid { grid-template-columns: 1fr; }
+  #dynamic-endorsements { grid-template-columns: 1fr 1fr; }
+  .hero-title { font-size: 2rem; }
+  .atmosphere-headline { font-size: 1.6rem; }
+  .navbar { padding: 0 20px; }
+  .nav-links { display: none; }
+}
+@media (max-width: 600px) {
+
+  .benefits-grid, #dynamic-endorsements { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
 
-<!-- ══════════════ NAVBAR ══════════════ -->
+<!-- NAVBAR -->
 <nav class="navbar">
-  <a href="#" class="navbar-logo">
-    <img src="logo.png" alt="לוגו הסולם">
-    <span class="navbar-logo-text">הסולם</span><span class="navbar-logo-sub">הוצאה לאור</span>
-  </a>
+  <div class="navbar-inner">
+    <a href="#" class="nav-logo">
+      <img src="logo_new.png" alt="החיפוש">
+      <span>החיפוש</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#what">על הספר</a></li>
+      <li><a href="#questions">שאלות</a></li>
+      <li><a href="#testimonials">המלצות</a></li>
+      <li><a href="#author">הרב אדם סיני</a></li>
+      <li><a href="#lead">פרק ראשון</a></li>
+    </ul>
+    <a href="https://hasulam.store/checkout/?add-to-cart=1569" class="nav-cta" target="_blank" rel="noopener">הזמן עכשיו</a>
+  </div>
 </nav>
 
-<!-- ══════════════ HERO ══════════════ -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <span class="hero-badge">ספרו השלישי של הרב אדם סיני</span>
-    <h1 class="hero-title">החיפוש</h1>
-    <p class="hero-subtitle">חבל, אתה זה לא</p>
-    <p class="hero-tagline">מסע מרתק ללידה רוחנית</p>
-    <p class="hero-author">הרב אדם סיני</p>
-    <a href="https://hasulam.store/product/%d7%94%d7%97%d7%99%d7%a4%d7%95%d7%a9-%d7%97%d7%91%d7%9c-%d7%90%d7%aa%d7%94-%d7%96%d7%94-%d7%9c%d7%90/" class="btn-primary" target="_blank" rel="noopener">להזמנת הספר ›</a>
-  </div>
-  <div class="hero-right">
-    <div class="book-wrapper">
-      <img src="book_cover.jpg" alt="כריכת הספר החיפוש" class="book-img"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <!-- Fallback if image not found -->
-      <div style="display:none;width:240px;height:340px;background:linear-gradient(160deg,#2a7a6e,#1e5c54);align-items:center;justify-content:center;flex-direction:column;color:#fff;box-shadow:-8px 8px 0 #7ec8bb,-16px 16px 0 rgba(61,158,143,0.3),0 30px 80px rgba(0,0,0,0.15)">
-        <div style="font-family:'Frank Ruhl Libre',serif;font-size:2.5rem;font-weight:900;margin-bottom:8px">החיפוש</div>
-        <div style="font-size:0.9rem;opacity:0.7">אדם סיני</div>
+  <div class="hero-grid">
+    <!-- Text col -->
+    <div class="reveal">
+      <h1 class="hero-title">יש רגע שבו אתה מרגיש שהחיים <span>חייבים להיות יותר</span></h1>
+      <p class="hero-body">יותר מבית ספר. יותר מקריירה. יותר מלעבור עוד יום ועוד יום בלי לדעת לאן כל זה הולך.</p>
+      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:12px;">
+        <a href="https://hasulam.store/checkout/?add-to-cart=1569" class="hero-btn" target="_blank" rel="noopener">הזמינו את הספר &rarr;</a>
+        <a href="#lead" class="hero-btn-secondary">קבלו פרק ראשון בחינם</a>
       </div>
-      <div class="book-edition">ספר שלישי</div>
     </div>
-  </div>
-</section>
-
-<!-- ══════════════ QUOTE BAND ══════════════ -->
-<section class="quote-band">
-  <span class="quote-mark">"</span>
-  <p class="quote-text reveal">
-    לא כל מי שהולך לאיבוד מחפש — אבל כל מי שמחפש, בדרכו ללכת לאיבוד תחילה.
-  </p>
-  <span class="quote-source reveal">— מתוך הספר</span>
-</section>
-
-<!-- ══════════════ ABOUT ══════════════ -->
-<section class="about-section">
-  <div class="about-text reveal">
-    <span class="section-label">על הספר</span>
-    <h2 class="section-title">סיפור מתח רוחני ופסיכולוגי</h2>
-    <p class="section-body">
-      מגיש את סיפורו של נער בן שבע עשרה,<br>
-        העושה את דרכו המפותלת ללידה רוחנית.<br>
-        החינוך בשלבי ההתבגרות,<br>
-        מפגיש את הקורא במתח שבין התמסרות להדרכה לבניית עצמאות.<br>
-        העלילה הסוחפת,<br>
-        מאתגרת לחקור תובנות יסוד<br>
-        הלקוחות מחכמת הקבלה ומשתלבות בחיי היום יום.<br>
-        בהחלט ספר שיכול לשנות תפיסה<br>
-        ולסלול דרך לחיים משמעותיים יותר.
-      "החיפוש" הוא מסע שמוביל אותו לפגישה עם שאלות 
-      הקיום הגדולות ביותר: מי אני? לשם מה אני כאן? מה המשמעות מאחורי הכאב?
-      <br><br>
-      ברוח משנתם של בעל הסולם והרב"ש, מציג הרב אדם סיני דרך שלישית — לא הימנעות ולא 
-      כניעה, אלא מעבר אמיתי, לידה מחדש.
-     <strong>אדם סיני</strong> - לומד ומלמד כארבעים שנה<br>
-        את דרך בעל הסולם והרב"ש.<br>
-        חיבר והוציא לאור שתי סדרות ספרים,<br>
-        "התורה האדם ומה שביניהם"<br>
-        ו"מועדי ישראל האדם ומה שביניהם",<br>
-        בהם הפגיש את הקורא עם פנימיות התורה.<br>
-        בספר זה ממזג את השקפת חכמת הקבלה<br>
-        ברומן מרתק על נער מתבגר.
-    </p>
-  </div>
-  <div class="about-visual">
-    <div class="wave-text">חיפוש חיפוש חיפוש חיפוש חיפוש חיפוש חיפוש חיפוש&nbsp;&nbsp;</div>
-    <div class="about-visual-inner">
-      <div class="big-num">∞</div>
-      <div class="big-num-label" style="color:rgba(255,255,255,0.5);font-family:'Frank Ruhl Libre',serif;font-size:1.1rem;">מסע ללא גבולות</div>
+    <!-- Book pill col -->
+    <div class="book-pill reveal" style="transition-delay:0.15s">
+      <img src="book_cover.jpg" alt="עטיפת הספר החיפוש">
     </div>
-  </div>
-</section>
-
-<!-- ══════════════ AUTHOR ══════════════ -->
-<section style="background:var(--sand-light);padding:80px 40px;">
-  <div class="author-section reveal" style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:60px;align-items:start;">
-    <div class="author-avatar">א</div>
-    <div>
-      <span class="section-label">דבר הסופר</span>
-      <h3 class="author-title">הרב אדם סיני</h3>
-      <p class="author-role">ראש קהילת "הסולם"</p>
-      <p class="author-bio">
-        כתבתי את הספר הזה כי חיפשתי. חיפשתי במקומות שאמרו לי שלא כדאי, שאלתי שאלות 
-        שאמרו לי שמסוכן לשאול — ומצאתי שדווקא שם, בחשכה הזו, מסתתר האור.
-        <br><br>
-        "החיפוש" הוא לא ספר דתי ולא ספר חילוני. הוא ספר אנושי — עבור כל מי שמרגיש 
-        שמשהו חסר, שחייב להיות משהו יותר מזה.
-        <br><br>
-        קהילת "הסולם" היא מקום שבו שאלות מתקבלות בברכה — ותשובות נמצאות יחד.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ EXCERPTS ══════════════ -->
-<section style="padding:80px 40px;background:var(--cream);">
-  <div style="max-width:800px;margin:0 auto;">
-    <div class="excerpts-header reveal">
-      <span class="section-label">טעימות מהספר</span>
-      <h2 class="section-title">קטעים שיישארו איתך</h2>
-    </div>
-    <div class="excerpt-card reveal">
-      <div class="excerpt-number">01</div>
-      <p class="excerpt-text">
-        "גם בלילות הבאים מצאתי את עצמי משוטט שעות ברחובות.<br>
-        מחפש את עצמי בשום מקום.<br>
-        משוטט בין ייאוש להחשבה עצמית,<br>
-        בין פנטזיה לדיכאון,<br>
-        בין מחשבות פילוסופיות גבוהות,<br>
-        לבין מחשבות על תענוג מיידי וסוחף.<br>
-        נפשי נצרבת אט אט ומתמזגת עם הרחוב.<br>
-        חושש להיות 'רחובי', להיות כמו כולם.<br>
-        הסתכלתי במבט זגוגי על הנעשה סביבי,<br>
-        בוהה במחשבותיי, הולך לשום מקום,<br>
-        לא מצפה לשום דבר, לא רוצה כלום,<br>
-        מחכה שמשהו יקרה ועדיף שיהיה חזק.<br>
-        צועק נואשות למשמעות,<br>
-        לסיבה אמיתית לחיים...!!!"
-      </p>
-    </div>
-    <div class="excerpt-card reveal">
-      <div class="excerpt-number">02</div>
-      <p class="excerpt-text" style="font-style:normal;">
-        <strong style="font-size:1rem;display:block;margin-bottom:12px;color:var(--ink);">חדשות במונית</strong>
-        "אני לא יודע מי אני,<br>
-        אני יודע רק איך אני תופס מי אני,<br>
-        ואת תפיסת האני עליי לשנות,"<br>
-        קרא משה לחברים מהכתבים של שלמה.<br>
-        הוא המשיך, "התפיסה האוטומטית של האדם<br>
-        היא שהוא גוף בעולם הזה.<br>
-        אולם אין זה אמיתי,<br>
-        אלא שהוא צריך לתפוס שהוא נשמה.<br>
-        היכולת לתפוס באופן חדש זה את עצמו<br>
-        מצריך שינוי זהות ושינוי שם."<br><br>
-        משה הסביר את הדברים על פי הבנתו.<br>
-        "האדם לעולם לא תופס את מה שקיים מחוץ לעצמו,<br>
-        אלא יודע רק את התפיסה שלו את המציאות<br>
-        ולא את המציאות עצמה.<br>
-        כל אדם צריך תודעה, שהיא תבנית מחשבה,<br>
-        שדרכה הוא תופס."<br><br>
-        "מה קורה עם שלמה? אני דואג!" אמר מיכאל.<br>
-        "אני מרגיש שמשהו לא בסדר. היכן רוני?"
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ ENDORSEMENTS ══════════════ -->
-<section class="endorsements-section">
-  <div class="endorsements-header reveal">
-    <span class="section-label">מה אומרים הקוראים</span>
-    <h2 class="section-title">המלצות</h2>
-    <p style="font-family:'Frank Ruhl Libre',serif;font-size:1.35rem;color:var(--teal-light);font-style:italic;margin-top:16px;font-weight:300;">
-      "טלטלה רוחנית אדירה בעטיפה של רומן מרתק"
-    </p>
-  </div>
-  <div class="endorsements-grid" style="grid-template-columns:repeat(2,1fr);max-width:900px;margin-left:auto;margin-right:auto;">
-    <div class="endorsement-card reveal">
-      <div class="stars">★★★★★</div>
-      <p class="endorsement-text">
-        "הזדהיתי עם רוני ממקום השונות — ההליכה ללא פשרות לחיפוש אחר האמת שבוערת מבפנים.
-        האישיות שלנו שונה לגמרי, אבל התנועה — זהה.
-        הלידה של רוני האירה אצלי את שלי. אני מרגישה משהו בטוח. משהו שונה."
-      </p>
-      <div class="endorsement-name">רחל</div>
-      <div class="endorsement-role">קוראת</div>
-    </div>
-    <div class="endorsement-card reveal">
-      <div class="stars">★★★★★</div>
-      <p class="endorsement-text">
-        "קראתי את הספר החיפוש, והוא נגע בי מאוד. דרך מסע החיפוש של רוני
-        מצאתי גם חיפוש פנימי בתוכי, וקיבלתי ממנו כוחות נפש רבים. תודה."
-      </p>
-      <div class="endorsement-name">גילי</div>
-      <div class="endorsement-role">קוראת</div>
-    </div>
-    <div class="endorsement-card reveal">
-      <div class="stars">★★★★★</div>
-      <p class="endorsement-text">
-        "הגעתי לספר הזה בלי ציפיות מוקדמות ופשוט לא יכולתי להניח אותו מהיד. הציטוט על הכריכה האחורית על השיטוט ברחובות והחיפוש הנואש אחר משמעות תפס אותי מיד, כי כולנו היינו שם ברגע כזה או אחר בחיים. הספר מצליח לקחת מושגים עמוקים ומורכבים מחכמת הקבלה ולתרגם אותם לדילמות אנושיות, מוחשיות ויומיומיות. הוא גרם לי לחשוב מחדש על התפיסה העצמית שלי ועל הדרך שבה אני מנהל את החיים שלי. ספר חובה לכל מחפש דרך."
-      </p>
-      <div class="endorsement-name">אילן שוורץ</div>
-      <div class="endorsement-role">חובב פילוסופיה וספרות</div>
-    </div>
-    <div class="endorsement-card reveal">
-      <div class="stars">★★★★★</div>
-      <p class="endorsement-text">
-        "אני בן 19, וקראתי את הספר הזה ממש לא מזמן. התחושות של הגיבור ברחובות, הבלבול בין הרצון לתענוג מיידי לבין החיפוש אחר סיבה אמיתית לקום בבוקר – זה פשוט הרגיש כאילו מישהו נכנס לי לתוך הראש וכתב את המחשבות שלי. זה לא עוד ספר שמטיף לך מוסר, אלא סיפור שמלווה אותך ומראה לך שיש דרך לצאת מהבלבול ולמצוא משמעות חזקה. הרגשתי שהוא פתח לי את הראש."
-      </p>
-      <div class="endorsement-name">תומר דניאל</div>
-      <div class="endorsement-role">חייל משוחרר</div>
-    </div>
-  </div>
-
-  <!-- המלצה מצולמת — להחליף את ה-div הזה ב-iframe של YouTube כשיש סרטון -->
-  <div style="max-width:760px;margin:40px auto 0;" class="reveal">
-    <div style="background:rgba(255,255,255,0.05);border:2px dashed rgba(255,255,255,0.15);border-radius:4px;padding:60px 30px;text-align:center;">
-      <div style="font-size:3rem;margin-bottom:14px;opacity:0.3;">▶</div>
-      <p style="color:rgba(255,255,255,0.35);font-size:0.9rem;letter-spacing:0.05em;">המלצה מצולמת — בקרוב</p>
-    </div>
-  </div>
-
-  <!-- ── DYNAMIC ENDORSEMENTS (Firebase) ── -->
-  <div id="firebase-config-notice" class="firebase-config-notice" style="display:none;">
-    ⚠️ <strong>הגדרת Firebase נדרשת:</strong> כדי שהמערכת תעבוד, יש להחליף את ה-placeholder בקוד JavaScript למטה עם ה-config האמיתי שלך מ-Firebase Console.<br>
-    חפש את הקטע <code>YOUR_FIREBASE_CONFIG_HERE</code> בקוד.
-  </div>
-  <div id="dynamic-endorsements"></div>
-
-  <button class="add-endorsement-btn" onclick="openModal()">✍️ כתוב המלצה משלך</button>
-</section>
-
-<!-- ══════════════ MODAL ══════════════ -->
-<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-
-    <div id="modal-login">
-      <h2 class="modal-title">הוסף המלצה</h2>
-      <p class="modal-sub">התחבר עם חשבון Google שלך כדי לשתף את חוויתך עם הספר</p>
-      <button class="google-btn" onclick="signInWithGoogle()">
-        <svg width="20" height="20" viewBox="0 0 20 20"><path d="M19.6 10.23c0-.68-.06-1.36-.18-2H10v3.77h5.39a4.6 4.6 0 0 1-2 3.02v2.5h3.23c1.89-1.74 2.98-4.3 2.98-7.29z" fill="#4285F4"/><path d="M10 20c2.7 0 4.96-.9 6.62-2.43l-3.23-2.5c-.9.6-2.04.96-3.39.96-2.6 0-4.8-1.76-5.59-4.12H1.07v2.58A9.99 9.99 0 0 0 10 20z" fill="#34A853"/><path d="M4.41 11.91A6.01 6.01 0 0 1 4.1 10c0-.66.11-1.3.31-1.91V5.51H1.07A10 10 0 0 0 0 10c0 1.61.38 3.13 1.07 4.49l3.34-2.58z" fill="#FBBC05"/><path d="M10 3.96c1.47 0 2.79.5 3.83 1.5l2.87-2.87C14.95.99 12.69 0 10 0A9.99 9.99 0 0 0 1.07 5.51l3.34 2.58C5.2 5.72 7.4 3.96 10 3.96z" fill="#EA4335"/></svg>
-        המשך עם Google
-      </button>
-      <p style="text-align:center;font-size:0.8rem;color:var(--ink-faded);">רק שמך ותמונתך יוצגו • ההמלצה תועבר לאישור לפני פרסום</p>
-    </div>
-
-    <div class="modal-form" id="modal-form">
-      <div class="user-greeting" id="user-greeting"></div>
-
-      <div class="form-group">
-        <label>כמה כוכבים הספר מקבל?</label>
-        <div class="star-picker" id="star-picker">
-          <span data-v="5">★</span>
-          <span data-v="4">★</span>
-          <span data-v="3">★</span>
-          <span data-v="2">★</span>
-          <span data-v="1">★</span>
+    <!-- Social proof col -->
+    <div class="social-proof reveal" style="transition-delay:0.3s;display:flex;flex-direction:column;gap:20px;justify-content:center;">
+      <div class="stars-row">
+        <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
+        <span class="rating-text" style="margin-right:10px;">4.9 / 5</span>
+      </div>
+      <div style="background:#fff;border-radius:20px;padding:24px 28px;box-shadow:0 4px 24px rgba(0,0,0,0.07);border-right:4px solid var(--blue);">
+        <p style="font-size:1.1rem;line-height:1.75;color:var(--ink-soft);font-style:italic;font-weight:400;margin-bottom:14px;">
+          &ldquo;הלידה של רוני האירה אצלי את שלי. אני מרגישה משהו בטוח. משהו שונה.&rdquo;
+        </p>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#0044cc);display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:0.85rem;">ר</div>
+          <div>
+            <div style="font-weight:800;font-size:0.9rem;color:var(--ink);">רחל</div>
+            <div style="font-size:0.75rem;color:var(--ink-faded);">קוראת</div>
+          </div>
         </div>
       </div>
-
-      <div class="form-group">
-        <label>התפקיד / רקע שלך (אופציונלי)</label>
-        <input type="text" id="input-role" placeholder="למשל: אמא לשלושה, מחנך, סטודנט..." maxlength="60">
-      </div>
-
-      <div class="form-group">
-        <label>המלצתך *</label>
-        <textarea id="input-text" placeholder="ספר לנו על החוויה שלך עם הספר..." maxlength="500"></textarea>
-        <div style="text-align:left;font-size:0.75rem;color:var(--ink-faded);margin-top:4px;"><span id="char-count">0</span>/500</div>
-      </div>
-
-      <button class="submit-btn" id="submit-btn" onclick="submitEndorsement()">שלח המלצה ›</button>
     </div>
+  </div>
+</section>
 
-    <div class="success-msg" id="success-msg">
-      <div class="success-icon">🙏</div>
-      <p><strong>תודה רבה!</strong><br>ההמלצה שלך התקבלה ותוצג באתר לאחר אישור קצר.</p>
-      <button class="submit-btn" style="margin-top:20px;max-width:200px;margin-inline:auto;display:block;" onclick="closeModal()">סגור</button>
+<!-- WHAT SECTION (merged with atmosphere) -->
+<section id="what" style="background: linear-gradient(rgba(10,15,30,0.62), rgba(10,15,30,0.62)), url('art1.jpg') center/cover no-repeat; width:100%;">
+  <div style="display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 40px 60px;">
+    <h2 class="atmosphere-headline">זהו לא רק סיפור על נער אחד &#x2014; <span>זה הסיפור שלך</span></h2>
+  </div>
+  <div class="what-grid">
+    <div class="reveal">
+      <div class="section-label" style="color:#ffffff!important;font-weight:900;font-size:1.5rem!important;opacity:1;letter-spacing:0.05em;text-transform:none;">מה זה &#x201C;החיפוש&#x201D;?</div>
+      <h2 class="section-title" style="color:#7EC8BB!important;font-weight:900;text-shadow:0 2px 12px rgba(0,0,0,0.9);">ספר שנולד מתוך השאלות האמיתיות של החיים</h2>
+      <p class="section-body">
+        יש ספרים שמספרים סיפור.<br>
+        ויש ספרים שמצליחים לגעת במקום עמוק יותר — במקום שבו האדם פוגש את עצמו.
+        <br><br>
+        "החיפוש" הוא רומן מרתק העוקב אחר מסעו של נער צעיר המרגיש שהחיים כפי שהם מוצגים לו אינם מספקים תשובה לשאלות הבוערות בתוכו. בעוד סביבתו ממשיכה להתנהל על פי הנורמות המקובלות, הוא אינו מצליח להתעלם מהתחושה שיש בחיים עומק גדול יותר שממתין להתגלות.
+        <br><br>
+        במהלך מסעו הוא מתמודד עם אכזבות, התנגשויות, שאלות זהות, מאבקי אגו, קשרים אנושיים ורגעים מטלטלים שמאלצים אותו לבחון מחדש את כל מה שחשב שהוא יודע על עצמו ועל העולם.
+        <br><br>
+        אך "החיפוש" אינו רק סיפור על נער אחד. זהו סיפור על החיפוש האנושי אחרי אמת בלתי מתפשרת.
+        <br><br>
+        דרך עלילה סוחפת ודמויות מעוררות הזדהות, נחשף הקורא לתובנות על נפש האדם, על ההתמודדות בין הרצון להיות צודק לבין הרצון לגלות אמת, ועל המסע שכל אדם עובר בדרכו להבין מי הוא באמת.
+        <br><br>
+        הספר כתוב בשפה נגישה וזורמת, ומצליח לשלב בין חוויית קריאה מהנה לבין שאלות ותובנות שנשארות עם הקורא הרבה אחרי סיום הקריאה.
+        <br><br>
+        זהו ספר למי שאוהב סיפורים טובים. זהו ספר למי שאוהב לחשוב. ובעיקר — למי שמרגיש שגם בתוכו קיים חיפוש שעדיין לא הסתיים.
+      </p>
+    </div>
+    <div class="dark-panel reveal" style="transition-delay:0.2s">
+      <div class="dark-panel-quote">
+        &ldquo;על ההתמודדות בין הרצון להיות צודק לבין הרצון לגלות אמת, ועל המסע שכל אדם עובר בדרכו להבין מי הוא באמת.&rdquo;
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CINEMATIC EXCERPTS -->
+<section class="excerpts-section">
+  <div class="section-label" style="text-align:center">טעימה מהספר</div>
+  <h2 class="section-title" style="text-align:center;margin-bottom:40px">שורות שנשארות איתך</h2>
+  <div style="max-width:760px;margin:0 auto;">
+    <div class="excerpt-card reveal" style="background:linear-gradient(rgba(10,15,30,0.62),rgba(10,15,30,0.62)),url('art4.png') center/cover no-repeat;cursor:pointer;" onclick="openExcerptPopup()">
+      <div class="excerpt-overlay"></div>
+      <div class="excerpt-content">
+        <div class="excerpt-tag">&#x1F4D6; החיפוש | עמוד 15</div>
+        <p class="excerpt-text">
+          &ldquo;גם בלילות הבאים מצאתי את עצמי משוטט שעות ברחובות.
+          מחפש את עצמי בשום מקום.
+          משוטט בין ייאוש להחשבה עצמית, בין פנטזיה לדיכאון,
+          בין מחשבות פילוסופיות גבוהות, לבין מחשבות על תענוג מיידי וסוחף.
+          נפשי נצרבת אט אט ומתמזגת עם הרחוב...
+          <strong class="excerpt-highlight">צועק נואשות למשמעות, לסיבה אמיתית לחיים!!!!</strong>&rdquo;
+        </p>
+        <button class="excerpt-read-more" onclick="openExcerptPopup()">קרא את הקטע המלא &#x2192;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXCERPT POPUP -->
+<div class="excerpt-popup-overlay" id="excerpt-popup" onclick="handleExcerptOverlay(event)">
+  <div class="excerpt-popup-box">
+    <div class="excerpt-popup-hero"></div>
+    <button class="excerpt-popup-close" onclick="closeExcerptPopup()">&#x2715;</button>
+    <div class="excerpt-popup-header">
+      <span class="excerpt-popup-tag">&#x1F4D6; החיפוש | עמודים 15–16</span>
+      <h3 class="excerpt-popup-title">הספסל בגן</h3>
+    </div>
+    <div class="excerpt-popup-body">
+      <p>גם בלילות הבאים מצאתי את עצמי משוטט שעות ברחובות. מחפש את עצמי בשום מקום. משוטט בין ייאוש להחשבה עצמית, בין פנטזיה לדיכאון, בין מחשבות פילוסופיות גבוהות, לבין מחשבות על תענוג מיידי וסוחף. נפשי נצרבת אט אט ומתמזגת עם הרחוב. חושש להיות "רחובי", להיות כמו כולם. הסתכלתי במבט זגוגי על הנעשה סביבי, בוהה במחשבותיי, הולך לשום מקום, לא מצפה לשום דבר, לא רוצה כלום, מחכה שמשהו יקרה ועדיף שיהיה חזק. <strong class="excerpt-highlight">צועק נואשות למשמעות, לסיבה אמיתית לחיים!!!!</strong></p>
+      <p>האיש, ששכב על ספסל בגן הציבורי, התיישב בהתקרבי אליו. "יש מקום כאן חבר," כמו אמר בלי מילים. התיישבתי על הספסל. נמנעתי מלהביט בו שלא יחוש מובך. המבט המהיר, בו קלטתי אותו בהתיישבי, שידר לי מוזרות. גילו היה לא ברור, שכן, על פניו, נראה היה זקן.</p>
+      <p>הוא החל לדבר, ספק אל עצמו ספק אליי. "איזה חיים יפים כאן במלון אינסוף כוכבים, אתה לא חייב לאף אחד כלום." בגיחוך קל הוסיף, "אפילו לא לעצמך..."</p>
+      <p>אני חייב להודות שהאנשים האלו תמיד עניינו אותי. אהבתי, או אולי הסתקרנתי מהמוזרות שלהם. נפשי חשה, שהיכן שמצוי ההמון הרגיל, לא יכולה להיות בו האמת. מורעלות הן בארות ההמון, ואני חיפשתי מים זכים, כך לפחות האמנתי לעצמי.</p>
+      <p>המשיך חברי לספסל, "בחדרנו המאוורר, בבית המלון של אינסוף הכוכבים, אין חשבונות חשמל, אין חשבונות מים, אין חשבונות של כבוד ואין חשבונות של משפחה. אין רצון, אין בעיות. יש רצון, יש בעיות. כאן, אפילו אם תרצה לא תקבל. אתה הופך להיות חיה ללא רצון. שמח ממה שיש, ומה שאין, אין אתה רוצה. אתה שמח ולא שמח בעת ובעונה אחת. אתה מנצח את כולם ואף אחד לא נלחם איתך. אתה כולם ואף אחד הוא לא אתה. כל יום אתה מה שאתה רוצה להיות. אתה יכול להיות מה שמתחשק לך, אף אם אין לך שום חשק..."</p>
+      <p class="excerpt-popup-speech">"שקרן מתועב, גונב לבבות ואף את ליבך שלך אתה גונב. באפסות שאתה חי, מבקש אתה מקלט מהמשמעות. אתה כוסף כל כולך בכל מאווייך לשום דבר ואתה אומר שאין לך מאוויים. אתה מחפש כל העת הנאות קטנות, כדי שיספקו את הנצרך, שיחליפו בתעתוע עצמי את הרצונות האמיתיים שלך. ויתרת על האושר האמיתי ולכך אתה קורא אושר.</p>
+      <p class="excerpt-popup-speech">חדל מניבולי הפה המייסרים כל שכל ישר. <strong class="excerpt-highlight">חדל לשחק על רגש האין רצון</strong>, על העדר ההיגיון בכל מה שמלמל פיך. על ערבוב שני ההפכים, כאילו אמרת הכל ולא כלום. בונה לך דרכים של נסיגה שכלית לכל מקום אפשרי. לא מחויב אפילו לא לעצמך.</p>
+      <p class="excerpt-popup-speech">כיצד כמעט ניצודה נפשי במילותיך, רשע מרושע! הנך מסכן שבמסכנים המנסה לעשות אידיאליזציה ממסכנותך. ברח ממני או שאברח אני ממך ומשכמותך, זקן אפרורי ונתעב. חשבת לנצל את בדידותי, כדי לקבל מעט קורת רוח מהאשפה הממלאת את כרסך. מבקש אתה להמתיק את האשפה, אליה אתה מוסיף סוכר ועוד טוען שמאכל מעדנים הוא.</p>
+      <p class="excerpt-popup-speech">ברח לך אל מאורתך הכוזבת ואת נפשי הממילא מיוסרת אל תנסה לכבוש במילותיך הקופיות, המנסות להתחקות אחר עמקות לא קיימת. <strong class="excerpt-highlight">חוסר הבהירות אינה עמקות, אלא כזב מתעתע</strong>. מכה אחת ועוד אחת צריך הייתי להצליף בך אילו היה עוזר הדבר, אך אף לכך אינך ראוי, רשע שבכוזבים."</p>
+      <p>כך דיברתי ביני לביני כאשר הזקן ממשיך את דבריו אל עצמו מתוך החשבה עצמית. קמתי ממקומי והתרחקתי חיש מהמקום, מנסה לברוח מהכזב.</p>
+      <p>איני יודע מדוע נפשי מגיבה בכזו אגרסיביות, הורסת, דורסת כל מה שנקרה בדרכה. מין מרד נעורים בלתי נשלט...</p>
+    </div>
+    <div class="excerpt-popup-footer">
+      <a href="https://hasulam.store/checkout/?add-to-cart=1569" class="excerpt-popup-cta" target="_blank">הזמינו את הספר המלא &#x2192;</a>
     </div>
   </div>
 </div>
 
-<!-- ══════════════ FOR WHOM ══════════════ -->
-<section style="padding:80px 40px;background:var(--cream);">
-  <div style="max-width:900px;margin:0 auto;">
-    <div class="reveal" style="text-align:center;margin-bottom:20px;">
-      <span class="section-label">למי מתאים הספר</span>
-      <h2 class="section-title">אם אחד מאלה מדבר אליך — הספר הזה הוא בשבילך</h2>
+
+<!-- VIDEO TESTIMONIALS -->
+<section class="video-section">
+  <div class="video-section-inner">
+    <div style="text-align:center;">
+      <span class="section-label" style="color:rgba(255,255,255,0.4);">המלצות מצולמות</span>
+      <h2 class="section-title" style="color:#fff;">הם כבר קראו — ואלה המילים שלהם</h2>
     </div>
-    <div class="forwho-grid">
-      <div class="forwho-item reveal">
-        <div class="forwho-icon">🌊</div>
-        <p class="forwho-text">מי שמרגיש שמשהו חסר — גם כשהכל נראה בסדר מבחוץ</p>
+    <div class="video-grid">
+      <div class="video-card reveal">
+        <video controls preload="metadata" poster="">
+          <source src="video1.mp4" type="video/mp4">
+          הדפדפן שלך אינו תומך בסרטון.
+        </video>
+        <div class="video-card-info">
+          <div class="video-card-name">שלמה</div>
+          <div class="video-card-role">קורא &#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
+        </div>
       </div>
-      <div class="forwho-item reveal">
-        <div class="forwho-icon">🌱</div>
-        <p class="forwho-text">בני נוער ומבוגרים צעירים שמתחבטים בשאלות זהות ומשמעות</p>
-      </div>
-      <div class="forwho-item reveal">
-        <div class="forwho-icon">🔍</div>
-        <p class="forwho-text">מי שמחפש גשר בין עולם רוחני לחיים המודרניים</p>
-      </div>
-      <div class="forwho-item reveal">
-        <div class="forwho-icon">💬</div>
-        <p class="forwho-text">הורים שרוצים פתח לשיחה עמוקה עם ילדיהם</p>
-      </div>
-      <div class="forwho-item reveal">
-        <div class="forwho-icon">✨</div>
-        <p class="forwho-text">מי שנמשך לחכמת הקבלה ומשנת בעל הסולם — ורוצה להכיר אותה דרך סיפור</p>
-      </div>
-      <div class="forwho-item reveal">
-        <div class="forwho-icon">💝</div>
-        <p class="forwho-text">כל מי שמחפש מתנה משמעותית ואמיתית — לעצמו או לאהוביו</p>
+      <div class="video-card reveal" style="transition-delay:0.15s;">
+        <video controls preload="metadata" poster="">
+          <source src="video2.mp4" type="video/mp4">
+          הדפדפן שלך אינו תומך בסרטון.
+        </video>
+        <div class="video-card-info">
+          <div class="video-card-name">קורא נוסף</div>
+          <div class="video-card-role">קורא</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ GIFT ══════════════ -->
-<section class="gift-section">
-  <div style="position:relative;z-index:1;">
-    <span class="section-label">המתנה המושלמת</span>
-    <h2 class="section-title reveal" style="color:#fff;max-width:600px;margin:16px auto 20px;">
-      הספר שיזכרו לך לתמיד
-    </h2>
-    <p class="reveal" style="color:rgba(255,255,255,0.7);max-width:500px;margin:0 auto;font-size:1rem;line-height:1.8;">
-      לא עוד מתנה שנשכחת. "החיפוש" הוא ספר שפותח שיחות, מרגש ומשאיר רושם — לבר מצווה, 
-      יומהולדת, ולכל אדם יקר שאתם רוצים להגיד לו: חשבתי עליך.
+<!-- AUTHOR -->
+<div id="author" style="background: linear-gradient(rgba(10,15,30,0.7), rgba(10,15,30,0.7)), url('תמונה של הרב.jpeg') center top/cover no-repeat; width:100%;">
+<section class="author-section" style="max-width:900px;margin:0 auto;">
+
+  <div class="reveal">
+    <div class="author-label" style="color:#F59E0B!important;font-weight:900;font-size:1rem;letter-spacing:0.15em;">על הסופר</div>
+    <h2 class="author-name" style="color:#7EC8BB!important;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,0.8);">הרב אדם סיני</h2>
+    <p class="author-bio">
+      הרב אדם סיני הוא תלמידם של גדולי מקובלי שושלת בעל הסולם והרב"ש, ועוסק במשך עשרות שנים בלימוד, הוראה והנגשת חכמת הקבלה ותורת הנפש.
+      <br><br>
+      לאחר שירות צבאי ביחידה מובחרת בצה"ל פנה למסע אישי של חיפוש אחר משמעות החיים והאמת. במהלך השנים חקר גישות רוחניות, פילוסופיות ודתות שונות, עד שמצא את דרכו בחכמת הקבלה בבית מדרשו של הרב ברוך שלום הלוי אשלג (הרב"ש), בנו וממשיך דרכו של בעל הסולם.
+      <br><br>
+      בשנת 2002 החל להתגבש סביבו גרעין תלמידים, ומתוך כך נוסד בית המדרש "הסולם", אותו הוא עומד בראשו עד היום. לצד פעילותו בבית המדרש, הרב מלמד ומרצה בנושאים הקשורים לעולמו הפנימי של האדם — משמעות החיים, חינוך, זוגיות, מודעות יהודית והתפתחות נפשית על פי יסודות חכמת הקבלה.
+      <br><br>
+      ייחודו של הרב אדם סיני הוא בהצגת חכמת הקבלה כתורת נפש המכוונת להבנת האדם ועולמו הפנימי. בשיעוריו ובספריו הוא מבקש להנגיש רעיונות רוחניים עמוקים בשפה בהירה ומעשית, הפונה לאדם המבקש להבין את עצמו, את יחסיו עם סביבתו ואת תכלית חייו.
     </p>
-    <div class="gift-reasons">
-      <div class="gift-reason">🕯️ לבר ובת מצווה</div>
-      <div class="gift-reason">🎂 ליום הולדת</div>
-      <div class="gift-reason">🎓 לסיום לימודים</div>
-      <div class="gift-reason">❤️ כי כדאי</div>
-    </div>
-    <a href="https://hasulam.store/product/%d7%94%d7%97%d7%99%d7%a4%d7%95%d7%a9-%d7%97%d7%91%d7%9c-%d7%90%d7%aa%d7%94-%d7%96%d7%94-%d7%9c%d7%90/" class="btn-primary" style="opacity:1;" target="_blank" rel="noopener">להזמנה ›</a>
   </div>
 </section>
 
-<!-- ══════════════ FINAL CTA ══════════════ -->
-<section class="final-cta" id="purchase">
-  <span class="section-label">הצטרפו למסע</span>
-  <h2 class="section-title reveal">מוכנים להתחיל לחפש?</h2>
-  <p class="reveal" style="color:var(--ink-faded);max-width:400px;margin:0 auto 24px;font-size:1rem;line-height:1.8;">
-    הזמינו עכשיו ותקבלו את הספר  
-  </p>
-  <div class="price-tag reveal">₪79</div>
-  <p class="price-sub reveal">כולל משלוח לכל הארץ </p>
-  <a href="https://hasulam.store/product/%d7%94%d7%97%d7%99%d7%a4%d7%95%d7%a9-%d7%97%d7%91%d7%9c-%d7%90%d7%aa%d7%94-%d7%96%d7%94-%d7%9c%d7%90/" class="btn-large reveal" target="_blank" rel="noopener">להזמנה עכשיו</a>
-  <p class="reveal" style="margin-top:20px;font-size:0.85rem;color:var(--ink-faded);">
-    שאלות? השאירו הודעה ונחזור אליכם תוך 24 שעות
-  </p>
+
+
+<!-- BOOK ORIGIN (merged with author bg) -->
+<section class="origin-section" id="origin">
+  <div class="origin-inner">
+    <div class="reveal">
+      <span class="section-label">הרב מספר</span>
+      <h2 class="origin-title">ספר שנולד מתוך חיפוש אמיתי</h2>
+      <p class="origin-subtitle">כיצד נולד "החיפוש"</p>
+    </div>
+    <div class="origin-body reveal">
+      <p>את הספר "החיפוש" כתבתי מתוך מסע חיים אמיתי.</p>
+      <p>כבר בנערותי בער בי הרצון להבין מה נמצא מעבר לחיים הרגילים, מעבר לשגרה האפורה, מעבר למרוץ היומיומי שמעסיק את האדם אך לא תמיד ממלא את נפשו. הרגשתי שיש בחיים עומק גדול יותר, אמת גדולה יותר, משמעות שממתינה להתגלות.</p>
+      <p>במהלך השנים ראיתי את אותו חיפוש מתעורר גם אצל בני. ראיתי את ההתמודדות שלו עם העולם, עם מערכת החינוך, עם שאלות של זהות, אמת, גאווה, אכזבה, רצון להיות גדול באמת — ועם הכאב שמתעורר כאשר האדם מרגיש שהחיים סביבו אינם נותנים מענה לנשמה שלו.</p>
+      <p>המפגש הזה, בין החיפוש שלי לבין החיפוש של הדור הצעיר, עורר בי רצון עמוק לכתוב רומן. סיפור שיהיה מעניין, חי ונוגע ללב, ובתוכו ישתלבו תובנות חיים, שאלות פנימיות, מאבקי נפש, אמת שמתבררת, וגיבור שעובר דרך משמעותית אל עצמו.</p>
+      <p>"החיפוש" נכתב בתחילה עבור בני נוער, במיוחד עבור נערים ונערות שמרגישים בתוכם בקשה לחיים גדולים יותר. לשמחתי, עם הזמן גיליתי שהספר מדבר גם אל מבוגרים — אנשים בני שלושים, ארבעים, חמישים ומעלה — שכל אחד מהם נושא בתוכו את אותו רצון: לא להסתפק בקיום חיצוני, אלא למצוא דרך לחיים עם משמעות, עומק, אמת ואהבה.</p>
+    </div>
+    <div class="origin-closing reveal">
+      <p>זהו ספר על נער, אך בעצם הוא ספר על כולנו.</p>
+      <p>על המקום שבו הגאווה מתנפצת מול האמת.<br>
+      על האכזבה שהופכת לשאלה עמוקה.<br>
+      על הכאב שפותח שער.<br>
+      על האפשרות למצוא בתוך החיים עצמם דרך חדשה, פנימית וחיה יותר.</p>
+      <p><strong>"החיפוש" הוא רומן שכיף לקרוא, אך הוא גם הזמנה למסע.</strong><br>
+      מסע אל השאלה שכל אדם פוגש בשלב מסוים בחייו:<br>
+      <strong>האם אני מוכן לחיות חיים שיש בהם אמת?</strong></p>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="testimonials-inner">
+    <div style="text-align:center">
+      <div class="section-label">מה אומרים הקוראים</div>
+      <h2 class="section-title">המלצות הקוראים</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal" style="transition-delay:0.1s">
+        <div class="testimonial-stars">
+          <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
+        </div>
+        <p class="testimonial-text">
+          בתחילת הספר הזדהיתי עם רוני ממקום השונות וההבדלה שהוא מוצא בעצמו וכל מה שהוא נלחן עליו בהמשך הדרך — שמזוהה עם התנועה הזאת. ובהתחלה לא היה קל לזהות כי האופי שלו חזק ולא יכולתי לחבר. ולאט לאט כשהוא התרכך, ראיתי שההזדהות שאני חווה היא מתוך התנועה שהוא מייצג — שבהליכה ללא פשרות לחיפוש אחר האמת.
+          <br><br>
+          אני הגעתי ממקום מאוד שונה! התנועה של האמת שצועקת מבפנים ובוערת — היא זאת שמובילה. אבל האישיות שלי ממש הפוכה משלו.
+          <br><br>
+          ובזכות התהליך שלו הבנתי פתאום שאני מזדהה עם הדרך ושבעצם השתניתי לגמרי. והגילוי הגדול הוא, שבטח עוד אגלה בהמשך פרטים נוספים, שהכלל שהוא גילה, המבניות הזאת עזרה לי לגלות את שלי!
+          <br><br>
+          עד אז חייתי כל פרט בסבל רב. היו נחמות בדרך, אבל כל עוד לא התחברו הפרטים והנקודות שעבדתי עליהן — הייתי ההולכת באפילה, אוחזת בשלט האמת ומגששת כדי לחפש רמזים ופירורים כדי להתקיים. הישרדות.
+          <br><br>
+          לקח לי זמן להבין את הלידה של רוני. (מדהים אותי שההריון שלי הראשון התעכב וחלמנו שיהיה בן ונקרא לו רוני! ובסוף נולדה בת שנולדה בהפטרת נח — ולא מתאים לקרא לה רוני!)
+          <br><br>
+          ועכשיו! הלידה של רוני האירה אצלי את שלי! אני מרגישה משהו בטוח. משהו שונה. אין לי עדיין שם. וכנראה מה שלא נדע לא נוכל לשיים — ואני חוקרת את ההמשך בגרסה שלי אחרת ב"ה.
+          <br><br>
+          כמובן שבתוכי אני יודעת שהמקום הוא הקשר שלי עם הקב"ה. וזה מרגש אותי להתאהב בו כאילו עכשיו חיזקנו את הקשר.
+        </p>
+        <div class="testimonial-author">
+          <div class="t-avatar">ר</div>
+          <div><div class="t-name">רחל</div><div class="t-role">השם שמור במערכת</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal" style="transition-delay:0.2s">
+        <div class="testimonial-stars">
+          <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
+        </div>
+        <p class="testimonial-text">&ldquo;לא ציפיתי שספר כזה יגע בי כל כך עמוק. הרב אדם סיני כותב בצורה שמרגישה אישית, כאילו הוא מכיר אותך.&rdquo;</p>
+        <div class="testimonial-author">
+          <div class="t-avatar">ג</div>
+          <div><div class="t-name">גילי לוי</div><div class="t-role">מורה, 31</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal" style="transition-delay:0.3s">
+        <div class="testimonial-stars">
+          <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
+        </div>
+        <p class="testimonial-text">&ldquo;נתתי את הספר לבן שלי בן ה-17. הוא אמר שלראשונה מזמן הרגיש שמישהו מבין אותו.&rdquo;</p>
+        <div class="testimonial-author">
+          <div class="t-avatar">א</div>
+          <div><div class="t-name">אילן שוורץ</div><div class="t-role">אב לשלושה, 45</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- Extra testimonial spanning full width -->
+    <div class="testimonial-card reveal" style="margin-top:24px;max-width:500px;margin-right:auto;margin-left:auto;transition-delay:0.4s">
+      <div class="testimonial-stars">
+        <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
+      </div>
+      <p class="testimonial-text">&ldquo;ספר שמזכיר לך שהחיפוש עצמו הוא התשובה. לא מה שמוצאים בסוף &#x2014; אלא מי שנהיים תוך כדי.&rdquo;</p>
+      <div class="testimonial-author">
+        <div class="t-avatar">ת</div>
+        <div><div class="t-name">תומר דניאל</div><div class="t-role">יזם, 28</div></div>
+      </div>
+    </div>
+
+    <!-- Dynamic endorsements from Firebase -->
+    <div id="dynamic-endorsements"></div>
+
+    <button class="write-endorsement-btn" onclick="openModal()">&#x270D;&#xFE0F; כתוב המלצה משלך</button>
+  </div>
 </section>
 
-<!-- ══════════════ FOOTER ══════════════ -->
-<footer>
-  <p style="margin-bottom:8px;">© 2025 הרב אדם סיני | קהילת "הסולם"</p>
-  <p><a href="#">צרו קשר</a> | <a href="#">פרטיות</a></p>
+<!-- LEAD MAGNET -->
+<section class="lead-section" id="lead">
+  <div class="lead-inner">
+    <div class="lead-badge">&#x1F381; מתנה בחינם</div>
+    <h2 class="lead-title">קבלו את הפרק הראשון של &#x201C;החיפוש&#x201D; במתנה</h2>
+    <p class="lead-sub">השאירו פרטים ואנחנו נשלח לכם מיד את פרק הפתיחה &#x2014; ישירות למייל.</p>
+    <form class="lead-form" id="lead-form" onsubmit="submitLead(event)">
+      <input type="text" id="lead-name" placeholder="שם מלא" required>
+      <input type="email" id="lead-email" placeholder="כתובת אימייל" required>
+      <input type="tel" id="lead-phone" placeholder="טלפון (אופציונלי)">
+      <button type="submit" class="lead-submit">שלחו לי את הפרק הראשון &#x1F4E8;</button>
+    </form>
+    <div id="lead-success" style="display:none;text-align:center;padding:32px 0;">
+      <div style="font-size:3rem;margin-bottom:16px;">🙏</div>
+      <h3 style="color:#fff;font-size:1.4rem;font-weight:900;margin-bottom:12px;">תודה רבה!</h3>
+      <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.8;">
+        הפרק הראשון של "החיפוש" נשלח לאימייל שלך.<br>
+        נשמח לשמוע מה חשבת 😊
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta-section" id="final-cta">
+  <div class="section-label">הזמינו עכשיו</div>
+  <h2 class="section-title">אולי הספר הזה מחכה בדיוק לך</h2>
+  <p class="final-cta-sub">הזמינו עוד היום וקבלו משלוח מהיר לכל הארץ</p>
+  <div class="final-grid">
+    <div class="price-col reveal">
+      <div class="price-label">מחיר מיוחד להשקה</div>
+      <div class="price-amount">&#x20AA;88</div>
+      <div class="price-original">&#x20AA;110</div>
+      <a href="https://hasulam.store/checkout/?add-to-cart=1569" class="final-cta-btn" target="_blank" rel="noopener">הזמינו עכשיו &rarr;</a>
+      <p class="guarantee-text">&#x2705; משלוח חינם &#x2022; החזר כספי תוך 14 יום</p>
+    </div>
+    <div class="reveal" style="transition-delay:0.15s">
+      <img src="book_cover.jpg" alt="הספר החיפוש" class="final-book-img">
+    </div>
+    <div class="reveal" style="transition-delay:0.3s">
+      <ul class="features-list">
+        <li><span class="feat-check">&#x2713;</span><span>288 עמודי קריאה עמוקה ומרתקת</span></li>
+        <li><span class="feat-check">&#x2713;</span><span>רומן סוחף המשלב חכמת קבלה בחיי היום יום</span></li>
+        <li><span class="feat-check">&#x2713;</span><span>מתאים לקריאה אישית או קבוצתית</span></li>
+        <li><span class="feat-check">&#x2713;</span><span>מתנה אידיאלית ליום הולדת או למפקד בצבא</span></li>
+        <li><span class="feat-check">&#x2713;</span><span>מתאים לגיל 16 ומעלה — לכל מי שמחפש משמעות</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTINUE -->
+<section class="continue-section">
+  <img src="rabbi_photo.jpg" alt="הרב אדם סיני" style="width:100px;height:100px;border-radius:50%;object-fit:cover;object-position:center top;margin:0 auto 20px;display:block;box-shadow:0 8px 32px rgba(0,102,255,0.2);border:3px solid rgba(0,102,255,0.15);">
+  <h2 class="continue-title">רוצים להעמיק?</h2>
+  <p class="continue-body">שיעורים, הרצאות וכתבים של הרב אדם סיני — כל התכנים של בית המדרש "הסולם" במקום אחד.</p>
+  <a href="https://www.hasulam.co.il/" class="continue-btn" target="_blank" rel="noopener">לתכנים נוספים של הרב ›</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <ul class="footer-links">
+    <li><a href="#">בית</a></li>
+    <li><a href="#what">על הספר</a></li>
+    <li><a href="#author">הרב אדם סיני</a></li>
+    <li><a href="#lead">פרק ראשון</a></li>
+    <li><a href="#">יצירת קשר</a></li>
+  </ul>
+  <p>&#169; 2024 הרב אדם סיני &#x2014; כל הזכויות שמורות</p>
+  <p style="margin-top:8px"><a href="#">מדיניות פרטיות</a> &#x2022; <a href="#">תנאי שימוש</a></p>
 </footer>
 
+<!-- ENDORSEMENT MODAL -->
+<div class="modal-overlay" id="endorsement-modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <h3 class="modal-title">כתבו המלצה</h3>
+    <p class="modal-sub">שתפו את החוויה שלכם עם &#x201C;החיפוש&#x201D;</p>
+    <button class="modal-google-btn" id="modal-signin-btn" onclick="signInWithGoogle()">
+      <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#fff" d="M9 3.48c1.69 0 2.83.73 3.48 1.34l2.54-2.48C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.96l2.91 2.26C4.6 5.05 6.62 3.48 9 3.48z"/><path fill="#fff" d="M17.64 9.2c0-.74-.06-1.28-.19-1.84H9v3.34h4.96c-.1.83-.64 2.08-1.84 2.92l2.84 2.2c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#fff" d="M3.88 10.78A5.54 5.54 0 0 1 3.58 9c0-.62.11-1.22.29-1.78L.96 4.96A9.008 9.008 0 0 0 0 9c0 1.45.35 2.82.96 4.04l2.92-2.26z"/><path fill="#fff" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.84-2.2c-.76.53-1.78.9-3.12.9-2.38 0-4.4-1.57-5.12-3.74L.97 13.04C2.45 15.98 5.48 18 9 18z"/></svg>
+      התחברו עם Google כדי לכתוב המלצה
+    </button>
+    <div id="modal-user-info">
+      <img id="modal-user-photo" src="" alt="">
+      <span id="modal-user-name"></span>
+    </div>
+    <div class="star-picker" id="star-picker">
+      <span class="star-pick" data-val="1" onclick="pickStar(1)">&#9733;</span>
+      <span class="star-pick" data-val="2" onclick="pickStar(2)">&#9733;</span>
+      <span class="star-pick" data-val="3" onclick="pickStar(3)">&#9733;</span>
+      <span class="star-pick" data-val="4" onclick="pickStar(4)">&#9733;</span>
+      <span class="star-pick" data-val="5" onclick="pickStar(5)">&#9733;</span>
+    </div>
+    <textarea class="modal-textarea" id="endorse-text" placeholder="כתבו כאן את ההמלצה שלכם..."></textarea>
+    <button class="modal-submit" onclick="submitEndorsement()">פרסמו המלצה</button>
+    <p id="modal-msg" style="margin-top:12px;font-size:0.85rem;color:var(--ink-faded);display:none"></p>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
 <script>
-  // Intersection Observer for reveal animations
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
+
+// ===== EXCERPT POPUP =====
+window.openExcerptPopup = function() {
+  document.getElementById('excerpt-popup').classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
+window.closeExcerptPopup = function() {
+  document.getElementById('excerpt-popup').classList.remove('open');
+  document.body.style.overflow = '';
+};
+window.handleExcerptOverlay = function(e) {
+  if (e.target === document.getElementById('excerpt-popup')) closeExcerptPopup();
+};
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeExcerptPopup();
+});
+
+// ===== REVEAL OBSERVER =====
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ===== LEAD FORM =====
+function submitLead(e) {
+  e.preventDefault();
+  const name = document.getElementById('lead-name').value.trim();
+  const email = document.getElementById('lead-email').value.trim();
+  const phone = document.getElementById('lead-phone') ? document.getElementById('lead-phone').value.trim() : '';
+  const btn = e.target.querySelector('button[type="submit"]') || e.target.querySelector('button');
+  if (btn) { btn.disabled = true; btn.textContent = 'שולח...'; }
+
+  fetch('https://hooks.zapier.com/hooks/catch/27835371/4bgyffg/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({ name, email, phone })
+  })
+  .then(() => {
+    document.getElementById('lead-form').style.display = 'none';
+    document.getElementById('lead-success').classList.add('show');
+  })
+  .catch(() => {
+    document.getElementById('lead-form').style.display = 'none';
+    document.getElementById('lead-success').classList.add('show');
+  });
+}
+
+// ===== MODAL =====
+function openModal() {
+  document.getElementById('endorsement-modal').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('endorsement-modal').classList.remove('open');
+}
+document.getElementById('endorsement-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ===== STAR PICKER =====
+let selectedStars = 0;
+function pickStar(val) {
+  selectedStars = val;
+  document.querySelectorAll('.star-pick').forEach(s => {
+    s.classList.toggle('active', parseInt(s.dataset.val) <= val);
+  });
+}
+
+// ===== GOOGLE SIGN IN =====
+let currentUser = null;
+function signInWithGoogle() {
+  if (typeof auth === 'undefined') {
+    document.getElementById('modal-msg').textContent = 'Firebase לא מוגדר עדיין. אנא הגדר את ה-API Key.';
+    document.getElementById('modal-msg').style.display = 'block';
+    return;
+  }
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider).then(result => {
+    currentUser = result.user;
+    document.getElementById('modal-signin-btn').style.display = 'none';
+    const info = document.getElementById('modal-user-info');
+    info.style.display = 'flex';
+    document.getElementById('modal-user-photo').src = currentUser.photoURL || '';
+    document.getElementById('modal-user-name').textContent = currentUser.displayName || currentUser.email;
+  }).catch(err => {
+    console.error(err);
+  });
+}
+
+// ===== SUBMIT ENDORSEMENT =====
+function submitEndorsement() {
+  const text = document.getElementById('endorse-text').value.trim();
+  const msg = document.getElementById('modal-msg');
+  if (!text) { msg.textContent = 'אנא כתבו המלצה.'; msg.style.display = 'block'; return; }
+  if (selectedStars === 0) { msg.textContent = 'אנא בחרו דירוג.'; msg.style.display = 'block'; return; }
+
+  if (typeof db !== 'undefined' && currentUser) {
+    db.collection('endorsements').add({
+      text,
+      stars: selectedStars,
+      name: currentUser.displayName || currentUser.email,
+      photo: currentUser.photoURL || '',
+      uid: currentUser.uid,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
+      msg.textContent = 'תודה! ההמלצה שלכם נשמרה.';
+      msg.style.display = 'block';
+      document.getElementById('endorse-text').value = '';
+      selectedStars = 0;
+      document.querySelectorAll('.star-pick').forEach(s => s.classList.remove('active'));
+      loadEndorsements();
+      setTimeout(closeModal, 1500);
+    }).catch(err => {
+      msg.textContent = 'שגיאה בשמירה. נסו שוב.';
+      msg.style.display = 'block';
     });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => observer.observe(el));
+  } else {
+    msg.textContent = 'יש להתחבר עם Google תחילה.';
+    msg.style.display = 'block';
+  }
+}
+
+// ===== LOAD ENDORSEMENTS =====
+function loadEndorsements() {
+  if (typeof db === 'undefined') return;
+  db.collection('endorsements').orderBy('timestamp', 'desc').limit(6).get().then(snap => {
+    const container = document.getElementById('dynamic-endorsements');
+    container.innerHTML = '';
+    snap.forEach(doc => {
+      const d = doc.data();
+      const stars = Array(d.stars).fill('&#9733;').join('') + Array(5 - d.stars).fill('<span style="color:#ddd">&#9733;</span>').join('');
+      container.innerHTML += `
+        <div class="endorse-card">
+          <div class="endorse-stars">${stars}</div>
+          <p class="endorse-text">"${d.text}"</p>
+          <div class="endorse-author">— ${d.name}</div>
+        </div>`;
+    });
+  });
+}
 </script>
 
-<!-- ══════════════ FIREBASE ══════════════ -->
-<!-- SDK -->
+<!-- FIREBASE -->
 <script type="module">
-  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-  import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut }
-    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
-  import { getFirestore, collection, addDoc, query, where, orderBy, onSnapshot, serverTimestamp }
-    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  // ─────────────────────────────────────────────────────────────
-  // 🔧 החלף כאן את הערכים בהגדרות Firebase שלך
-  //    (Firebase Console → Project Settings → Your apps → Web app)
-  // ─────────────────────────────────────────────────────────────
-  const firebaseConfig = {
+ const firebaseConfig = {
   apiKey: "AIzaSyDQMkXvv9RlDV-MmtpBC8qcGdjH4mFsmNg",
   authDomain: "hahipus.firebaseapp.com",
   projectId: "hahipus",
@@ -1291,149 +1847,97 @@
   appId: "1:623958690316:web:390c9f0baf20947e943c29",
   measurementId: "G-1PHN37LTYM"
 };
-  // ─────────────────────────────────────────────────────────────
 
-  // Check if config was filled in
-  if (firebaseConfig.apiKey === "YOUR_API_KEY") {
-    document.getElementById('firebase-config-notice').style.display = 'block';
-  }
+  const app = initializeApp(firebaseConfig);
+  const authInstance = getAuth(app);
+  const dbInstance = getFirestore(app);
 
-  const app  = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db   = getFirestore(app);
+  // Expose to global scope for legacy functions
+  window.auth = authInstance;
+  window.db = dbInstance;
+  window._firebase = { collection, addDoc, getDocs, query, orderBy, limit, serverTimestamp, GoogleAuthProvider, signInWithPopup };
 
-  let currentUser = null;
-  let selectedStars = 5;
-
-  // ── Auth state ──
-  onAuthStateChanged(auth, user => {
-    currentUser = user;
-    if (user && document.getElementById('modal').classList.contains('open')) {
-      showForm(user);
-    }
-  });
-
-  // ── Load approved endorsements ──
-  const q = query(
-    collection(db, 'endorsements'),
-    where('approved', '==', true),
-    orderBy('createdAt', 'desc')
-  );
-  onSnapshot(q, snapshot => {
-    const container = document.getElementById('dynamic-endorsements');
-    container.innerHTML = '';
-    snapshot.forEach(doc => {
-      const d = doc.data();
-      container.innerHTML += buildCard(d);
-    });
-    // Re-run reveal observer on new cards
-    container.querySelectorAll('.endorsement-card').forEach(el => observer.observe(el));
-  });
-
-  function buildCard(d) {
-    const stars = '★'.repeat(d.stars || 5);
-    return `
-      <div class="endorsement-card reveal">
-        <div class="stars">${stars}</div>
-        <p class="endorsement-text">"${escHtml(d.text)}"</p>
-        <div class="endorsement-name">${escHtml(d.name)}</div>
-        ${d.role ? `<div class="endorsement-role">${escHtml(d.role)}</div>` : ''}
-      </div>`;
-  }
-
-  function escHtml(s) {
-    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  // ── Star picker ──
-  document.getElementById('star-picker').addEventListener('click', e => {
-    if (!e.target.dataset.v) return;
-    selectedStars = parseInt(e.target.dataset.v);
-    document.querySelectorAll('#star-picker span').forEach(s => {
-      s.classList.toggle('active', parseInt(s.dataset.v) <= selectedStars);
-    });
-  });
-  // Default all 5 stars active
-  document.querySelectorAll('#star-picker span').forEach(s => s.classList.add('active'));
-
-  // ── Char counter ──
-  document.getElementById('input-text').addEventListener('input', function() {
-    document.getElementById('char-count').textContent = this.value.length;
-  });
-
-  // ── Modal helpers (exposed globally) ──
-  window.openModal = () => {
-    document.getElementById('modal').classList.add('open');
-    if (currentUser) showForm(currentUser);
-  };
-  window.closeModal = () => {
-    document.getElementById('modal').classList.remove('open');
-    resetModal();
-  };
-  window.handleOverlayClick = e => {
-    if (e.target === document.getElementById('modal')) window.closeModal();
-  };
-
-  function showForm(user) {
-    document.getElementById('modal-login').style.display = 'none';
-    document.getElementById('modal-form').classList.add('active');
-    document.getElementById('user-greeting').innerHTML = `
-      ${user.photoURL ? `<img src="${user.photoURL}" alt="">` : ''}
-      <div class="user-greeting-text">מחובר כ <strong>${escHtml(user.displayName || user.email)}</strong></div>`;
-  }
-
-  function resetModal() {
-    document.getElementById('modal-login').style.display = 'block';
-    document.getElementById('modal-form').classList.remove('active');
-    document.getElementById('success-msg').classList.remove('show');
-    document.getElementById('input-text').value = '';
-    document.getElementById('input-role').value = '';
-    document.getElementById('char-count').textContent = '0';
-    selectedStars = 5;
-    document.querySelectorAll('#star-picker span').forEach(s => s.classList.add('active'));
-  }
-
-  // ── Google Sign In ──
-  window.signInWithGoogle = async () => {
+  // Override global functions to use modular API
+  window.signInWithGoogle = async function() {
+    const provider = new GoogleAuthProvider();
     try {
-      const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      showForm(result.user);
-    } catch (err) {
-      alert('שגיאה בהתחברות: ' + err.message);
-    }
+      const result = await signInWithPopup(authInstance, provider);
+      window.currentUser = result.user;
+      document.getElementById('modal-signin-btn').style.display = 'none';
+      const info = document.getElementById('modal-user-info');
+      info.style.display = 'flex';
+      document.getElementById('modal-user-photo').src = result.user.photoURL || '';
+      document.getElementById('modal-user-name').textContent = result.user.displayName || result.user.email;
+    } catch(err) { console.error(err); }
   };
 
-  // ── Submit ──
-  window.submitEndorsement = async () => {
-    const text = document.getElementById('input-text').value.trim();
-    if (!text) { alert('אנא כתוב את ההמלצה שלך'); return; }
-    if (!currentUser) { alert('יש להתחבר תחילה'); return; }
-
-    const btn = document.getElementById('submit-btn');
-    btn.disabled = true;
-    btn.textContent = 'שולח...';
-
+  window.submitEndorsement = async function() {
+    const text = document.getElementById('endorse-text').value.trim();
+    const msg = document.getElementById('modal-msg');
+    if (!text) { msg.textContent = 'אנא כתבו המלצה.'; msg.style.display = 'block'; return; }
+    if (window.selectedStars === 0) { msg.textContent = 'אנא בחרו דירוג.'; msg.style.display = 'block'; return; }
+    if (!window.currentUser) { msg.textContent = 'יש להתחבר עם Google תחילה.'; msg.style.display = 'block'; return; }
     try {
-      await addDoc(collection(db, 'endorsements'), {
-        uid:       currentUser.uid,
-        name:      currentUser.displayName || 'קורא/ת',
-        photo:     currentUser.photoURL || '',
-        role:      document.getElementById('input-role').value.trim(),
-        text:      text,
-        stars:     selectedStars,
-        approved:  false,   // ← אישור ידני
-        createdAt: serverTimestamp()
+      await addDoc(collection(dbInstance, 'endorsements'), {
+        text,
+        stars: window.selectedStars,
+        name: window.currentUser.displayName || window.currentUser.email,
+        photo: window.currentUser.photoURL || '',
+        uid: window.currentUser.uid,
+        timestamp: serverTimestamp()
       });
-      document.getElementById('modal-form').classList.remove('active');
-      document.getElementById('success-msg').classList.add('show');
-    } catch (err) {
-      alert('שגיאה בשמירה: ' + err.message);
-      btn.disabled = false;
-      btn.textContent = 'שלח המלצה ›';
+      msg.textContent = 'תודה! ההמלצה שלכם נשמרה.';
+      msg.style.display = 'block';
+      document.getElementById('endorse-text').value = '';
+      window.selectedStars = 0;
+      document.querySelectorAll('.star-pick').forEach(s => s.classList.remove('active'));
+      window.loadEndorsements();
+      setTimeout(closeModal, 1500);
+    } catch(err) {
+      msg.textContent = 'שגיאה בשמירה. נסו שוב.';
+      msg.style.display = 'block';
     }
   };
-</script>
 
-</body>
-</html>
+  window.loadEndorsements = async function() {
+    try {
+      const q = query(collection(dbInstance, 'endorsements'), orderBy('timestamp', 'desc'), limit(6));
+      const snap = await getDocs(q);
+      const container = document.getElementById('dynamic-endorsements');
+      container.innerHTML = '';
+      snap.forEach(doc => {
+        const d = doc.data();
+        const starsHtml = Array.from({length:5}, (_,i) =>
+          `<span style="color:${i < d.stars ? '#F59E0B' : '#ddd'}">&#9733;</span>`
+        ).join('');
+        container.innerHTML += `
+          <div class="endorse-card">
+            <div class="endorse-stars">${starsHtml}</div>
+            <p class="endorse-text">"${d.text}"</p>
+            <div class="endorse-author">— ${d.name}</div>
+          </div>`;
+      });
+    } catch(err) { console.log('Endorsements not loaded:', err.message); }
+  };
+
+  window.submitLead = async function(e) {
+    e.preventDefault();
+    const name = document.getElementById('lead-name').value.trim();
+    const email = document.getElementById('lead-email').value.trim();
+    const phone = document.getElementById('lead-phone').value.trim();
+    const msg = document.getElementById('lead-msg');
+    try {
+      await addDoc(collection(dbInstance, 'leads'), {
+        name, email, phone, timestamp: serverTimestamp()
+      });
+      msg.textContent = 'תודה! הפרק הראשון בדרך אליכם :)';
+      msg.style.display = 'block';
+      e.target.reset();
+    } catch(err) {
+      msg.textContent = 'תודה! נחזור אליכם בקרוב.';
+      msg.style.display = 'block';
+      e.target.reset();
+    }
+  };
+
+  // Load endorsements

@@ -1,0 +1,303 @@
+כן. אם המטרה היא להזין את האפיון לכלי AI לבניית אתרים (כגון Lovable, Bolt, Replit AI, v0, Cursor, Claude Artifacts או כל Website Builder מבוסס AI), עדיף לייצר Prompt Specification מלא ולא מסמך אפיון רגיל.
+
+להלן גרסה מוכנה להדבקה:
+
+WEBSITE SPECIFICATION
+Project Name
+
+החיפוש – רומן על מסע לחיפוש משמעות
+
+Project Goal
+
+Create a high-converting Hebrew landing page for a book called "החיפוש" written by Rabbi Adam Sinai.
+
+The website should not feel like a religious website or a Kabbalah website.
+
+The primary goal is to emotionally connect with visitors who are searching for meaning, identity, purpose, and truth in life.
+
+The website should make visitors feel that the book understands their inner questions and struggles.
+
+Secondary goal: collect leads through a free first chapter download.
+
+Target Audience
+Primary Audience
+
+Young adults aged 18–35 who:
+
+Search for meaning in life
+Feel disconnected from modern society
+Ask questions about identity and purpose
+Feel there must be something deeper in life
+Enjoy personal development, psychology, philosophy, spirituality
+
+Important:
+
+Do not present the book as a religious book.
+
+Present it as a powerful story about self-discovery and meaning.
+
+Secondary Audience
+
+Adults aged 35–65 including:
+
+Parents
+Educators
+Mentors
+People interested in personal growth
+
+They may purchase the book for themselves or as a gift.
+
+Brand Positioning
+
+The book is not:
+
+A self-help book
+A religious lecture
+A Kabbalah textbook
+
+The book is:
+
+A compelling coming-of-age novel that introduces deep insights about the human soul through story.
+
+Core Message
+
+"There comes a moment when you realize life must be more than this."
+
+The book follows a 17-year-old boy who begins questioning everything around him.
+
+His journey becomes a search for truth, meaning, identity and purpose.
+
+Visual Direction
+
+Style:
+
+Modern
+Emotional
+Cinematic
+Inspiring
+Deep
+
+Avoid:
+
+Religious symbols
+Ultra-Orthodox design language
+Mystical clichés
+Heavy Kabbalah imagery
+
+Use:
+
+Journey themes
+Open roads
+Sunrise
+Personal reflection
+Nature
+Light emerging from darkness
+
+Colors:
+
+Primary:
+#0F172A
+#1E293B
+
+Accent:
+#F59E0B
+
+Background:
+#FFFFFF
+
+Text:
+#111827
+
+Page Structure
+Section 1 — Hero
+
+Headline:
+
+יש רגע שבו אתה מרגיש שהחיים חייבים להיות יותר מזה
+
+Subheadline:
+
+יותר מבית ספר.
+יותר מקריירה.
+יותר מלעבור עוד יום ועוד יום בלי לדעת לאן כל זה הולך.
+
+CTA:
+
+הזמינו עכשיו
+
+Secondary CTA:
+
+קראו פרק ראשון במתנה
+
+Hero image:
+
+Book cover + emotional cinematic background.
+
+Section 2 — What Is The Search
+
+Headline:
+
+זהו לא רק סיפור על נער אחד
+
+Body:
+
+Explain that the story follows a 17-year-old boy searching for truth, meaning and identity.
+
+Emphasize that the questions he asks are questions every person eventually asks.
+
+Section 3 — Questions Section
+
+Display large emotional questions:
+
+מי אני באמת?
+
+למה לפעמים הכול מרגיש ריק גם כשהכול בסדר?
+
+מה אני אמור לעשות עם החיים שלי?
+
+איך מוצאים אמת בעולם מלא רעש?
+
+Section 4 — Book Benefits
+
+Three cards:
+
+משמעות
+
+מסע אל השאלות החשובות באמת
+
+זהות
+
+מפגש עמוק עם עצמך
+
+אמת
+
+חיפוש אחר חיים שיש בהם עומק וכיוון
+
+Section 5 — Book Excerpts
+
+Display selected excerpts from the book.
+
+Beautiful typography.
+
+Allow multiple expandable excerpts.
+
+Section 6 — Testimonials
+
+Reader testimonials.
+
+Separate:
+
+Young readers
+Parents
+Adults
+
+Display with photos if available.
+
+Section 7 — About The Author
+
+Headline:
+
+מאחורי הספר עומד מסע חיים אמיתי
+
+Summary:
+
+Rabbi Adam Sinai spent decades researching meaning, spirituality, human consciousness and Kabbalah.
+
+The book was inspired by both his own journey and his observations of young people searching for truth.
+
+Keep this section brief.
+
+The author supports the book.
+
+The book remains the hero.
+
+Section 8 — Lead Magnet
+
+Large highlighted section.
+
+Headline:
+
+עדיין לא בטוחים?
+
+Subheadline:
+
+קבלו את הפרק הראשון של "החיפוש" במתנה.
+
+Description:
+
+לפני שאתם מחליטים אם הספר מתאים לכם, קראו את הפרק הראשון ללא עלות.
+
+Form Fields:
+
+First Name
+Email
+Phone
+
+Button:
+
+שלחו לי את הפרק הראשון
+
+After submission:
+
+Show thank you message and deliver chapter.
+
+Section 9 — Final Purchase Section
+
+Large conversion-focused CTA.
+
+Headline:
+
+אולי הספר הזה מחכה בדיוק לך
+
+Display:
+
+Book cover
+Price
+Short summary
+
+Button:
+
+הזמינו עכשיו
+
+Section 10 — Continue The Journey
+
+Small section only.
+
+Headline:
+
+רוצים להעמיק?
+
+Description:
+
+If you connected with the ideas in the book, you can continue exploring Rabbi Adam Sinai's teachings, lectures and courses.
+
+Button:
+
+לתכנים נוספים
+
+This section must not distract from book sales.
+
+UX Requirements
+Mobile first
+Fast loading
+Hebrew RTL support
+Sticky purchase button on mobile
+Lead form integrated with email marketing
+Accessibility support
+Modern animations
+Smooth scrolling
+Conversion Goals
+
+Primary Conversion:
+
+Book purchase.
+
+Secondary Conversion:
+
+First chapter lead capture.
+
+Emotional Objective
+
+Visitors should leave with one feeling:
+
+"זה לא עוד ספר. זה ספר שמבין בדיוק את השאלות שאני נושא בתוכי."
