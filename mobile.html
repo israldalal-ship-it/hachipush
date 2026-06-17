@@ -1941,9 +1941,19 @@ function pickStar(val) {
 
 // ===== GOOGLE SIGN IN =====
 let currentUser = null;
-function signInWithGoogle() {
+function signInWithGoogle(attempt) {
+  attempt = attempt || 0;
   if (typeof auth === 'undefined') {
-    document.getElementById('modal-msg').textContent = 'Firebase לא מוגדר עדיין. אנא הגדר את ה-API Key.';
+    if (window._fbError) {
+      document.getElementById('modal-msg').textContent = 'שגיאה בטעינת מערכת ההתחברות: ' + window._fbError;
+      document.getElementById('modal-msg').style.display = 'block';
+      return;
+    }
+    if (attempt < 40) {
+      setTimeout(function () { window.signInWithGoogle(attempt + 1); }, 250);
+      return;
+    }
+    document.getElementById('modal-msg').textContent = 'מערכת ההתחברות לא נטענה. רעננו את הדף ונסו שוב.';
     document.getElementById('modal-msg').style.display = 'block';
     return;
   }
@@ -2015,109 +2025,125 @@ function loadEndorsements() {
 
 <!-- FIREBASE -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-  import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+(async function () {
+  try {
+    const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
+    const { getAuth, GoogleAuthProvider, signInWithPopup } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js");
+    const { getFirestore, collection, addDoc, getDocs, query, orderBy, limit, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
 
- const firebaseConfig = {
-  apiKey: "AIzaSyDQMkXvv9RlDV-MmtpBC8qcGdjH4mFsmNg",
-  authDomain: "hahipus.firebaseapp.com",
-  projectId: "hahipus",
-  storageBucket: "hahipus.firebasestorage.app",
-  messagingSenderId: "623958690316",
-  appId: "1:623958690316:web:390c9f0baf20947e943c29",
-  measurementId: "G-1PHN37LTYM"
-};
+    const firebaseConfig = {
+      apiKey: "AIzaSyDQMkXvv9RlDV-MmtpBC8qcGdjH4mFsmNg",
+      authDomain: "hahipus.firebaseapp.com",
+      projectId: "hahipus",
+      storageBucket: "hahipus.firebasestorage.app",
+      messagingSenderId: "623958690316",
+      appId: "1:623958690316:web:390c9f0baf20947e943c29",
+      measurementId: "G-1PHN37LTYM"
+    };
 
-  const app = initializeApp(firebaseConfig);
-  const authInstance = getAuth(app);
-  const dbInstance = getFirestore(app);
+    const app = initializeApp(firebaseConfig);
+    const authInstance = getAuth(app);
+    const dbInstance = getFirestore(app);
 
-  // Expose to global scope for legacy functions
-  window.auth = authInstance;
-  window.db = dbInstance;
-  window._firebase = { collection, addDoc, getDocs, query, orderBy, limit, serverTimestamp, GoogleAuthProvider, signInWithPopup };
+    // Expose to global scope for legacy functions
+    window.auth = authInstance;
+    window.db = dbInstance;
+    window._firebase = { collection, addDoc, getDocs, query, orderBy, limit, serverTimestamp, GoogleAuthProvider, signInWithPopup };
 
-  // Override global functions to use modular API
-  window.signInWithGoogle = async function() {
-    const provider = new GoogleAuthProvider();
-    try {
-      const result = await signInWithPopup(authInstance, provider);
-      window.currentUser = result.user;
-      document.getElementById('modal-signin-btn').style.display = 'none';
-      const info = document.getElementById('modal-user-info');
-      info.style.display = 'flex';
-      document.getElementById('modal-user-photo').src = result.user.photoURL || '';
-      document.getElementById('modal-user-name').textContent = result.user.displayName || result.user.email;
-    } catch(err) { console.error(err); }
-  };
+    // Override global functions to use modular API
+    window.signInWithGoogle = async function() {
+      const provider = new GoogleAuthProvider();
+      try {
+        const result = await signInWithPopup(authInstance, provider);
+        window.currentUser = result.user;
+        document.getElementById('modal-signin-btn').style.display = 'none';
+        const info = document.getElementById('modal-user-info');
+        info.style.display = 'flex';
+        document.getElementById('modal-user-photo').src = result.user.photoURL || '';
+        document.getElementById('modal-user-name').textContent = result.user.displayName || result.user.email;
+      } catch(err) {
+        console.error(err);
+        const msg = document.getElementById('modal-msg');
+        if (msg) { msg.textContent = 'ההתחברות נכשלה: ' + (err && err.message ? err.message : err); msg.style.display = 'block'; }
+      }
+    };
 
-  window.submitEndorsement = async function() {
-    const text = document.getElementById('endorse-text').value.trim();
-    const msg = document.getElementById('modal-msg');
-    if (!text) { msg.textContent = 'אנא כתבו המלצה.'; msg.style.display = 'block'; return; }
-    if (window.selectedStars === 0) { msg.textContent = 'אנא בחרו דירוג.'; msg.style.display = 'block'; return; }
-    if (!window.currentUser) { msg.textContent = 'יש להתחבר עם Google תחילה.'; msg.style.display = 'block'; return; }
-    try {
-      await addDoc(collection(dbInstance, 'endorsements'), {
-        text,
-        stars: window.selectedStars,
-        name: window.currentUser.displayName || window.currentUser.email,
-        photo: window.currentUser.photoURL || '',
-        uid: window.currentUser.uid,
-        timestamp: serverTimestamp()
-      });
-      msg.textContent = 'תודה! ההמלצה שלכם נשמרה.';
-      msg.style.display = 'block';
-      document.getElementById('endorse-text').value = '';
-      window.selectedStars = 0;
-      document.querySelectorAll('.star-pick').forEach(s => s.classList.remove('active'));
-      window.loadEndorsements();
-      setTimeout(closeModal, 1500);
-    } catch(err) {
-      msg.textContent = 'שגיאה בשמירה. נסו שוב.';
-      msg.style.display = 'block';
-    }
-  };
+    window.submitEndorsement = async function() {
+      const text = document.getElementById('endorse-text').value.trim();
+      const msg = document.getElementById('modal-msg');
+      if (!text) { msg.textContent = 'אנא כתבו המלצה.'; msg.style.display = 'block'; return; }
+      if (window.selectedStars === 0) { msg.textContent = 'אנא בחרו דירוג.'; msg.style.display = 'block'; return; }
+      if (!window.currentUser) { msg.textContent = 'יש להתחבר עם Google תחילה.'; msg.style.display = 'block'; return; }
+      try {
+        await addDoc(collection(dbInstance, 'endorsements'), {
+          text,
+          stars: window.selectedStars,
+          name: window.currentUser.displayName || window.currentUser.email,
+          photo: window.currentUser.photoURL || '',
+          uid: window.currentUser.uid,
+          timestamp: serverTimestamp()
+        });
+        msg.textContent = 'תודה! ההמלצה שלכם נשמרה.';
+        msg.style.display = 'block';
+        document.getElementById('endorse-text').value = '';
+        window.selectedStars = 0;
+        document.querySelectorAll('.star-pick').forEach(s => s.classList.remove('active'));
+        window.loadEndorsements();
+        setTimeout(closeModal, 1500);
+      } catch(err) {
+        msg.textContent = 'שגיאה בשמירה. נסו שוב.';
+        msg.style.display = 'block';
+      }
+    };
 
-  window.loadEndorsements = async function() {
-    try {
-      const q = query(collection(dbInstance, 'endorsements'), orderBy('timestamp', 'desc'), limit(6));
-      const snap = await getDocs(q);
-      const container = document.getElementById('dynamic-endorsements');
-      container.innerHTML = '';
-      snap.forEach(doc => {
-        const d = doc.data();
-        const starsHtml = Array.from({length:5}, (_,i) =>
-          `<span style="color:${i < d.stars ? '#F59E0B' : '#ddd'}">&#9733;</span>`
-        ).join('');
-        container.innerHTML += `
-          <div class="endorse-card">
-            <div class="endorse-stars">${starsHtml}</div>
-            <p class="endorse-text">"${d.text}"</p>
-            <div class="endorse-author">— ${d.name}</div>
-          </div>`;
-      });
-    } catch(err) { console.log('Endorsements not loaded:', err.message); }
-  };
+    window.loadEndorsements = async function() {
+      try {
+        const q = query(collection(dbInstance, 'endorsements'), orderBy('timestamp', 'desc'), limit(6));
+        const snap = await getDocs(q);
+        const container = document.getElementById('dynamic-endorsements');
+        if (!container) return;
+        container.innerHTML = '';
+        snap.forEach(doc => {
+          const d = doc.data();
+          const starsHtml = Array.from({length:5}, (_,i) =>
+            `<span style="color:${i < d.stars ? '#F59E0B' : '#ddd'}">&#9733;</span>`
+          ).join('');
+          container.innerHTML += `
+            <div class="endorse-card">
+              <div class="endorse-stars">${starsHtml}</div>
+              <p class="endorse-text">"${d.text}"</p>
+              <div class="endorse-author">— ${d.name}</div>
+            </div>`;
+        });
+      } catch(err) { console.log('Endorsements not loaded:', err.message); }
+    };
 
-  window.submitLead = async function(e) {
-    e.preventDefault();
-    const name = document.getElementById('lead-name').value.trim();
-    const email = document.getElementById('lead-email').value.trim();
-    const phoneRaw = document.getElementById('lead-phone') ? document.getElementById('lead-phone').value.trim() : '';
-    const phone = formatPhoneIL(phoneRaw);
-    const btn = e.target.querySelector('button[type="submit"]');
-    if (btn) { btn.disabled = true; btn.textContent = 'שולח...'; }
-    try {
-      await fetch('https://hooks.zapier.com/hooks/catch/27835371/4bgyffg/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ name, email, phone })
-      });
-    } catch(err) { console.log('Zapier:', err); }
-    document.getElementById('lead-form').style.display = 'none';
-    document.getElementById('lead-success').style.display = 'block';
-  };
+    window.submitLead = async function(e) {
+      e.preventDefault();
+      const name = document.getElementById('lead-name').value.trim();
+      const email = document.getElementById('lead-email').value.trim();
+      const phoneRaw = document.getElementById('lead-phone') ? document.getElementById('lead-phone').value.trim() : '';
+      const phone = formatPhoneIL(phoneRaw);
+      const btn = e.target.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = 'שולח...'; }
+      try {
+        await fetch('https://hooks.zapier.com/hooks/catch/27835371/4bgyffg/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ name, email, phone })
+        });
+      } catch(err) { console.log('Zapier:', err); }
+      document.getElementById('lead-form').style.display = 'none';
+      document.getElementById('lead-success').style.display = 'block';
+    };
 
-  // Load endorsements
+    window._fbReady = true;
+    window.loadEndorsements();
+  } catch (err) {
+    console.error('Firebase failed to initialize:', err);
+    window._fbError = (err && err.message) ? err.message : String(err);
+  }
+})();
+</script>
+</body>
+</html>
