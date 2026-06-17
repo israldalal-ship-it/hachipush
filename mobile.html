@@ -1931,9 +1931,9 @@ document.getElementById('endorsement-modal').addEventListener('click', function(
 });
 
 // ===== STAR PICKER =====
-let selectedStars = 0;
+window.selectedStars = 0;
 function pickStar(val) {
-  selectedStars = val;
+  window.selectedStars = val;
   document.querySelectorAll('.star-pick').forEach(s => {
     s.classList.toggle('active', parseInt(s.dataset.val) <= val);
   });
