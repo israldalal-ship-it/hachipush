@@ -1868,7 +1868,7 @@ function loadEndorsements() {
   try {
     const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
     const { getAuth, GoogleAuthProvider, signInWithPopup } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js");
-    const { getFirestore, collection, addDoc, getDocs, query, orderBy, limit, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    const { getFirestore, collection, addDoc, getDocs, query, orderBy, where, limit, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
 
     const firebaseConfig = {
       apiKey: "AIzaSyDQMkXvv9RlDV-MmtpBC8qcGdjH4mFsmNg",
@@ -1920,9 +1920,10 @@ function loadEndorsements() {
           name: window.currentUser.displayName || window.currentUser.email,
           photo: window.currentUser.photoURL || '',
           uid: window.currentUser.uid,
+          approved: false,
           timestamp: serverTimestamp()
         });
-        msg.textContent = 'תודה! ההמלצה שלכם נשמרה.';
+        msg.textContent = 'תודה! ההמלצה שלכם נשמרה, ותוצג באתר לאחר אישור.';
         msg.style.display = 'block';
         document.getElementById('endorse-text').value = '';
         window.selectedStars = 0;
@@ -1938,7 +1939,7 @@ function loadEndorsements() {
 
     window.loadEndorsements = async function() {
       try {
-        const q = query(collection(dbInstance, 'endorsements'), orderBy('timestamp', 'desc'), limit(6));
+        const q = query(collection(dbInstance, 'endorsements'), where('approved', '==', true), orderBy('timestamp', 'desc'), limit(6));
         const snap = await getDocs(q);
         const container = document.getElementById('dynamic-endorsements');
         if (!container) return;
