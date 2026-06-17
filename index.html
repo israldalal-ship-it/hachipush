@@ -1930,7 +1930,8 @@ function loadEndorsements() {
         window.loadEndorsements();
         setTimeout(closeModal, 1500);
       } catch(err) {
-        msg.textContent = 'שגיאה בשמירה. נסו שוב.';
+        console.error('submitEndorsement failed:', err);
+        msg.textContent = 'שגיאה בשמירה: ' + (err && err.message ? err.message : err);
         msg.style.display = 'block';
       }
     };
