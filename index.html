@@ -300,9 +300,9 @@ body {
 
 .what-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 50px;
-  align-items: center;
+  grid-template-columns: 1.75fr 0.8fr;
+  gap: 80px;
+  align-items: start;
   max-width: 1320px;
   margin: 0 auto;
   padding: 80px 40px;
@@ -676,7 +676,7 @@ body {
 }
 .video-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
   margin-top: 48px;
 }
@@ -689,6 +689,7 @@ body {
 .video-card video {
   width: 100%;
   display: block;
+  height: 400px;
   max-height: 400px;
   object-fit: cover;
   background: #000;
@@ -1267,6 +1268,7 @@ body {
   .what-grid, .excerpts-grid, .final-grid { grid-template-columns: 1fr; }
   .what-grid { padding: 60px 24px; }
   .testimonials-grid { grid-template-columns: 1fr; }
+  .video-grid { grid-template-columns: repeat(2, 1fr); }
   .author-section { color: #fff;
 }
 .author-section { grid-template-columns: 1fr; text-align: center; }
@@ -1346,10 +1348,10 @@ body {
 
 <!-- WHAT SECTION (merged with atmosphere) -->
 <section id="what" style="background: var(--cream); width:100%;">
-  <div style="display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 40px 60px;">
+  <div style="display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 40px 10px;">
     <h2 class="atmosphere-headline" style="color:var(--ink);">זהו לא רק סיפור על נער אחד &#x2014; <span>זה הסיפור שלך</span></h2>
   </div>
-  <div class="what-grid">
+  <div class="what-grid" style="padding-top:10px;">
     <div class="reveal">
       <div class="section-label" style="color:var(--blue);font-weight:700;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;">מה זה &#x201C;החיפוש&#x201D;?</div>
       <img src="מדיטציה.webp" alt="החיפוש" style="width:100%;border-radius:20px;box-shadow:0 12px 32px rgba(15,23,42,0.12);object-fit:cover;max-height:320px;display:block;margin:20px 0;">
@@ -1371,34 +1373,24 @@ body {
         זהו ספר למי שאוהב סיפורים טובים. זהו ספר למי שאוהב לחשוב. ובעיקר — למי שמרגיש שגם בתוכו קיים חיפוש שעדיין לא הסתיים.
       </p>
     </div>
-    <div class="reveal" style="transition-delay:0.2s;display:flex;flex-direction:column;gap:24px;justify-content:center;">
+    <div class="reveal" style="transition-delay:0.2s;display:flex;flex-direction:column;gap:64px;justify-content:flex-start;">
       <div style="background:#fff;border-radius:20px;padding:32px 36px;box-shadow:0 4px 24px rgba(0,0,0,0.07);border-right:4px solid var(--blue);">
         <div style="font-size:1.15rem;font-weight:300;line-height:1.7;font-style:italic;color:var(--ink-soft);">
           &ldquo;על ההתמודדות בין הרצון להיות צודק לבין הרצון לגלות אמת, ועל המסע שכל אדם עובר בדרכו להבין מי הוא באמת.&rdquo;
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- CINEMATIC EXCERPTS -->
-<section class="excerpts-section">
-  <div class="section-label" style="text-align:center">טעימה מהספר</div>
-  <h2 class="section-title" style="text-align:center;margin-bottom:40px">שורות שנשארות איתך</h2>
-  <div style="max-width:760px;margin:0 auto;">
-    <div class="excerpt-card reveal" style="background:linear-gradient(rgba(10,15,30,0.62),rgba(10,15,30,0.62)),url('art4.png') center/cover no-repeat;cursor:pointer;" onclick="openExcerptPopup()">
-      <div class="excerpt-overlay"></div>
-      <div class="excerpt-content">
-        <div class="excerpt-tag">&#x1F4D6; החיפוש | עמוד 15</div>
-        <p class="excerpt-text">
-          &ldquo;גם בלילות הבאים מצאתי את עצמי משוטט שעות ברחובות.
-          מחפש את עצמי בשום מקום.
-          משוטט בין ייאוש להחשבה עצמית, בין פנטזיה לדיכאון,
-          בין מחשבות פילוסופיות גבוהות, לבין מחשבות על תענוג מיידי וסוחף.
-          נפשי נצרבת אט אט ומתמזגת עם הרחוב...
-          <strong class="excerpt-highlight">צועק נואשות למשמעות, לסיבה אמיתית לחיים!!!!</strong>&rdquo;
-        </p>
-        <button class="excerpt-read-more" onclick="openExcerptPopup()">קרא את הקטע המלא &#x2192;</button>
+      <div class="excerpt-card reveal" style="background:linear-gradient(rgba(10,15,30,0.62),rgba(10,15,30,0.62)),url('art4.png') center/cover no-repeat;cursor:pointer;min-height:280px;" onclick="openExcerptPopup()">
+        <div class="excerpt-overlay"></div>
+        <div class="excerpt-content">
+          <div class="excerpt-tag">&#x1F4D6; החיפוש | עמוד 15</div>
+          <p class="excerpt-text">
+            &ldquo;גם בלילות הבאים מצאתי את עצמי משוטט שעות ברחובות.
+            מחפש את עצמי בשום מקום.
+            משוטט בין ייאוש להחשבה עצמית, בין פנטזיה לדיכאון...
+            <strong class="excerpt-highlight">צועק נואשות למשמעות, לסיבה אמיתית לחיים!!!!</strong>&rdquo;
+          </p>
+          <button class="excerpt-read-more" onclick="openExcerptPopup()">קרא את הקטע המלא &#x2192;</button>
+        </div>
       </div>
     </div>
   </div>
@@ -1458,6 +1450,16 @@ body {
         </video>
         <div class="video-card-info">
           <div class="video-card-name">קורא נוסף</div>
+          <div class="video-card-role">קורא</div>
+        </div>
+      </div>
+      <div class="video-card reveal" style="transition-delay:0.3s;">
+        <video controls preload="metadata" poster="">
+          <source src="video3.mp4" type="video/mp4">
+          הדפדפן שלך אינו תומך בסרטון.
+        </video>
+        <div class="video-card-info">
+          <div class="video-card-name">ישראל</div>
           <div class="video-card-role">קורא</div>
         </div>
       </div>
