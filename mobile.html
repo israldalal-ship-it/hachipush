@@ -514,8 +514,8 @@ body {
 .testimonials-grid {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-top: 48px;
+  gap: 12px;
+  margin-top: 32px;
   max-width: 100%;
 }
 .testimonial-card {
@@ -525,57 +525,60 @@ body {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 16px;
-  padding: 20px 28px;
-  border-radius: 24px;
-  padding: 22px 24px;
+  gap: 12px;
+  border-radius: 18px;
+  padding: 16px 18px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.06);
 }
 .testimonial-stars {
   display: flex;
   flex-direction: row;
-  gap: 3px;
+  gap: 2px;
   align-items: center;
   padding-top: 2px;
+  font-size: 0.85rem;
 }
 .testimonial-text {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: var(--ink-soft);
-  line-height: 1.55;
+  line-height: 1.45;
   font-weight: 300;
-  margin-bottom: 16px;
   font-style: italic;
   margin-bottom: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .testimonial-author {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  min-width: 80px;
+  gap: 4px;
+  min-width: 64px;
   text-align: center;
   padding-top: 2px;
 }
 .t-avatar {
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: var(--blue-light);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--blue);
   flex-shrink: 0;
 }
 .t-name {
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   color: var(--ink);
 }
 .t-role {
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   color: var(--ink-faded);
 }
 #dynamic-endorsements {
@@ -681,6 +684,7 @@ body {
   margin-top: 48px;
 }
 .video-card {
+  position: relative;
   border-radius: 24px;
   overflow: hidden;
   background: rgba(255,255,255,0.04);
@@ -693,6 +697,63 @@ body {
   max-height: 400px;
   object-fit: cover;
   background: #000;
+}
+.video-card-expand-btn {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s;
+}
+.video-card-expand-btn:hover {
+  background: rgba(0,0,0,0.8);
+}
+.video-lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+.video-lightbox-overlay.active {
+  display: flex;
+}
+.video-lightbox-overlay video {
+  max-height: 85vh;
+  max-width: 90vw;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 60px rgba(0,0,0,0.5);
+  background: #000;
+}
+.video-lightbox-close {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  cursor: pointer;
+  z-index: 1;
 }
 .video-card-info {
   padding: 20px 24px;
@@ -1377,7 +1438,7 @@ body {
   .excerpt-content { padding: 20px; margin: 16px; width: calc(100% - 32px); }
   .excerpt-text { font-size: 0.92rem; }
   .testimonials-section { padding: 60px 20px; }
-  .testimonial-card { grid-template-columns: 1fr; gap: 12px; padding: 20px; }
+  .testimonial-card { grid-template-columns: 1fr; gap: 8px; padding: 14px 16px; }
   .testimonial-stars { flex-direction: row; }
   .author-section { padding: 60px 20px; }
   .author-avatar { width: 120px; height: 120px; font-size: 2.2rem; }
@@ -1585,7 +1646,8 @@ body {
     </div>
     <div class="video-grid">
       <div class="video-card reveal">
-        <video controls preload="metadata" poster="">
+        <div class="video-card-expand-btn" onclick="openVideoLightbox('video1.mp4')">&#x2922;</div>
+        <video controls preload="metadata" poster="" controlsList="nofullscreen">
           <source src="video1.mp4" type="video/mp4">
           הדפדפן שלך אינו תומך בסרטון.
         </video>
@@ -1595,7 +1657,8 @@ body {
         </div>
       </div>
       <div class="video-card reveal" style="transition-delay:0.15s;">
-        <video controls preload="metadata" poster="">
+        <div class="video-card-expand-btn" onclick="openVideoLightbox('video2.mp4')">&#x2922;</div>
+        <video controls preload="metadata" poster="" controlsList="nofullscreen">
           <source src="video2.mp4" type="video/mp4">
           הדפדפן שלך אינו תומך בסרטון.
         </video>
@@ -1605,7 +1668,8 @@ body {
         </div>
       </div>
       <div class="video-card reveal" style="transition-delay:0.3s;">
-        <video controls preload="metadata" poster="">
+        <div class="video-card-expand-btn" onclick="openVideoLightbox('video3.mp4')">&#x2922;</div>
+        <video controls preload="metadata" poster="" controlsList="nofullscreen">
           <source src="video3.mp4" type="video/mp4">
           הדפדפן שלך אינו תומך בסרטון.
         </video>
@@ -1617,6 +1681,32 @@ body {
     </div>
   </div>
 </section>
+
+<!-- VIDEO LIGHTBOX -->
+<div id="video-lightbox-overlay" class="video-lightbox-overlay" onclick="if(event.target===this){closeVideoLightbox();}">
+  <div class="video-lightbox-close" onclick="closeVideoLightbox()">&times;</div>
+  <video id="video-lightbox-player" controls playsinline controlsList="nofullscreen">
+    <source src="" type="video/mp4">
+  </video>
+</div>
+
+<script>
+function openVideoLightbox(src) {
+  var overlay = document.getElementById('video-lightbox-overlay');
+  var vid = document.getElementById('video-lightbox-player');
+  var source = vid.querySelector('source');
+  source.src = src;
+  vid.load();
+  overlay.classList.add('active');
+  vid.play().catch(function(){});
+}
+function closeVideoLightbox() {
+  var overlay = document.getElementById('video-lightbox-overlay');
+  var vid = document.getElementById('video-lightbox-player');
+  vid.pause();
+  overlay.classList.remove('active');
+}
+</script>
 
 <!-- AUTHOR -->
 <section id="author" style="background: var(--cream); width:100%;">
@@ -1672,7 +1762,6 @@ body {
 <section class="testimonials-section" id="testimonials">
   <div class="testimonials-inner">
     <div style="text-align:center">
-      <div class="section-label">מה אומרים הקוראים</div>
       <h2 class="section-title">המלצות הקוראים</h2>
     </div>
     <div class="testimonials-grid">
@@ -2065,79 +2154,4 @@ function loadEndorsements() {
       const msg = document.getElementById('modal-msg');
       if (!text) { msg.textContent = 'אנא כתבו המלצה.'; msg.style.display = 'block'; return; }
       if (window.selectedStars === 0) { msg.textContent = 'אנא בחרו דירוג.'; msg.style.display = 'block'; return; }
-      if (!window.currentUser) { msg.textContent = 'יש להתחבר עם Google תחילה.'; msg.style.display = 'block'; return; }
-      try {
-        await addDoc(collection(dbInstance, 'endorsements'), {
-          text,
-          stars: window.selectedStars,
-          name: window.currentUser.displayName || window.currentUser.email,
-          photo: window.currentUser.photoURL || '',
-          uid: window.currentUser.uid,
-          approved: false,
-          timestamp: serverTimestamp()
-        });
-        msg.textContent = 'תודה! ההמלצה שלכם נשמרה, ותוצג באתר לאחר אישור.';
-        msg.style.display = 'block';
-        document.getElementById('endorse-text').value = '';
-        window.selectedStars = 0;
-        document.querySelectorAll('.star-pick').forEach(s => s.classList.remove('active'));
-        window.loadEndorsements();
-        setTimeout(closeModal, 1500);
-      } catch(err) {
-        console.error('submitEndorsement failed:', err);
-        msg.textContent = 'שגיאה בשמירה: ' + (err && err.message ? err.message : err);
-        msg.style.display = 'block';
-      }
-    };
-
-    window.loadEndorsements = async function() {
-      try {
-        const q = query(collection(dbInstance, 'endorsements'), where('approved', '==', true), orderBy('timestamp', 'desc'), limit(6));
-        const snap = await getDocs(q);
-        const container = document.getElementById('dynamic-endorsements');
-        if (!container) return;
-        container.innerHTML = '';
-        snap.forEach(doc => {
-          const d = doc.data();
-          const starsHtml = Array.from({length:5}, (_,i) =>
-            `<span style="color:${i < d.stars ? '#F59E0B' : '#ddd'}">&#9733;</span>`
-          ).join('');
-          container.innerHTML += `
-            <div class="endorse-card">
-              <div class="endorse-stars">${starsHtml}</div>
-              <p class="endorse-text">"${d.text}"</p>
-              <div class="endorse-author">— ${d.name}</div>
-            </div>`;
-        });
-      } catch(err) { console.log('Endorsements not loaded:', err.message); }
-    };
-
-    window.submitLead = async function(e) {
-      e.preventDefault();
-      const name = document.getElementById('lead-name').value.trim();
-      const email = document.getElementById('lead-email').value.trim();
-      const phoneRaw = document.getElementById('lead-phone') ? document.getElementById('lead-phone').value.trim() : '';
-      const phone = formatPhoneIL(phoneRaw);
-      const btn = e.target.querySelector('button[type="submit"]');
-      if (btn) { btn.disabled = true; btn.textContent = 'שולח...'; }
-      try {
-        await fetch('https://hooks.zapier.com/hooks/catch/27835371/4bgyffg/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({ name, email, phone })
-        });
-      } catch(err) { console.log('Zapier:', err); }
-      document.getElementById('lead-form').style.display = 'none';
-      document.getElementById('lead-success').style.display = 'block';
-    };
-
-    window._fbReady = true;
-    window.loadEndorsements();
-  } catch (err) {
-    console.error('Firebase failed to initialize:', err);
-    window._fbError = (err && err.message) ? err.message : String(err);
-  }
-})();
-</script>
-</body>
-</html>
+      if (!window.currentUser) { msg.textContent = 'י�
