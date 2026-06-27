@@ -138,14 +138,14 @@ body {
   font-size: 2.8rem;
   font-weight: 900;
   line-height: 1.15;
-  color: var(--ink);
+  color: #fff;
   margin-bottom: 20px;
 }
-.hero-title span { color: var(--blue); }
+.hero-title span { color: #6fa8ff; }
 .hero-body {
   font-size: 1.1rem;
   font-weight: 300;
-  color: var(--ink-faded);
+  color: rgba(255,255,255,0.78);
   margin-bottom: 32px;
   line-height: 1.75;
 }
@@ -164,7 +164,7 @@ body {
 .hero-btn:hover { opacity: 0.88; }
 .hero-btn-secondary {
   display: inline-block;
-  color: var(--ink-faded);
+  color: rgba(255,255,255,0.85);
   font-size: 0.95rem;
   margin-right: 18px;
   text-decoration: underline;
@@ -178,11 +178,31 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 14px;
+  position: relative;
 }
 .book-pill img {
   width: 260px;
   border-radius: 16px;
   box-shadow: 0 16px 48px rgba(0,102,255,0.18);
+}
+.book-pill-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 220px; height: 220px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(0,102,255,0.35), rgba(0,102,255,0) 70%);
+  border-radius: 50%;
+  z-index: -1;
+  animation: htc-glow-pulse 4s ease-in-out infinite;
+}
+.book-pill-float { animation: htc-float 5s ease-in-out infinite; }
+@keyframes htc-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes htc-glow-pulse {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.12); }
 }
 .book-pill-label {
   font-size: 0.8rem;
@@ -223,8 +243,59 @@ body {
 .star { color: var(--gold); font-size: 1.1rem; }
 .rating-text {
   font-size: 0.9rem;
-  color: var(--ink-faded);
+  color: rgba(255,255,255,0.78);
   margin-top: 4px;
+}
+.htc-card {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.htc-card.htc-exit {
+  opacity: 0;
+  transform: translateX(-18px);
+}
+.htc-card.htc-enter-from {
+  opacity: 0;
+  transform: translateX(18px);
+  transition: none;
+}
+.htc-progress {
+  height: 3px;
+  background: rgba(0,0,0,0.08);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 16px;
+}
+.htc-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--blue);
+  border-radius: 3px;
+}
+.htc-progress-bar.running {
+  animation: htc-fill 5s linear forwards;
+}
+@keyframes htc-fill {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+.htc-dots {
+  display: flex;
+  gap: 7px;
+  justify-content: center;
+}
+.htc-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.32);
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s;
+  border: none;
+  padding: 0;
+}
+.htc-dot.active {
+  background: #6fa8ff;
+  transform: scale(1.25);
 }
 .store-badges {
   display: flex;
@@ -1367,7 +1438,8 @@ body {
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section style="background:linear-gradient(135deg, #1c3f73 0%, #0a1d3b 100%); width:100%;">
+  <div class="hero">
   <div class="hero-grid">
     <!-- Text col -->
     <div class="reveal">
@@ -1380,7 +1452,8 @@ body {
     </div>
     <!-- Book pill col -->
     <div class="book-pill reveal" style="transition-delay:0.15s">
-      <img src="book_cover.jpg" alt="עטיפת הספר החיפוש">
+      <div class="book-pill-glow"></div>
+      <img src="book_cover.jpg" alt="עטיפת הספר החיפוש" class="book-pill-float">
     </div>
     <!-- Social proof col -->
     <div class="social-proof reveal" style="transition-delay:0.3s;display:flex;flex-direction:column;gap:20px;justify-content:center;">
@@ -1388,26 +1461,29 @@ body {
         <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
         <span class="rating-text" style="margin-right:10px;">4.9 / 5</span>
       </div>
-      <div style="background:#fff;border-radius:20px;padding:24px 28px;box-shadow:0 4px 24px rgba(0,0,0,0.07);border-right:4px solid var(--blue);">
-        <p style="font-size:1.1rem;line-height:1.75;color:var(--ink-soft);font-style:italic;font-weight:400;margin-bottom:14px;">
-          &ldquo;הלידה של רוני האירה אצלי את שלי. אני מרגישה משהו בטוח. משהו שונה.&rdquo;
+      <div id="hero-testimonial-card" class="htc-card" style="background:linear-gradient(135deg, #eaf2ff 0%, #ffffff 55%, #fff6e6 100%);border-radius:20px;padding:24px 28px;box-shadow:0 4px 24px rgba(0,102,255,0.12);border-right:4px solid var(--blue);">
+        <p id="hero-testimonial-text" style="font-size:1.1rem;line-height:1.75;color:var(--ink-soft);font-style:italic;font-weight:400;margin-bottom:14px;">
+          &ldquo;קראתי את הספר החיפוש, והוא נגע בי מאוד. דרך מסע החיפוש של רוני מצאתי גם חיפוש פנימי בתוכי, וקיבלתי ממנו כוחות נפש רבים. תודה.&rdquo;
         </p>
         <div style="display:flex;align-items:center;gap:10px;">
-          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#0044cc);display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:0.85rem;">ר</div>
+          <div id="hero-testimonial-avatar" style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#0044cc);display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:0.85rem;">ג</div>
           <div>
-            <div style="font-weight:800;font-size:0.9rem;color:var(--ink);">רחל</div>
-            <div style="font-size:0.75rem;color:var(--ink-faded);">קוראת</div>
+            <div id="hero-testimonial-name" style="font-weight:800;font-size:0.9rem;color:var(--ink);">גיל</div>
+            <div id="hero-testimonial-role" style="font-size:0.75rem;color:var(--ink-faded);">קורא</div>
           </div>
         </div>
+        <div class="htc-progress"><div id="hero-testimonial-progress-bar" class="htc-progress-bar"></div></div>
       </div>
+      <div id="hero-testimonial-dots" class="htc-dots"></div>
     </div>
+  </div>
   </div>
 </section>
 
 <!-- WHAT SECTION (merged with atmosphere) -->
 <section id="what" style="background: var(--cream); width:100%;">
   <div style="display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 40px 10px;">
-    <h2 class="atmosphere-headline" style="color:var(--ink);">זהו לא רק סיפור על נער אחד &#x2014; <span>זה הסיפור שלך</span></h2>
+    <h2 class="atmosphere-headline" style="color:var(--ink);">זה לא רק הסיפור על נער בשם רוני &#x2014;<br><span>זה הסיפור שלך</span></h2>
   </div>
   <div class="what-grid" style="padding-top:10px;">
     <div class="reveal">
@@ -1416,19 +1492,19 @@ body {
       <h2 class="section-title" style="color:var(--ink);">ספר שנולד מתוך השאלות האמיתיות של החיים</h2>
       <p class="section-body">
         יש ספרים שמספרים סיפור.
-        ויש ספרים שמצליחים לגעת במקום עמוק יותר — במקום שבו האדם פוגש את עצמו.
+        <strong style="color:var(--ink);font-weight:800;">ויש ספרים שמצליחים לגעת במקום עמוק יותר — במקום שבו האדם פוגש את עצמו.</strong>
         <br>
-        "החיפוש" הוא רומן מרתק העוקב אחר מסעו של נער צעיר המרגיש שהחיים כפי שהם מוצגים לו אינם מספקים תשובה לשאלות הבוערות בתוכו. בעוד סביבתו ממשיכה להתנהל על פי הנורמות המקובלות, הוא אינו מצליח להתעלם מהתחושה שיש בחיים עומק גדול יותר שממתין להתגלות.
+        "החיפוש" הוא רומן מרתק העוקב אחר מסעו של נער צעיר המרגיש שהחיים כפי שהם מוצגים לו אינם מספקים תשובה לשאלות הבוערות בתוכו. בעוד סביבתו ממשיכה להתנהל על פי הנורמות המקובלות, <strong style="color:var(--ink);font-weight:800;">הוא אינו מצליח להתעלם מהתחושה שיש בחיים עומק גדול יותר שממתין להתגלות.</strong>
         <br>
-        במהלך מסעו הוא מתמודד עם אכזבות, התנגשויות, שאלות זהות, מאבקי אגו, קשרים אנושיים ורגעים מטלטלים שמאלצים אותו לבחון מחדש את כל מה שחשב שהוא יודע על עצמו ועל העולם.
+        במהלך מסעו הוא מתמודד עם אכזבות, התנגשויות, שאלות זהות, מאבקי אגו, קשרים אנושיים ורגעים מטלטלים <strong style="color:var(--ink);font-weight:800;">שמאלצים אותו לבחון מחדש את כל מה שחשב שהוא יודע על עצמו ועל העולם.</strong>
         <br>
-        אך "החיפוש" אינו רק סיפור על נער אחד. זהו סיפור על החיפוש האנושי אחרי אמת בלתי מתפשרת.
+        אך "החיפוש" אינו רק סיפור על נער אחד. <strong style="color:var(--ink);font-weight:800;">זהו סיפור על החיפוש האנושי אחרי אמת בלתי מתפשרת.</strong>
         <br>
-        דרך עלילה סוחפת ודמויות מעוררות הזדהות, נחשף הקורא לתובנות על נפש האדם, על ההתמודדות בין הרצון להיות צודק לבין הרצון לגלות אמת, ועל המסע שכל אדם עובר בדרכו להבין מי הוא באמת.
+        דרך עלילה סוחפת ודמויות מעוררות הזדהות, נחשף הקורא לתובנות על נפש האדם, על ההתמודדות בין הרצון להיות צודק לבין הרצון לגלות אמת, <strong style="color:var(--ink);font-weight:800;">ועל המסע שכל אדם עובר בדרכו להבין מי הוא באמת.</strong>
         <br>
-        הספר כתוב בשפה נגישה וזורמת, ומצליח לשלב בין חוויית קריאה מהנה לבין שאלות ותובנות שנשארות עם הקורא הרבה אחרי סיום הקריאה.
+        הספר כתוב בשפה נגישה וזורמת, <strong style="color:var(--ink);font-weight:800;">ומצליח לשלב בין חוויית קריאה מהנה לבין שאלות ותובנות שנשארות עם הקורא הרבה אחרי סיום הקריאה.</strong>
         <br>
-        זהו ספר למי שאוהב סיפורים טובים. זהו ספר למי שאוהב לחשוב. ובעיקר — למי שמרגיש שגם בתוכו קיים חיפוש שעדיין לא הסתיים.
+        זהו ספר למי שאוהב סיפורים טובים. זהו ספר למי שאוהב לחשוב. <strong style="color:var(--ink);font-weight:800;">ובעיקר — למי שמרגיש שגם בתוכו קיים חיפוש שעדיין לא הסתיים.</strong>
       </p>
     </div>
     <div class="reveal" style="transition-delay:0.2s;display:flex;flex-direction:column;gap:64px;justify-content:flex-start;">
@@ -1914,6 +1990,83 @@ function submitEndorsement() {
   }
 }
 
+// ===== HERO TESTIMONIAL CAROUSEL =====
+window.heroTestimonials = [
+  { text: 'קראתי את הספר החיפוש, והוא נגע בי מאוד. דרך מסע החיפוש של רוני מצאתי גם חיפוש פנימי בתוכי, וקיבלתי ממנו כוחות נפש רבים. תודה.', name: 'גיל', role: 'קורא', avatar: 'ג' },
+  { text: 'התענגתי על הספר בשבת... קשה היה להפסיק מדי פעם שהמוח היה צריך לעכל מי זה רוני ואיך הוא מכיר אותי... התמכרתי.', name: 'מעיין', role: 'קוראת', avatar: 'מ' },
+  { text: 'מצאתי בתוך הסיפור של רוני תוך כדי הקריאה תובנות עמוקות על החיים ותפיסת המציאות, ובו בזמן נפשגתי עם מקומות עמוקים שבתוכי שלא ידעתי איך לקרוא להם לפני כן.', name: 'שלמה', role: 'קורא', avatar: 'ש' }
+];
+window._heroCarouselIndex = 0;
+window._heroCarouselTimer = null;
+window._heroCarouselInterval = 5000;
+
+function renderHeroDots() {
+  const wrap = document.getElementById('hero-testimonial-dots');
+  if (!wrap) return;
+  wrap.innerHTML = window.heroTestimonials.map((_, i) =>
+    `<button class="htc-dot${i === window._heroCarouselIndex ? ' active' : ''}" data-i="${i}" aria-label="המלצה ${i + 1}"></button>`
+  ).join('');
+  wrap.querySelectorAll('.htc-dot').forEach(dot => {
+    dot.onclick = () => window.goToHeroTestimonial(parseInt(dot.dataset.i, 10));
+  });
+}
+
+function restartHeroProgress() {
+  const bar = document.getElementById('hero-testimonial-progress-bar');
+  if (!bar) return;
+  bar.classList.remove('running');
+  bar.style.width = '0%';
+  void bar.offsetWidth; // reflow כדי לאפס את האנימציה
+  bar.classList.add('running');
+}
+
+function renderHeroTestimonial(item) {
+  const card = document.getElementById('hero-testimonial-card');
+  if (!card) return;
+  card.classList.add('htc-exit');
+  setTimeout(() => {
+    document.getElementById('hero-testimonial-text').textContent = '“' + item.text + '”';
+    document.getElementById('hero-testimonial-name').textContent = item.name || 'קורא/ת';
+    document.getElementById('hero-testimonial-role').textContent = item.role || 'קוראת';
+    document.getElementById('hero-testimonial-avatar').textContent = item.avatar || (item.name ? item.name.charAt(0) : 'ק');
+    card.classList.remove('htc-exit');
+    card.classList.add('htc-enter-from');
+    requestAnimationFrame(() => requestAnimationFrame(() => card.classList.remove('htc-enter-from')));
+    renderHeroDots();
+    restartHeroProgress();
+  }, 400);
+}
+
+function restartHeroTimer() {
+  if (window._heroCarouselTimer) clearInterval(window._heroCarouselTimer);
+  if (window.heroTestimonials.length > 1) {
+    window._heroCarouselTimer = setInterval(() => {
+      window._heroCarouselIndex = (window._heroCarouselIndex + 1) % window.heroTestimonials.length;
+      renderHeroTestimonial(window.heroTestimonials[window._heroCarouselIndex]);
+    }, window._heroCarouselInterval);
+  }
+}
+
+window.goToHeroTestimonial = function (index) {
+  if (!window.heroTestimonials.length) return;
+  window._heroCarouselIndex = index;
+  renderHeroTestimonial(window.heroTestimonials[index]);
+  restartHeroTimer();
+};
+
+window.startHeroCarousel = function (items) {
+  if (!items || !items.length) return;
+  window.heroTestimonials = items;
+  window._heroCarouselIndex = 0;
+  renderHeroDots();
+  restartHeroProgress();
+  restartHeroTimer();
+};
+
+// מתחילים מיד עם הפריטים הסטטיים — לא מחכים ל-Firebase.
+// כשה-Firebase יחזיר נתונים, loadEndorsements() יקרא ל-startHeroCarousel שוב עם הרשימה המלאה.
+window.startHeroCarousel(window.heroTestimonials);
+
 // ===== LOAD ENDORSEMENTS =====
 function loadEndorsements() {
   if (typeof db === 'undefined') return;
@@ -1967,29 +2120,4 @@ function loadEndorsements() {
       try {
         const result = await signInWithPopup(authInstance, provider);
         window.currentUser = result.user;
-        document.getElementById('modal-signin-btn').style.display = 'none';
-        const info = document.getElementById('modal-user-info');
-        info.style.display = 'flex';
-        document.getElementById('modal-user-photo').src = result.user.photoURL || '';
-        document.getElementById('modal-user-name').textContent = result.user.displayName || result.user.email;
-      } catch(err) {
-        console.error(err);
-        const msg = document.getElementById('modal-msg');
-        if (msg) { msg.textContent = 'ההתחברות נכשלה: ' + (err && err.message ? err.message : err); msg.style.display = 'block'; }
-      }
-    };
-
-    window.submitEndorsement = async function() {
-      const text = document.getElementById('endorse-text').value.trim();
-      const msg = document.getElementById('modal-msg');
-      if (!text) { msg.textContent = 'אנא כתבו המלצה.'; msg.style.display = 'block'; return; }
-      if (window.selectedStars === 0) { msg.textContent = 'אנא בחרו דירוג.'; msg.style.display = 'block'; return; }
-      if (!window.currentUser) { msg.textContent = 'יש להתחבר עם Google תחילה.'; msg.style.display = 'block'; return; }
-      try {
-        await addDoc(collection(dbInstance, 'endorsements'), {
-          text,
-          stars: window.selectedStars,
-          name: window.currentUser.displayName || window.currentUser.email,
-          photo: window.currentUser.photoURL || '',
-          uid: window.currentUser.uid,
-          approved: 
+        documen
