@@ -560,7 +560,7 @@ body {
 .excerpt-tag {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--gold);
+  color: rgba(255,255,255,0.55);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 10px;
@@ -572,6 +572,20 @@ body {
   line-height: 1.7;
   font-style: italic;
 }
+.excerpt-scroll {
+  max-height: 280px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-left: 6px;
+  margin: 4px 0 18px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.35) transparent;
+}
+.excerpt-scroll .excerpt-text { margin-bottom: 14px; }
+.excerpt-scroll .excerpt-text:last-child { margin-bottom: 0; }
+.excerpt-scroll::-webkit-scrollbar { width: 5px; }
+.excerpt-scroll::-webkit-scrollbar-track { background: transparent; }
+.excerpt-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.35); border-radius: 10px; }
 
 /* ===== TESTIMONIALS ===== */
 .testimonials-section {
@@ -970,7 +984,7 @@ body {
 }
 
 .excerpt-highlight {
-  color: var(--blue);
+  color: #fff;
   font-weight: 800;
   font-style: normal;
 }
@@ -1637,19 +1651,19 @@ body {
       <h2 class="section-title" style="color:var(--ink);">ספר שנולד מתוך השאלות האמיתיות של החיים</h2>
       <p class="section-body">
         יש ספרים שמספרים סיפור.
-        <strong style="color:var(--ink);font-weight:800;">ויש ספרים שמצליחים לגעת במקום עמוק יותר — במקום שבו האדם פוגש את עצמו.</strong>
+        ויש ספרים שמצליחים לגעת במקום עמוק יותר — במקום שבו האדם פוגש את עצמו.
         <br>
-        "החיפוש" הוא רומן מרתק העוקב אחר מסעו של נער צעיר המרגיש שהחיים כפי שהם מוצגים לו אינם מספקים תשובה לשאלות הבוערות בתוכו. בעוד סביבתו ממשיכה להתנהל על פי הנורמות המקובלות, <strong style="color:var(--ink);font-weight:800;">הוא אינו מצליח להתעלם מהתחושה שיש בחיים עומק גדול יותר שממתין להתגלות.</strong>
+        "החיפוש" הוא רומן מרתק העוקב אחר מסעו של נער צעיר המרגיש שהחיים כפי שהם מוצגים לו אינם מספקים תשובה לשאלות הבוערות בתוכו. בעוד סביבתו ממשיכה להתנהל על פי הנורמות המקובלות,<br><strong style="color:#000 !important;font-weight:800 !important;">הוא אינו מצליח להתעלם מהתחושה שיש בחיים עומק גדול יותר שממתין להתגלות.</strong>
         <br>
-        במהלך מסעו הוא מתמודד עם אכזבות, התנגשויות, שאלות זהות, מאבקי אגו, קשרים אנושיים ורגעים מטלטלים <strong style="color:var(--ink);font-weight:800;">שמאלצים אותו לבחון מחדש את כל מה שחשב שהוא יודע על עצמו ועל העולם.</strong>
+        במהלך מסעו הוא מתמודד עם אכזבות, התנגשויות, שאלות זהות, מאבקי אגו, קשרים אנושיים ורגעים מטלטלים שמאלצים אותו לבחון מחדש את כל מה שחשב שהוא יודע על עצמו ועל העולם.
         <br>
-        אך "החיפוש" אינו רק סיפור על נער אחד. <strong style="color:var(--ink);font-weight:800;">זהו סיפור על החיפוש האנושי אחרי אמת בלתי מתפשרת.</strong>
+        אך "החיפוש" אינו רק סיפור על נער אחד. זהו סיפור על החיפוש האנושי אחרי אמת בלתי מתפשרת.
         <br>
-        דרך עלילה סוחפת ודמויות מעוררות הזדהות, נחשף הקורא לתובנות על נפש האדם, על ההתמודדות בין הרצון להיות צודק לבין הרצון לגלות אמת, <strong style="color:var(--ink);font-weight:800;">ועל המסע שכל אדם עובר בדרכו להבין מי הוא באמת.</strong>
+        דרך עלילה סוחפת ודמויות מעוררות הזדהות, נחשף הקורא לתובנות על נפש האדם,<br><strong style="color:#000 !important;font-weight:800 !important;">על ההתמודדות בין הרצון להיות צודק לבין הרצון לגלות אמת</strong>, ועל המסע שכל אדם עובר בדרכו להבין מי הוא באמת.
         <br>
-        הספר כתוב בשפה נגישה וזורמת, <strong style="color:var(--ink);font-weight:800;">ומצליח לשלב בין חוויית קריאה מהנה לבין שאלות ותובנות שנשארות עם הקורא הרבה אחרי סיום הקריאה.</strong>
+        הספר כתוב בשפה נגישה וזורמת, ומצליח לשלב בין חוויית קריאה מהנה לבין שאלות ותובנות שנשארות עם הקורא הרבה אחרי סיום הקריאה.
         <br>
-        זהו ספר למי שאוהב סיפורים טובים. זהו ספר למי שאוהב לחשוב. <strong style="color:var(--ink);font-weight:800;">ובעיקר — למי שמרגיש שגם בתוכו קיים חיפוש שעדיין לא הסתיים.</strong>
+        <strong style="color:#000 !important;font-weight:800 !important;">זהו ספר למי שאוהב סיפורים טובים. זהו ספר למי שאוהב לחשוב. ובעיקר — למי שמרגיש שגם בתוכו קיים חיפוש שעדיין לא הסתיים.</strong>
       </p>
     </div>
     <div class="reveal" style="transition-delay:0.2s;display:flex;flex-direction:column;gap:24px;justify-content:center;">
@@ -1664,54 +1678,30 @@ body {
 
 <!-- CINEMATIC EXCERPTS -->
 <section class="excerpts-section">
-  <div class="section-label" style="text-align:center">טעימה מהספר</div>
-  <h2 class="section-title" style="text-align:center;margin-bottom:40px">שורות שנשארות איתך</h2>
+  <h2 class="section-title" style="text-align:center;margin-bottom:40px">משוטט ברחובות, אבוד בתוך עצמו</h2>
   <div style="max-width:760px;margin:0 auto;">
-    <div class="excerpt-card reveal" style="background:linear-gradient(rgba(10,15,30,0.62),rgba(10,15,30,0.62)),url('art4.png') center/cover no-repeat;cursor:pointer;" onclick="openExcerptPopup()">
+    <div class="excerpt-card reveal" style="background:linear-gradient(rgba(10,15,30,0.62),rgba(10,15,30,0.62)),url('art4.png') center/cover no-repeat;">
       <div class="excerpt-overlay"></div>
       <div class="excerpt-content">
-        <div class="excerpt-tag">&#x1F4D6; החיפוש | עמוד 15</div>
-        <p class="excerpt-text">
-          &ldquo;גם בלילות הבאים מצאתי את עצמי משוטט שעות ברחובות.
-          מחפש את עצמי בשום מקום.
-          משוטט בין ייאוש להחשבה עצמית, בין פנטזיה לדיכאון,
-          בין מחשבות פילוסופיות גבוהות, לבין מחשבות על תענוג מיידי וסוחף.
-          נפשי נצרבת אט אט ומתמזגת עם הרחוב...
-          <strong class="excerpt-highlight">צועק נואשות למשמעות, לסיבה אמיתית לחיים!!!!</strong>&rdquo;
-        </p>
-        <button class="excerpt-read-more" onclick="openExcerptPopup()">קרא את הקטע המלא &#x2192;</button>
+        <div class="excerpt-tag">החיפוש | עמודים 15–16</div>
+        <div class="excerpt-scroll">
+          <p class="excerpt-text">גם בלילות הבאים מצאתי את עצמי משוטט שעות ברחובות. מחפש את עצמי בשום מקום. משוטט בין ייאוש להחשבה עצמית, בין פנטזיה לדיכאון, בין מחשבות פילוסופיות גבוהות, לבין מחשבות על תענוג מיידי וסוחף. נפשי נצרבת אט אט ומתמזגת עם הרחוב. חושש להיות "רחובי", להיות כמו כולם. הסתכלתי במבט זגוגי על הנעשה סביבי, בוהה במחשבותיי, הולך לשום מקום, לא מצפה לשום דבר, לא רוצה כלום, מחכה שמשהו יקרה ועדיף שיהיה חזק. <strong class="excerpt-highlight">צועק נואשות למשמעות, לסיבה אמיתית לחיים!!!!</strong></p>
+          <p class="excerpt-text">האיש, ששכב על ספסל בגן הציבורי, התיישב בהתקרבי אליו. "יש מקום כאן חבר," כמו אמר בלי מילים. התיישבתי על הספסל. נמנעתי מלהביט בו שלא יחוש מובך. המבט המהיר, בו קלטתי אותו בהתיישבי, שידר לי מוזרות. גילו היה לא ברור, שכן, על פניו, נראה היה זקן.</p>
+          <p class="excerpt-text">הוא החל לדבר, ספק אל עצמו ספק אליי. "איזה חיים יפים כאן במלון אינסוף כוכבים, אתה לא חייב לאף אחד כלום." בגיחוך קל הוסיף, "אפילו לא לעצמך..."</p>
+          <p class="excerpt-text">אני חייב להודות שהאנשים האלו תמיד עניינו אותי. אהבתי, או אולי הסתקרנתי מהמוזרות שלהם. נפשי חשה, שהיכן שמצוי ההמון הרגיל, לא יכולה להיות בו האמת. מורעלות הן בארות ההמון, ואני חיפשתי מים זכים, כך לפחות האמנתי לעצמי.</p>
+          <p class="excerpt-text">המשיך חברי לספסל, "בחדרנו המאוורר, בבית המלון של אינסוף הכוכבים, אין חשבונות חשמל, אין חשבונות מים, אין חשבונות של כבוד ואין חשבונות של משפחה. אין רצון, אין בעיות. יש רצון, יש בעיות. כאן, אפילו אם תרצה לא תקבל. אתה הופך להיות חיה ללא רצון. שמח ממה שיש, ומה שאין, אין אתה רוצה. אתה שמח ולא שמח בעת ובעונה אחת. אתה מנצח את כולם ואף אחד לא נלחם איתך. אתה כולם ואף אחד הוא לא אתה. כל יום אתה מה שאתה רוצה להיות. אתה יכול להיות מה שמתחשק לך, אף אם אין לך שום חשק..."</p>
+          <p class="excerpt-text">"שקרן מתועב, גונב לבבות ואף את ליבך שלך אתה גונב. באפסות שאתה חי, מבקש אתה מקלט מהמשמעות. אתה כוסף כל כולך בכל מאווייך לשום דבר ואתה אומר שאין לך מאוויים. אתה מחפש כל העת הנאות קטנות, כדי שיספקו את הנצרך, שיחליפו בתעתוע עצמי את הרצונות האמיתיים שלך. ויתרת על האושר האמיתי ולכך אתה קורא אושר.</p>
+          <p class="excerpt-text">חדל מניבולי הפה המייסרים כל שכל ישר. <strong class="excerpt-highlight">חדל לשחק על רגש האין רצון</strong>, על העדר ההיגיון בכל מה שמלמל פיך. על ערבוב שני ההפכים, כאילו אמרת הכל ולא כלום. בונה לך דרכים של נסיגה שכלית לכל מקום אפשרי. לא מחויב אפילו לא לעצמך.</p>
+          <p class="excerpt-text">כיצד כמעט ניצודה נפשי במילותיך, רשע מרושע! הנך מסכן שבמסכנים המנסה לעשות אידיאליזציה ממסכנותך. ברח ממני או שאברח אני ממך ומשכמותך, זקן אפרורי ונתעב. חשבת לנצל את בדידותי, כדי לקבל מעט קורת רוח מהאשפה הממלאת את כרסך. מבקש אתה להמתיק את האשפה, אליה אתה מוסיף סוכר ועוד טוען שמאכל מעדנים הוא.</p>
+          <p class="excerpt-text">ברח לך אל מאורתך הכוזבת ואת נפשי הממילא מיוסרת אל תנסה לכבוש במילותיך הקופיות, המנסות להתחקות אחר עמקות לא קיימת. <strong class="excerpt-highlight">חוסר הבהירות אינה עמקות, אלא כזב מתעתע</strong>. מכה אחת ועוד אחת צריך הייתי להצליף בך אילו היה עוזר הדבר, אך אף לכך אינך ראוי, רשע שבכוזבים."</p>
+          <p class="excerpt-text">כך דיברתי ביני לביני כאשר הזקן ממשיך את דבריו אל עצמו מתוך החשבה עצמית. קמתי ממקומי והתרחקתי חיש מהמקום, מנסה לברוח מהכזב.</p>
+          <p class="excerpt-text">איני יודע מדוע נפשי מגיבה בכזו אגרסיביות, הורסת, דורסת כל מה שנקרה בדרכה. מין מרד נעורים בלתי נשלט...</p>
+        </div>
+        <a href="https://hasulam.store/checkout/?add-to-cart=1569" target="_blank" class="excerpt-read-more">הזמינו את הספר המלא &#x2192;</a>
       </div>
     </div>
   </div>
 </section>
-
-<!-- EXCERPT POPUP -->
-<div class="excerpt-popup-overlay" id="excerpt-popup" onclick="handleExcerptOverlay(event)">
-  <div class="excerpt-popup-box">
-    <div class="excerpt-popup-hero"></div>
-    <button class="excerpt-popup-close" onclick="closeExcerptPopup()">&#x2715;</button>
-    <div class="excerpt-popup-header">
-      <span class="excerpt-popup-tag">&#x1F4D6; החיפוש | עמודים 15–16</span>
-      <h3 class="excerpt-popup-title">הספסל בגן</h3>
-    </div>
-    <div class="excerpt-popup-body">
-      <p>גם בלילות הבאים מצאתי את עצמי משוטט שעות ברחובות. מחפש את עצמי בשום מקום. משוטט בין ייאוש להחשבה עצמית, בין פנטזיה לדיכאון, בין מחשבות פילוסופיות גבוהות, לבין מחשבות על תענוג מיידי וסוחף. נפשי נצרבת אט אט ומתמזגת עם הרחוב. חושש להיות "רחובי", להיות כמו כולם. הסתכלתי במבט זגוגי על הנעשה סביבי, בוהה במחשבותיי, הולך לשום מקום, לא מצפה לשום דבר, לא רוצה כלום, מחכה שמשהו יקרה ועדיף שיהיה חזק. <strong class="excerpt-highlight">צועק נואשות למשמעות, לסיבה אמיתית לחיים!!!!</strong></p>
-      <p>האיש, ששכב על ספסל בגן הציבורי, התיישב בהתקרבי אליו. "יש מקום כאן חבר," כמו אמר בלי מילים. התיישבתי על הספסל. נמנעתי מלהביט בו שלא יחוש מובך. המבט המהיר, בו קלטתי אותו בהתיישבי, שידר לי מוזרות. גילו היה לא ברור, שכן, על פניו, נראה היה זקן.</p>
-      <p>הוא החל לדבר, ספק אל עצמו ספק אליי. "איזה חיים יפים כאן במלון אינסוף כוכבים, אתה לא חייב לאף אחד כלום." בגיחוך קל הוסיף, "אפילו לא לעצמך..."</p>
-      <p>אני חייב להודות שהאנשים האלו תמיד עניינו אותי. אהבתי, או אולי הסתקרנתי מהמוזרות שלהם. נפשי חשה, שהיכן שמצוי ההמון הרגיל, לא יכולה להיות בו האמת. מורעלות הן בארות ההמון, ואני חיפשתי מים זכים, כך לפחות האמנתי לעצמי.</p>
-      <p>המשיך חברי לספסל, "בחדרנו המאוורר, בבית המלון של אינסוף הכוכבים, אין חשבונות חשמל, אין חשבונות מים, אין חשבונות של כבוד ואין חשבונות של משפחה. אין רצון, אין בעיות. יש רצון, יש בעיות. כאן, אפילו אם תרצה לא תקבל. אתה הופך להיות חיה ללא רצון. שמח ממה שיש, ומה שאין, אין אתה רוצה. אתה שמח ולא שמח בעת ובעונה אחת. אתה מנצח את כולם ואף אחד לא נלחם איתך. אתה כולם ואף אחד הוא לא אתה. כל יום אתה מה שאתה רוצה להיות. אתה יכול להיות מה שמתחשק לך, אף אם אין לך שום חשק..."</p>
-      <p class="excerpt-popup-speech">"שקרן מתועב, גונב לבבות ואף את ליבך שלך אתה גונב. באפסות שאתה חי, מבקש אתה מקלט מהמשמעות. אתה כוסף כל כולך בכל מאווייך לשום דבר ואתה אומר שאין לך מאוויים. אתה מחפש כל העת הנאות קטנות, כדי שיספקו את הנצרך, שיחליפו בתעתוע עצמי את הרצונות האמיתיים שלך. ויתרת על האושר האמיתי ולכך אתה קורא אושר.</p>
-      <p class="excerpt-popup-speech">חדל מניבולי הפה המייסרים כל שכל ישר. <strong class="excerpt-highlight">חדל לשחק על רגש האין רצון</strong>, על העדר ההיגיון בכל מה שמלמל פיך. על ערבוב שני ההפכים, כאילו אמרת הכל ולא כלום. בונה לך דרכים של נסיגה שכלית לכל מקום אפשרי. לא מחויב אפילו לא לעצמך.</p>
-      <p class="excerpt-popup-speech">כיצד כמעט ניצודה נפשי במילותיך, רשע מרושע! הנך מסכן שבמסכנים המנסה לעשות אידיאליזציה ממסכנותך. ברח ממני או שאברח אני ממך ומשכמותך, זקן אפרורי ונתעב. חשבת לנצל את בדידותי, כדי לקבל מעט קורת רוח מהאשפה הממלאת את כרסך. מבקש אתה להמתיק את האשפה, אליה אתה מוסיף סוכר ועוד טוען שמאכל מעדנים הוא.</p>
-      <p class="excerpt-popup-speech">ברח לך אל מאורתך הכוזבת ואת נפשי הממילא מיוסרת אל תנסה לכבוש במילותיך הקופיות, המנסות להתחקות אחר עמקות לא קיימת. <strong class="excerpt-highlight">חוסר הבהירות אינה עמקות, אלא כזב מתעתע</strong>. מכה אחת ועוד אחת צריך הייתי להצליף בך אילו היה עוזר הדבר, אך אף לכך אינך ראוי, רשע שבכוזבים."</p>
-      <p>כך דיברתי ביני לביני כאשר הזקן ממשיך את דבריו אל עצמו מתוך החשבה עצמית. קמתי ממקומי והתרחקתי חיש מהמקום, מנסה לברוח מהכזב.</p>
-      <p>איני יודע מדוע נפשי מגיבה בכזו אגרסיביות, הורסת, דורסת כל מה שנקרה בדרכה. מין מרד נעורים בלתי נשלט...</p>
-    </div>
-    <div class="excerpt-popup-footer">
-      <a href="https://hasulam.store/checkout/?add-to-cart=1569" class="excerpt-popup-cta" target="_blank">הזמינו את הספר המלא &#x2192;</a>
-    </div>
-  </div>
-</div>
 
 
 <!-- VIDEO TESTIMONIALS -->
@@ -2014,22 +2004,6 @@ window.addEventListener('scroll', () => {
   if (document.getElementById('mobile-nav').classList.contains('open')) closeMobileNav();
 }, { passive: true });
 
-// ===== EXCERPT POPUP =====
-window.openExcerptPopup = function() {
-  document.getElementById('excerpt-popup').classList.add('open');
-  document.body.style.overflow = 'hidden';
-};
-window.closeExcerptPopup = function() {
-  document.getElementById('excerpt-popup').classList.remove('open');
-  document.body.style.overflow = '';
-};
-window.handleExcerptOverlay = function(e) {
-  if (e.target === document.getElementById('excerpt-popup')) closeExcerptPopup();
-};
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeExcerptPopup();
-});
-
 // ===== REVEAL OBSERVER =====
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -2291,4 +2265,104 @@ function loadEndorsements() {
       try {
         const result = await signInWithPopup(authInstance, provider);
         window.currentUser = result.user;
-        documen
+        document.getElementById('modal-signin-btn').style.display = 'none';
+        const info = document.getElementById('modal-user-info');
+        info.style.display = 'flex';
+        document.getElementById('modal-user-photo').src = result.user.photoURL || '';
+        document.getElementById('modal-user-name').textContent = result.user.displayName || result.user.email;
+      } catch(err) {
+        console.error(err);
+        const msg = document.getElementById('modal-msg');
+        if (msg) { msg.textContent = 'ההתחברות נכשלה: ' + (err && err.message ? err.message : err); msg.style.display = 'block'; }
+      }
+    };
+
+    window.submitEndorsement = async function() {
+      const text = document.getElementById('endorse-text').value.trim();
+      const msg = document.getElementById('modal-msg');
+      if (!text) { msg.textContent = 'אנא כתבו המלצה.'; msg.style.display = 'block'; return; }
+      if (window.selectedStars === 0) { msg.textContent = 'אנא בחרו דירוג.'; msg.style.display = 'block'; return; }
+      if (!window.currentUser) { msg.textContent = 'יש להתחבר עם Google תחילה.'; msg.style.display = 'block'; return; }
+      try {
+        await addDoc(collection(dbInstance, 'endorsements'), {
+          text,
+          stars: window.selectedStars,
+          name: window.currentUser.displayName || window.currentUser.email,
+          photo: window.currentUser.photoURL || '',
+          uid: window.currentUser.uid,
+          approved: false,
+          timestamp: serverTimestamp()
+        });
+        msg.textContent = 'תודה! ההמלצה שלכם נשמרה, ותוצג באתר לאחר אישור.';
+        msg.style.display = 'block';
+        document.getElementById('endorse-text').value = '';
+        window.selectedStars = 0;
+        document.querySelectorAll('.star-pick').forEach(s => s.classList.remove('active'));
+        window.loadEndorsements();
+        setTimeout(closeModal, 1500);
+      } catch(err) {
+        console.error('submitEndorsement failed:', err);
+        msg.textContent = 'שגיאה בשמירה: ' + (err && err.message ? err.message : err);
+        msg.style.display = 'block';
+      }
+    };
+
+    window.loadEndorsements = async function() {
+      try {
+        const q = query(collection(dbInstance, 'endorsements'), where('approved', '==', true), orderBy('timestamp', 'desc'), limit(6));
+        const snap = await getDocs(q);
+        const container = document.getElementById('dynamic-endorsements');
+        const heroItems = [
+          { text: 'קראתי את הספר החיפוש, והוא נגע בי מאוד. דרך מסע החיפוש של רוני מצאתי גם חיפוש פנימי בתוכי, וקיבלתי ממנו כוחות נפש רבים. תודה.', name: 'גיל', role: 'קורא', avatar: 'ג' },
+          { text: 'התענגתי על הספר בשבת... קשה היה להפסיק מדי פעם שהמוח היה צריך לעכל מי זה רוני ואיך הוא מכיר אותי... התמכרתי.', name: 'מעיין', role: 'קוראת', avatar: 'מ' },
+          { text: 'מצאתי בתוך הסיפור של רוני תוך כדי הקריאה תובנות עמוקות על החיים ותפיסת המציאות, ובו בזמן נפשגתי עם מקומות עמוקים שבתוכי שלא ידעתי איך לקרוא להם לפני כן.', name: 'שלמה', role: 'קורא', avatar: 'ש' }
+        ];
+        if (container) container.innerHTML = '';
+        snap.forEach(doc => {
+          const d = doc.data();
+          const starsHtml = Array.from({length:5}, (_,i) =>
+            `<span style="color:${i < d.stars ? '#F59E0B' : '#ddd'}">&#9733;</span>`
+          ).join('');
+          if (container) {
+            container.innerHTML += `
+              <div class="endorse-card">
+                <div class="endorse-stars">${starsHtml}</div>
+                <p class="endorse-text">"${d.text}"</p>
+                <div class="endorse-author">— ${d.name}</div>
+              </div>`;
+          }
+          heroItems.push({ text: d.text, name: d.name, role: 'קוראת', avatar: (d.name || 'ק').charAt(0) });
+        });
+        if (window.startHeroCarousel) window.startHeroCarousel(heroItems);
+      } catch(err) { console.log('Endorsements not loaded:', err.message); }
+    };
+
+    window.submitLead = async function(e) {
+      e.preventDefault();
+      const name = document.getElementById('lead-name').value.trim();
+      const email = document.getElementById('lead-email').value.trim();
+      const phoneRaw = document.getElementById('lead-phone') ? document.getElementById('lead-phone').value.trim() : '';
+      const phone = formatPhoneIL(phoneRaw);
+      const btn = e.target.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = 'שולח...'; }
+      try {
+        await fetch('https://hooks.zapier.com/hooks/catch/27835371/4bgyffg/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ name, email, phone })
+        });
+      } catch(err) { console.log('Zapier:', err); }
+      document.getElementById('lead-form').style.display = 'none';
+      document.getElementById('lead-success').style.display = 'block';
+    };
+
+    window._fbReady = true;
+    window.loadEndorsements();
+  } catch (err) {
+    console.error('Firebase failed to initialize:', err);
+    window._fbError = (err && err.message) ? err.message : String(err);
+  }
+})();
+</script>
+</body>
+</html>
