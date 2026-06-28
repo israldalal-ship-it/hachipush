@@ -54,6 +54,18 @@ body {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 24px;
+  position: relative;
+  z-index: 1;
+}
+.nav-connector {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(15,23,42,0.08);
+  transform: translateY(-50%);
+  z-index: -1;
 }
 .nav-logo {
   display: flex;
@@ -108,6 +120,25 @@ body {
   transition: opacity 0.2s;
 }
 .nav-cta:hover { opacity: 0.88; }
+.nav-cta-fixed {
+  position: fixed;
+  top: 34px;
+  left: 16px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  background: var(--blue);
+  color: #fff;
+  font-family: 'Heebo', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 10px 24px;
+  border-radius: 50px;
+  z-index: 101;
+  transition: opacity 0.2s;
+}
+.nav-cta-fixed:hover { opacity: 0.88; }
 
 /* ===== HERO ===== */
 .hero {
@@ -1564,6 +1595,7 @@ body {
 <!-- NAVBAR -->
 <nav class="navbar">
   <div class="navbar-inner">
+    <div class="nav-connector"></div>
     <a href="#" class="nav-logo">
       <img src="logo_new.png" alt="החיפוש">
       <span>החיפוש</span>
@@ -1575,15 +1607,15 @@ body {
       <li><a href="#author">הרב אדם סיני</a></li>
       <li><a href="#lead">פרק ראשון</a></li>
     </ul>
-    <div style="display:flex;align-items:center;gap:20px;">
+    <div style="display:flex;align-items:center;justify-content:center;gap:20px;">
       <button class="hamburger" id="hamburger-btn" aria-label="תפריט" onclick="toggleMobileNav()">
         <span></span>
         <span></span>
         <span></span>
       </button>
-      <a href="https://hasulam.store/checkout/?add-to-cart=1569" class="nav-cta" target="_blank" rel="noopener">הזמן עכשיו</a>
     </div>
   </div>
+  <a href="https://hasulam.store/checkout/?add-to-cart=1569" class="nav-cta-fixed" target="_blank" rel="noopener">הזמן עכשיו</a>
 </nav>
 
 <!-- MOBILE NAV DRAWER -->
@@ -1605,7 +1637,7 @@ body {
       <h1 class="hero-title">יש רגע שבו אתה מרגיש שהחיים <span>חייבים להיות יותר</span></h1>
       <p class="hero-body">יותר מבית ספר. יותר מקריירה. יותר מלעבור עוד יום ועוד יום בלי לדעת לאן כל זה הולך.</p>
       <div style="display:flex;align-items:center;flex-wrap:wrap;gap:12px;">
-        <a href="https://hasulam.store/checkout/?add-to-cart=1569" class="hero-btn" target="_blank" rel="noopener">הזמינו את הספר &rarr;</a>
+        <a href="https://hasulam.store/checkout/?add-to-cart=1569" class="hero-btn" target="_blank" rel="noopener">&larr; הזמינו את הספר</a>
         <a href="#lead" class="hero-btn-secondary">קבלו פרק ראשון בחינם</a>
       </div>
     </div>
@@ -1641,13 +1673,12 @@ body {
 
 <!-- WHAT SECTION (merged with atmosphere) -->
 <section id="what" style="background: var(--cream); width:100%;">
-  <div style="display:flex;align-items:center;justify-content:center;text-align:center;padding:30px 40px 20px;">
+  <div style="display:flex;align-items:center;justify-content:center;text-align:center;padding:30px 40px 0;">
     <h2 class="atmosphere-headline" style="color:var(--ink);">זה לא רק הסיפור על נער בשם רוני &#x2014;<br><span>זה הסיפור שלך</span></h2>
   </div>
-  <div class="what-grid">
+  <div class="what-grid" style="padding-top:20px !important;padding-bottom:20px !important;">
     <div class="reveal">
-      <div class="section-label" style="color:var(--blue);font-weight:700;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;">מה זה &#x201C;החיפוש&#x201D;?</div>
-      <img src="מדיטציה.webp" alt="החיפוש" style="width:100%;border-radius:20px;box-shadow:0 12px 32px rgba(15,23,42,0.12);object-fit:cover;max-height:320px;display:block;margin:20px 0;">
+      <img src="החיפוש תמונה-1.png" alt="החיפוש" style="width:100%;border-radius:20px;box-shadow:0 12px 32px rgba(15,23,42,0.12);object-fit:cover;max-height:320px;display:block;margin:0 0 20px;">
       <h2 class="section-title" style="color:var(--ink);">ספר שנולד מתוך השאלות האמיתיות של החיים</h2>
       <p class="section-body">
         יש ספרים שמספרים סיפור.
@@ -1677,8 +1708,8 @@ body {
 </section>
 
 <!-- CINEMATIC EXCERPTS -->
-<section class="excerpts-section">
-  <h2 class="section-title" style="text-align:center;margin-bottom:40px">משוטט ברחובות, אבוד בתוך עצמו</h2>
+<section class="excerpts-section" style="padding-top:20px !important;">
+  <h2 class="section-title" style="text-align:center;margin-bottom:24px">משוטט ברחובות, אבוד בתוך עצמו</h2>
   <div style="max-width:760px;margin:0 auto;">
     <div class="excerpt-card reveal" style="background:linear-gradient(rgba(10,15,30,0.62),rgba(10,15,30,0.62)),url('art4.png') center/cover no-repeat;">
       <div class="excerpt-overlay"></div>
@@ -1697,7 +1728,7 @@ body {
           <p class="excerpt-text">כך דיברתי ביני לביני כאשר הזקן ממשיך את דבריו אל עצמו מתוך החשבה עצמית. קמתי ממקומי והתרחקתי חיש מהמקום, מנסה לברוח מהכזב.</p>
           <p class="excerpt-text">איני יודע מדוע נפשי מגיבה בכזו אגרסיביות, הורסת, דורסת כל מה שנקרה בדרכה. מין מרד נעורים בלתי נשלט...</p>
         </div>
-        <a href="https://hasulam.store/checkout/?add-to-cart=1569" target="_blank" class="excerpt-read-more">הזמינו את הספר המלא &#x2192;</a>
+        <a href="https://hasulam.store/checkout/?add-to-cart=1569" target="_blank" class="excerpt-read-more">&#x2190; הזמינו את הספר המלא</a>
       </div>
     </div>
   </div>
@@ -1708,8 +1739,7 @@ body {
 <section class="video-section">
   <div class="video-section-inner">
     <div style="text-align:center;">
-      <span class="section-label" style="color:rgba(255,255,255,0.4);">המלצות מצולמות</span>
-      <h2 class="section-title" style="color:#fff;">הם כבר קראו — ואלה המילים שלהם</h2>
+      <h2 class="section-title" style="color:#fff;">בלי חרטות- הנה מה שהספר הזה עשה להם לראש!</h2>
     </div>
     <div class="video-grid">
       <div class="video-card reveal">
@@ -1777,13 +1807,14 @@ function closeVideoLightbox() {
 
 <!-- AUTHOR -->
 <section id="author" style="background: var(--cream); width:100%;">
-<div class="author-section" style="max-width:900px;margin:0 auto;">
+<div class="author-section" style="max-width:900px;margin:0 auto;align-items:flex-start;text-align:right;">
 
-  <div class="reveal">
-    <div class="author-label" style="color:var(--blue);font-weight:700;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;">על הסופר</div>
-    <h2 class="author-name" style="color:var(--ink);">הרב אדם סיני</h2>
-    <img src="תמונה של הרב.jpeg" alt="הרב אדם סיני" style="width:100%;max-width:560px;border-radius:24px;box-shadow:0 20px 50px rgba(15,23,42,0.15);object-fit:cover;object-position:top;max-height:460px;display:block;margin:8px auto 28px;">
-    <p class="author-bio">
+  <div class="reveal" style="width:100%;">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
+      <img src="rabbi_photo.jpg" alt="הרב אדם סיני" style="width:90px;height:90px;border-radius:50%;box-shadow:0 8px 24px rgba(15,23,42,0.15);object-fit:cover;object-position:center top;display:block;flex-shrink:0;">
+      <h2 class="author-name" style="color:var(--ink);margin:0;">הרב אדם סיני</h2>
+    </div>
+    <p class="author-bio" style="text-align:right;">
       הרב אדם סיני הוא תלמידם של גדולי מקובלי שושלת בעל הסולם והרב"ש, ועוסק במשך עשרות שנים בלימוד, הוראה והנגשת חכמת הקבלה ותורת הנפש.
       <br>
       לאחר שירות צבאי ביחידה מובחרת בצה"ל פנה למסע אישי של חיפוש אחר משמעות החיים והאמת. במהלך השנים חקר גישות רוחניות, פילוסופיות ודתות שונות, עד שמצא את דרכו בחכמת הקבלה בבית מדרשו של הרב ברוך שלום הלוי אשלג (הרב"ש), בנו וממשיך דרכו של בעל הסולם.
@@ -1829,7 +1860,7 @@ function closeVideoLightbox() {
 <section class="testimonials-section" id="testimonials">
   <div class="testimonials-inner">
     <div style="text-align:center">
-      <h2 class="section-title">המלצות הקוראים</h2>
+      <h2 class="section-title">התגובות שלכם</h2>
     </div>
     <div class="testimonials-grid">
       <div class="testimonial-card reveal" style="transition-delay:0.1s">
@@ -1880,7 +1911,7 @@ function closeVideoLightbox() {
     <!-- Dynamic endorsements from Firebase -->
     <div id="dynamic-endorsements"></div>
 
-    <button class="write-endorsement-btn" onclick="openModal()">&#x270D;&#xFE0F; כתוב המלצה משלך</button>
+    <button class="write-endorsement-btn" onclick="openModal()">&#x270D;&#xFE0F; כתוב תגובה משלך</button>
   </div>
 </section>
 
@@ -1909,27 +1940,23 @@ function closeVideoLightbox() {
 
 <!-- FINAL CTA -->
 <section class="final-cta-section" id="final-cta">
-  <div class="section-label">הזמינו עכשיו</div>
   <h2 class="section-title">אולי הספר הזה מחכה בדיוק לך</h2>
-  <p class="final-cta-sub">הזמינו עוד היום וקבלו משלוח מהיר לכל הארץ</p>
+  <p class="final-cta-sub" style="margin-bottom:28px;">הזמינו עוד היום וקבלו משלוח מהיר לכל הארץ</p>
   <div class="final-grid">
     <div class="price-col reveal">
-      <div class="price-label">מחיר מיוחד להשקה</div>
       <div class="price-amount">&#x20AA;88</div>
       <div class="price-original">&#x20AA;110</div>
-      <a href="https://hasulam.store/checkout/?add-to-cart=1569" class="final-cta-btn" target="_blank" rel="noopener">הזמינו עכשיו &rarr;</a>
-      <p class="guarantee-text">&#x2705; משלוח חינם &#x2022; החזר כספי תוך 14 יום</p>
+      <a href="https://hasulam.store/checkout/?add-to-cart=1569" class="final-cta-btn" target="_blank" rel="noopener">&larr; הזמינו עכשיו</a>
     </div>
     <div class="reveal" style="transition-delay:0.15s">
       <img src="book_cover.jpg" alt="הספר החיפוש" class="final-book-img">
     </div>
     <div class="reveal" style="transition-delay:0.3s">
       <ul class="features-list">
-        <li><span class="feat-check">&#x2713;</span><span>288 עמודי קריאה עמוקה ומרתקת</span></li>
-        <li><span class="feat-check">&#x2713;</span><span>רומן סוחף המשלב חכמת קבלה בחיי היום יום</span></li>
-        <li><span class="feat-check">&#x2713;</span><span>מתאים לקריאה אישית או קבוצתית</span></li>
-        <li><span class="feat-check">&#x2713;</span><span>מתנה אידיאלית ליום הולדת או למפקד בצבא</span></li>
-        <li><span class="feat-check">&#x2713;</span><span>מתאים לגיל 16 ומעלה — לכל מי שמחפש משמעות</span></li>
+        <li><span class="feat-check">&#x2713;</span><span><strong>לנצח את הריקנות:</strong> למצוא משמעות פנימית ומצפן יציב לחיים</span></li>
+        <li><span class="feat-check">&#x2713;</span><span><strong>לצאת מהאוטומט:</strong> לשחרר תבניות מחשבה חוסמות ולשנות תפיסת מציאות</span></li>
+        <li><span class="feat-check">&#x2713;</span><span><strong>להתקלף מהזיוף:</strong> לבנות מערכות יחסים מתוך אהבה וכנות מוחלטת</span></li>
+        <li><span class="feat-check">&#x2713;</span><span><strong>לחיות ללא חרטות:</strong> להפסיק לרצות את העולם ולהתחיל לחיות באמת</span></li>
       </ul>
     </div>
   </div>
