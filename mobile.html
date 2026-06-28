@@ -620,7 +620,7 @@ body {
 
 /* ===== TESTIMONIALS ===== */
 .testimonials-section {
-  background: linear-gradient(rgba(251,249,245,0.52), rgba(251,249,245,0.52)), url("art3.png") center/cover no-repeat fixed;
+  background: linear-gradient(rgba(251,249,245,0.52), rgba(251,249,245,0.52)), url("art3.png") center/cover no-repeat scroll;
   padding: 80px 40px;
 }
 .testimonials-inner {
@@ -638,10 +638,9 @@ body {
   width: 100%;
   background: rgba(255,255,255,0.88);
   backdrop-filter: blur(6px);
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   border-radius: 18px;
   padding: 16px 18px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.06);
@@ -651,7 +650,6 @@ body {
   flex-direction: row;
   gap: 2px;
   align-items: center;
-  padding-top: 2px;
   font-size: 0.85rem;
 }
 .testimonial-text {
@@ -666,14 +664,27 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+.testimonials-scroll {
+  max-height: 520px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-left: 6px;
+  margin-top: 32px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(15,23,42,0.25) transparent;
+}
+.testimonials-scroll .testimonials-grid { margin-top: 0; }
+.testimonials-scroll::-webkit-scrollbar { width: 5px; }
+.testimonials-scroll::-webkit-scrollbar-track { background: transparent; }
+.testimonials-scroll::-webkit-scrollbar-thumb { background: rgba(15,23,42,0.25); border-radius: 10px; }
 .testimonial-author {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 4px;
-  min-width: 64px;
-  text-align: center;
-  padding-top: 2px;
+  gap: 10px;
+  text-align: right;
+  padding-top: 4px;
+  border-top: 1px solid rgba(15,23,42,0.08);
 }
 .t-avatar {
   width: 36px;
@@ -775,7 +786,7 @@ body {
   margin-bottom: 16px;
 }
 .author-bio {
-  font-size: 0.97rem;
+  font-size: 1.04rem;
   color: var(--ink-faded);
   line-height: 1.8;
   font-weight: 300;
@@ -1533,8 +1544,6 @@ body {
   .final-grid { grid-template-columns: 1fr; }
   .final-grid > div:nth-child(2) { order: -1; max-width: 240px; margin: 0 auto; }
   .price-amount { font-size: 2.8rem; }
-  .testimonial-card { grid-template-columns: 40px 1fr; gap: 12px; }
-  .testimonial-author { display: none; }
 }
 
 @media (max-width: 600px) {
@@ -1555,13 +1564,12 @@ body {
   .excerpt-content { padding: 20px; margin: 16px; width: calc(100% - 32px); }
   .excerpt-text { font-size: 0.92rem; }
   .testimonials-section { padding: 60px 20px; }
-  .testimonial-card { grid-template-columns: 1fr; gap: 8px; padding: 14px 16px; }
-  .testimonial-stars { flex-direction: row; }
+  .testimonial-card { padding: 14px 16px; }
   .author-section { padding: 60px 20px; }
   .author-avatar { width: 120px; height: 120px; font-size: 2.2rem; }
   .author-name { font-size: 1.5rem; }
-  .author-bio { font-size: 0.92rem; }
-  .origin-section { padding: 20px 0 60px; }
+  .author-bio { font-size: 1rem; }
+  .origin-section { padding: 10px 0 60px; }
   .origin-inner { padding: 0 20px; }
   .video-section { padding: 60px 20px; }
   .lead-section { padding: 60px 20px; }
@@ -1607,7 +1615,7 @@ body {
       <li><a href="#author">הרב אדם סיני</a></li>
       <li><a href="#lead">פרק ראשון</a></li>
     </ul>
-    <div style="display:flex;align-items:center;justify-content:center;gap:20px;">
+    <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;gap:20px;">
       <button class="hamburger" id="hamburger-btn" aria-label="תפריט" onclick="toggleMobileNav()">
         <span></span>
         <span></span>
@@ -1807,7 +1815,7 @@ function closeVideoLightbox() {
 
 <!-- AUTHOR -->
 <section id="author" style="background: var(--cream); width:100%;">
-<div class="author-section" style="max-width:900px;margin:0 auto;align-items:flex-start;text-align:right;">
+<div class="author-section" style="max-width:900px;margin:0 auto;align-items:flex-start;text-align:right;padding-bottom:15px;">
 
   <div class="reveal" style="width:100%;">
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
@@ -1815,13 +1823,9 @@ function closeVideoLightbox() {
       <h2 class="author-name" style="color:var(--ink);margin:0;">הרב אדם סיני</h2>
     </div>
     <p class="author-bio" style="text-align:right;">
-      הרב אדם סיני הוא תלמידם של גדולי מקובלי שושלת בעל הסולם והרב"ש, ועוסק במשך עשרות שנים בלימוד, הוראה והנגשת חכמת הקבלה ותורת הנפש.
+      יש אנשים שמדברים על נפש, ויש אנשים שחיים אותה. במשך 30 שנה, הרב אדם סיני משמש כמורה דרך, מטפל ומגשר זוגי, המוביל אלפי אנשים בארץ ובעולם למציאת משמעות פנימית.
       <br>
-      לאחר שירות צבאי ביחידה מובחרת בצה"ל פנה למסע אישי של חיפוש אחר משמעות החיים והאמת. במהלך השנים חקר גישות רוחניות, פילוסופיות ודתות שונות, עד שמצא את דרכו בחכמת הקבלה בבית מדרשו של הרב ברוך שלום הלוי אשלג (הרב"ש), בנו וממשיך דרכו של בעל הסולם.
-      <br>
-      בשנת 2002 החל להתגבש סביבו גרעין תלמידים, ומתוך כך נוסד בית המדרש "הסולם", אותו הוא עומד בראשו עד היום. לצד פעילותו בבית המדרש, הרב מלמד ומרצה בנושאים הקשורים לעולמו הפנימי של האדם — משמעות החיים, חינוך, זוגיות, מודעות יהודית והתפתחות נפשית על פי יסודות חכמת הקבלה.
-      <br>
-      ייחודו של הרב אדם סיני הוא בהצגת חכמת הקבלה כתורת נפש המכוונת להבנת האדם ועולמו הפנימי. בשיעוריו ובספריו הוא מבקש להנגיש רעיונות רוחניים עמוקים בשפה בהירה ומעשית, הפונה לאדם המבקש להבין את עצמו, את יחסיו עם סביבתו ואת תכלית חייו.
+      דרך תורת הסוד וחכמת הקבלה המקורית (על פי שושלת בעל הסולם), הוא פיתח מודל ייחודי להבנת הרגשות, לניפוץ תבניות מחשבה חוסמות וליציאה מהזיוף והריקנות שמציפים את העולם המודרני. באלפי שעות המדיה שלו ובמפגשים האישיים, הוא מציע דבר אחד בלבד: הסתכלות שורשית ונקייה על המציאות, שרק דרכה ניתן להפסיק לרצות את הסביבה – ולהתחיל לחיות באמת.
     </p>
   </div>
 </div>
@@ -1838,8 +1842,8 @@ function closeVideoLightbox() {
     <div class="origin-body reveal">
       <p>את הספר "החיפוש" כתבתי מתוך מסע חיים אמיתי.</p>
       <p>כבר בנערותי בער בי הרצון להבין מה נמצא מעבר לחיים הרגילים, מעבר לשגרה האפורה, מעבר למרוץ היומיומי שמעסיק את האדם אך לא תמיד ממלא את נפשו. הרגשתי שיש בחיים עומק גדול יותר, אמת גדולה יותר, משמעות שממתינה להתגלות.</p>
-      <p>במהלך השנים ראיתי את אותו חיפוש מתעורר גם אצל בני. ראיתי את ההתמודדות שלו עם העולם, עם מערכת החינוך, עם שאלות של זהות, אמת, גאווה, אכזבה, רצון להיות גדול באמת — ועם הכאב שמתעורר כאשר האדם מרגיש שהחיים סביבו אינם נותנים מענה לנשמה שלו.</p>
-      <p>המפגש הזה, בין החיפוש שלי לבין החיפוש של הדור הצעיר, עורר בי רצון עמוק לכתוב רומן. סיפור שיהיה מעניין, חי ונוגע ללב, ובתוכו ישתלבו תובנות חיים, שאלות פנימיות, מאבקי נפש, אמת שמתבררת, וגיבור שעובר דרך משמעותית אל עצמו.</p>
+      <p><strong>במהלך השנים ראיתי את אותו חיפוש מתעורר גם אצל בני.</strong> ראיתי את ההתמודדות שלו עם העולם, עם מערכת החינוך, עם שאלות של זהות, אמת, גאווה, אכזבה, רצון להיות גדול באמת — ועם הכאב שמתעורר כאשר האדם מרגיש שהחיים סביבו אינם נותנים מענה לנשמה שלו.</p>
+      <p>המפגש הזה, בין החיפוש שלי לבין החיפוש של הדור הצעיר, עורר בי רצון עמוק לכתוב רומן.<br><strong>סיפור שיהיה מעניין, חי ונוגע ללב, ובתוכו ישתלבו תובנות חיים, שאלות פנימיות, מאבקי נפש, אמת שמתבררת, וגיבור שעובר דרך משמעותית אל עצמו.</strong></p>
       <p>"החיפוש" נכתב בתחילה עבור בני נוער, במיוחד עבור נערים ונערות שמרגישים בתוכם בקשה לחיים גדולים יותר. לשמחתי, עם הזמן גיליתי שהספר מדבר גם אל מבוגרים — אנשים בני שלושים, ארבעים, חמישים ומעלה — שכל אחד מהם נושא בתוכו את אותו רצון: לא להסתפק בקיום חיצוני, אלא למצוא דרך לחיים עם משמעות, עומק, אמת ואהבה.</p>
     </div>
     <div class="origin-closing reveal">
@@ -1862,12 +1866,13 @@ function closeVideoLightbox() {
     <div style="text-align:center">
       <h2 class="section-title">התגובות שלכם</h2>
     </div>
+    <div class="testimonials-scroll">
     <div class="testimonials-grid">
       <div class="testimonial-card reveal" style="transition-delay:0.1s">
         <div class="testimonial-stars">
           <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
         </div>
-        <p class="testimonial-text">
+        <p class="testimonial-text" style="display:block;-webkit-line-clamp:unset;overflow:visible;">
           בתחילת הספר הזדהיתי עם רוני ממקום השונות וההבדלה שהוא מוצא בעצמו וכל מה שהוא נלחן עליו בהמשך הדרך — שמזוהה עם התנועה הזאת. ובהתחלה לא היה קל לזהות כי האופי שלו חזק ולא יכולתי לחבר. ולאט לאט כשהוא התרכך, ראיתי שההזדהות שאני חווה היא מתוך התנועה שהוא מייצג — שבהליכה ללא פשרות לחיפוש אחר האמת.
           <br>
           אני הגעתי ממקום מאוד שונה! התנועה של האמת שצועקת מבפנים ובוערת — היא זאת שמובילה. אבל האישיות שלי ממש הפוכה משלו.
@@ -1884,7 +1889,7 @@ function closeVideoLightbox() {
         </p>
         <div class="testimonial-author">
           <div class="t-avatar">ר</div>
-          <div><div class="t-name">רחל</div><div class="t-role">השם שמור במערכת</div></div>
+          <div><div class="t-name">רחל</div></div>
         </div>
       </div>
       <div class="testimonial-card reveal" style="transition-delay:0.2s">
@@ -1910,6 +1915,7 @@ function closeVideoLightbox() {
     </div>
     <!-- Dynamic endorsements from Firebase -->
     <div id="dynamic-endorsements"></div>
+    </div>
 
     <button class="write-endorsement-btn" onclick="openModal()">&#x270D;&#xFE0F; כתוב תגובה משלך</button>
   </div>

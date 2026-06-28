@@ -608,7 +608,7 @@ body {
 
 /* ===== TESTIMONIALS ===== */
 .testimonials-section {
-  background: linear-gradient(rgba(251,249,245,0.52), rgba(251,249,245,0.52)), url("art3.png") center/cover no-repeat fixed;
+  background: linear-gradient(rgba(251,249,245,0.52), rgba(251,249,245,0.52)), url("art3.png") center/cover no-repeat scroll;
   padding: 80px 40px;
 }
 .testimonials-inner {
@@ -626,11 +626,9 @@ body {
   width: 100%;
   background: rgba(255,255,255,0.88);
   backdrop-filter: blur(6px);
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 16px;
-  padding: 20px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
   border-radius: 24px;
   padding: 22px 24px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.06);
@@ -651,14 +649,27 @@ body {
   font-style: italic;
   margin-bottom: 0;
 }
+.testimonials-scroll {
+  max-height: 640px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-left: 6px;
+  margin-top: 48px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(15,23,42,0.25) transparent;
+}
+.testimonials-scroll .testimonials-grid { margin-top: 0; }
+.testimonials-scroll::-webkit-scrollbar { width: 5px; }
+.testimonials-scroll::-webkit-scrollbar-track { background: transparent; }
+.testimonials-scroll::-webkit-scrollbar-thumb { background: rgba(15,23,42,0.25); border-radius: 10px; }
 .testimonial-author {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 6px;
-  min-width: 80px;
-  text-align: center;
-  padding-top: 2px;
+  gap: 12px;
+  text-align: right;
+  padding-top: 4px;
+  border-top: 1px solid rgba(15,23,42,0.08);
 }
 .t-avatar {
   width: 48px;
@@ -760,7 +771,7 @@ body {
   margin-bottom: 16px;
 }
 .author-bio {
-  font-size: 0.97rem;
+  font-size: 1.04rem;
   color: var(--ink-faded);
   line-height: 1.8;
   font-weight: 300;
@@ -1016,7 +1027,7 @@ body {
 /* ===== BOOK ORIGIN SECTION ===== */
 .origin-section {
   background: transparent;
-  padding: 30px 0 100px;
+  padding: 15px 0 100px;
   border-top: none;
 }
 .origin-inner {
@@ -1642,7 +1653,7 @@ function closeVideoLightbox() {
 
 <!-- AUTHOR -->
 <section id="author" style="background: var(--cream); width:100%;">
-<div class="author-section" style="max-width:900px;margin:0 auto;align-items:flex-start;text-align:right;">
+<div class="author-section" style="max-width:900px;margin:0 auto;align-items:flex-start;text-align:right;padding-bottom:20px;">
 
   <div class="reveal" style="width:100%;">
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
@@ -1650,13 +1661,9 @@ function closeVideoLightbox() {
       <h2 class="author-name" style="color:var(--ink);margin:0;">הרב אדם סיני</h2>
     </div>
     <p class="author-bio" style="text-align:right;">
-      הרב אדם סיני הוא תלמידם של גדולי מקובלי שושלת בעל הסולם והרב"ש, ועוסק במשך עשרות שנים בלימוד, הוראה והנגשת חכמת הקבלה ותורת הנפש.
+      יש אנשים שמדברים על נפש, ויש אנשים שחיים אותה. במשך 30 שנה, הרב אדם סיני משמש כמורה דרך, מטפל ומגשר זוגי, המוביל אלפי אנשים בארץ ובעולם למציאת משמעות פנימית.
       <br>
-      לאחר שירות צבאי ביחידה מובחרת בצה"ל פנה למסע אישי של חיפוש אחר משמעות החיים והאמת. במהלך השנים חקר גישות רוחניות, פילוסופיות ודתות שונות, עד שמצא את דרכו בחכמת הקבלה בבית מדרשו של הרב ברוך שלום הלוי אשלג (הרב"ש), בנו וממשיך דרכו של בעל הסולם.
-      <br>
-      בשנת 2002 החל להתגבש סביבו גרעין תלמידים, ומתוך כך נוסד בית המדרש "הסולם", אותו הוא עומד בראשו עד היום. לצד פעילותו בבית המדרש, הרב מלמד ומרצה בנושאים הקשורים לעולמו הפנימי של האדם — משמעות החיים, חינוך, זוגיות, מודעות יהודית והתפתחות נפשית על פי יסודות חכמת הקבלה.
-      <br>
-      ייחודו של הרב אדם סיני הוא בהצגת חכמת הקבלה כתורת נפש המכוונת להבנת האדם ועולמו הפנימי. בשיעוריו ובספריו הוא מבקש להנגיש רעיונות רוחניים עמוקים בשפה בהירה ומעשית, הפונה לאדם המבקש להבין את עצמו, את יחסיו עם סביבתו ואת תכלית חייו.
+      דרך תורת הסוד וחכמת הקבלה המקורית (על פי שושלת בעל הסולם), הוא פיתח מודל ייחודי להבנת הרגשות, לניפוץ תבניות מחשבה חוסמות וליציאה מהזיוף והריקנות שמציפים את העולם המודרני. באלפי שעות המדיה שלו ובמפגשים האישיים, הוא מציע דבר אחד בלבד: הסתכלות שורשית ונקייה על המציאות, שרק דרכה ניתן להפסיק לרצות את הסביבה – ולהתחיל לחיות באמת.
     </p>
   </div>
 </div>
@@ -1675,8 +1682,8 @@ function closeVideoLightbox() {
     <div class="origin-body reveal">
       <p>את הספר "החיפוש" כתבתי מתוך מסע חיים אמיתי.</p>
       <p>כבר בנערותי בער בי הרצון להבין מה נמצא מעבר לחיים הרגילים, מעבר לשגרה האפורה, מעבר למרוץ היומיומי שמעסיק את האדם אך לא תמיד ממלא את נפשו. הרגשתי שיש בחיים עומק גדול יותר, אמת גדולה יותר, משמעות שממתינה להתגלות.</p>
-      <p>במהלך השנים ראיתי את אותו חיפוש מתעורר גם אצל בני. ראיתי את ההתמודדות שלו עם העולם, עם מערכת החינוך, עם שאלות של זהות, אמת, גאווה, אכזבה, רצון להיות גדול באמת — ועם הכאב שמתעורר כאשר האדם מרגיש שהחיים סביבו אינם נותנים מענה לנשמה שלו.</p>
-      <p>המפגש הזה, בין החיפוש שלי לבין החיפוש של הדור הצעיר, עורר בי רצון עמוק לכתוב רומן. סיפור שיהיה מעניין, חי ונוגע ללב, ובתוכו ישתלבו תובנות חיים, שאלות פנימיות, מאבקי נפש, אמת שמתבררת, וגיבור שעובר דרך משמעותית אל עצמו.</p>
+      <p><strong>במהלך השנים ראיתי את אותו חיפוש מתעורר גם אצל בני.</strong> ראיתי את ההתמודדות שלו עם העולם, עם מערכת החינוך, עם שאלות של זהות, אמת, גאווה, אכזבה, רצון להיות גדול באמת — ועם הכאב שמתעורר כאשר האדם מרגיש שהחיים סביבו אינם נותנים מענה לנשמה שלו.</p>
+      <p>המפגש הזה, בין החיפוש שלי לבין החיפוש של הדור הצעיר, עורר בי רצון עמוק לכתוב רומן.<br><strong>סיפור שיהיה מעניין, חי ונוגע ללב, ובתוכו ישתלבו תובנות חיים, שאלות פנימיות, מאבקי נפש, אמת שמתבררת, וגיבור שעובר דרך משמעותית אל עצמו.</strong></p>
       <p>"החיפוש" נכתב בתחילה עבור בני נוער, במיוחד עבור נערים ונערות שמרגישים בתוכם בקשה לחיים גדולים יותר. לשמחתי, עם הזמן גיליתי שהספר מדבר גם אל מבוגרים — אנשים בני שלושים, ארבעים, חמישים ומעלה — שכל אחד מהם נושא בתוכו את אותו רצון: לא להסתפק בקיום חיצוני, אלא למצוא דרך לחיים עם משמעות, עומק, אמת ואהבה.</p>
     </div>
     <div class="origin-closing reveal">
@@ -1699,6 +1706,7 @@ function closeVideoLightbox() {
     <div style="text-align:center">
       <h2 class="section-title">התגובות שלכם</h2>
     </div>
+    <div class="testimonials-scroll">
     <div class="testimonials-grid">
       <div class="testimonial-card reveal" style="transition-delay:0.1s;grid-column:1 / -1;">
         <div class="testimonial-stars">
@@ -1721,7 +1729,7 @@ function closeVideoLightbox() {
         </p>
         <div class="testimonial-author">
           <div class="t-avatar">ר</div>
-          <div><div class="t-name">רחל</div><div class="t-role">השם שמור במערכת</div></div>
+          <div><div class="t-name">רחל</div></div>
         </div>
       </div>
       <div class="testimonial-card reveal" style="transition-delay:0.2s">
@@ -1747,6 +1755,7 @@ function closeVideoLightbox() {
     </div>
     <!-- Dynamic endorsements from Firebase -->
     <div id="dynamic-endorsements"></div>
+    </div>
 
     <button class="write-endorsement-btn" onclick="openModal()">&#x270D;&#xFE0F; כתוב תגובה משלך</button>
   </div>
