@@ -1,4 +1,2 @@
 cd "C:\Users\isral\Desktop\hachipush-project\hachipush-project"
-git add .
-git commit -m "הסרת כותרת קטנה בהמלצות + הקטנת תיבות המלצות במובייל"
 git push

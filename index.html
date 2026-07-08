@@ -278,8 +278,8 @@ body {
   transition: none;
 }
 .htc-progress {
-  height: 3px;
-  background: rgba(0,0,0,0.08);
+  height: 2px;
+  background: rgba(0,0,0,0.06);
   border-radius: 3px;
   overflow: hidden;
   margin-top: 16px;
@@ -287,11 +287,11 @@ body {
 .htc-progress-bar {
   height: 100%;
   width: 0%;
-  background: var(--blue);
+  background: rgba(0,102,255,0.35);
   border-radius: 3px;
 }
 .htc-progress-bar.running {
-  animation: htc-fill 5s linear forwards;
+  animation: htc-fill 7s linear forwards;
 }
 @keyframes htc-fill {
   from { width: 0%; }
@@ -592,19 +592,28 @@ body {
   font-style: italic;
 }
 .excerpt-scroll {
-  max-height: 280px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  max-height: 220px;
+  overflow: hidden;
+  position: relative;
   padding-left: 6px;
   margin: 4px 0 18px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.35) transparent;
+  transition: max-height 0.5s ease;
 }
+.excerpt-scroll::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 64px;
+  background: linear-gradient(to top, #0a1428 0%, transparent 100%);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.excerpt-scroll.expanded {
+  max-height: 6000px;
+}
+.excerpt-scroll.expanded::after { opacity: 0; }
 .excerpt-scroll .excerpt-text { margin-bottom: 14px; }
 .excerpt-scroll .excerpt-text:last-child { margin-bottom: 0; }
-.excerpt-scroll::-webkit-scrollbar { width: 5px; }
-.excerpt-scroll::-webkit-scrollbar-track { background: transparent; }
-.excerpt-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.35); border-radius: 10px; }
 
 /* ===== TESTIMONIALS ===== */
 .testimonials-section {
@@ -650,18 +659,9 @@ body {
   margin-bottom: 0;
 }
 .testimonials-scroll {
-  max-height: 640px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding-left: 6px;
   margin-top: 48px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(15,23,42,0.25) transparent;
 }
 .testimonials-scroll .testimonials-grid { margin-top: 0; }
-.testimonials-scroll::-webkit-scrollbar { width: 5px; }
-.testimonials-scroll::-webkit-scrollbar-track { background: transparent; }
-.testimonials-scroll::-webkit-scrollbar-thumb { background: rgba(15,23,42,0.25); border-radius: 10px; }
 .testimonial-author {
   display: flex;
   flex-direction: row;
@@ -1560,7 +1560,7 @@ body {
         <div class="excerpt-overlay"></div>
         <div class="excerpt-content">
           <div class="excerpt-tag">החיפוש | עמודים 15–16</div>
-          <div class="excerpt-scroll">
+          <div class="excerpt-scroll" id="excerpt-scroll-1">
             <p class="excerpt-text">גם בלילות הבאים מצאתי את עצמי משוטט שעות ברחובות. מחפש את עצמי בשום מקום. משוטט בין ייאוש להחשבה עצמית, בין פנטזיה לדיכאון, בין מחשבות פילוסופיות גבוהות, לבין מחשבות על תענוג מיידי וסוחף. נפשי נצרבת אט אט ומתמזגת עם הרחוב. חושש להיות "רחובי", להיות כמו כולם. הסתכלתי במבט זגוגי על הנעשה סביבי, בוהה במחשבותיי, הולך לשום מקום, לא מצפה לשום דבר, לא רוצה כלום, מחכה שמשהו יקרה ועדיף שיהיה חזק. <strong class="excerpt-highlight">צועק נואשות למשמעות, לסיבה אמיתית לחיים!!!!</strong></p>
             <p class="excerpt-text">האיש, ששכב על ספסל בגן הציבורי, התיישב בהתקרבי אליו. "יש מקום כאן חבר," כמו אמר בלי מילים. התיישבתי על הספסל. נמנעתי מלהביט בו שלא יחוש מובך. המבט המהיר, בו קלטתי אותו בהתיישבי, שידר לי מוזרות. גילו היה לא ברור, שכן, על פניו, נראה היה זקן.</p>
             <p class="excerpt-text">הוא החל לדבר, ספק אל עצמו ספק אליי. "איזה חיים יפים כאן במלון אינסוף כוכבים, אתה לא חייב לאף אחד כלום." בגיחוך קל הוסיף, "אפילו לא לעצמך..."</p>
@@ -1573,7 +1573,7 @@ body {
             <p class="excerpt-text">כך דיברתי ביני לביני כאשר הזקן ממשיך את דבריו אל עצמו מתוך החשבה עצמית. קמתי ממקומי והתרחקתי חיש מהמקום, מנסה לברוח מהכזב.</p>
             <p class="excerpt-text">איני יודע מדוע נפשי מגיבה בכזו אגרסיביות, הורסת, דורסת כל מה שנקרה בדרכה. מין מרד נעורים בלתי נשלט...</p>
           </div>
-          <a href="https://hasulam.store/checkout/?add-to-cart=1569" target="_blank" class="excerpt-read-more">&#x2190; הזמינו את הספר המלא</a>
+          <button type="button" class="excerpt-read-more" onclick="toggleExcerpt(this, 'excerpt-scroll-1')">קרא הכל &#x2193;</button>
         </div>
       </div>
     </div>
@@ -1585,12 +1585,12 @@ body {
 <section class="video-section">
   <div class="video-section-inner">
     <div style="text-align:center;">
-      <h2 class="section-title" style="color:#fff;">בלי חרטות- הנה מה שהספר הזה עשה להם לראש!</h2>
+      <h2 class="section-title" style="color:#fff;">במילים שלהם &#x2014; מה הספר עורר אצלם</h2>
     </div>
     <div class="video-grid">
       <div class="video-card reveal">
         <div class="video-card-expand-btn" onclick="openVideoLightbox('video1.mp4')">&#x2922;</div>
-        <video controls preload="metadata" poster="" controlsList="nofullscreen">
+        <video controls preload="metadata" poster="video1_poster.jpg" controlsList="nofullscreen">
           <source src="video1.mp4" type="video/mp4">
           הדפדפן שלך אינו תומך בסרטון.
         </video>
@@ -1601,18 +1601,18 @@ body {
       </div>
       <div class="video-card reveal" style="transition-delay:0.15s;">
         <div class="video-card-expand-btn" onclick="openVideoLightbox('video2.mp4')">&#x2922;</div>
-        <video controls preload="metadata" poster="" controlsList="nofullscreen">
+        <video controls preload="metadata" poster="video2_poster.jpg" controlsList="nofullscreen">
           <source src="video2.mp4" type="video/mp4">
           הדפדפן שלך אינו תומך בסרטון.
         </video>
         <div class="video-card-info">
-          <div class="video-card-name">קורא נוסף</div>
+          <div class="video-card-name">עמינדב</div>
           <div class="video-card-role">קורא</div>
         </div>
       </div>
       <div class="video-card reveal" style="transition-delay:0.3s;">
         <div class="video-card-expand-btn" onclick="openVideoLightbox('video3.mp4')">&#x2922;</div>
-        <video controls preload="metadata" poster="" controlsList="nofullscreen">
+        <video controls preload="metadata" poster="video3_poster.jpg" controlsList="nofullscreen">
           <source src="video3.mp4" type="video/mp4">
           הדפדפן שלך אינו תומך בסרטון.
         </video>
@@ -1634,6 +1634,12 @@ body {
 </div>
 
 <script>
+function toggleExcerpt(btn, boxId) {
+  var box = document.getElementById(boxId);
+  if (!box) return;
+  var expanded = box.classList.toggle('expanded');
+  btn.textContent = expanded ? 'קרא פחות ↑' : 'קרא הכל ↓';
+}
 function openVideoLightbox(src) {
   var overlay = document.getElementById('video-lightbox-overlay');
   var vid = document.getElementById('video-lightbox-player');
@@ -1663,7 +1669,7 @@ function closeVideoLightbox() {
     <p class="author-bio" style="text-align:right;">
       יש אנשים שמדברים על נפש, ויש אנשים שחיים אותה. במשך 30 שנה, הרב אדם סיני משמש כמורה דרך, מטפל ומגשר זוגי, המוביל אלפי אנשים בארץ ובעולם למציאת משמעות פנימית.
       <br>
-      דרך תורת הסוד וחכמת הקבלה המקורית (על פי שושלת בעל הסולם), הוא פיתח מודל ייחודי להבנת הרגשות, לניפוץ תבניות מחשבה חוסמות וליציאה מהזיוף והריקנות שמציפים את העולם המודרני. באלפי שעות המדיה שלו ובמפגשים האישיים, הוא מציע דבר אחד בלבד: הסתכלות שורשית ונקייה על המציאות, שרק דרכה ניתן להפסיק לרצות את הסביבה – ולהתחיל לחיות באמת.
+      דרך תורת הסוד וחכמת הקבלה המקורית (על פי שושלת בעל הסולם), הוא מלמד דרך פנימית להכיר את הנפש, לרפא דפוסים ישנים ולהתחבר לאור ולאהבה שקיימים בכל אדם. באלפי שעות המדיה שלו ובמפגשים האישיים, הוא מציע דבר אחד בלבד: הסתכלות שורשית ונקייה על המציאות, שמתוכה אפשר לגלות מחדש מי אתה באמת – ולחיות מתוך אהבה, חיבור ואמת פנימית.
     </p>
   </div>
 </div>
@@ -1717,7 +1723,7 @@ function closeVideoLightbox() {
           <br>
           אני הגעתי ממקום מאוד שונה! התנועה של האמת שצועקת מבפנים ובוערת — היא זאת שמובילה. אבל האישיות שלי ממש הפוכה משלו.
           <br>
-          ובזכות התהליך שלו הבנתי פתאום שאני מזדהה עם הדרך ושבעצם השתניתי לגמרי. והגילוי הגדול הוא, שבטח עוד אגלה בהמשך פרטים נוספים, שהכלל שהוא גילה, המבניות הזאת עזרה לי לגלות את שלי!
+          <strong style="color:var(--ink);font-weight:800;">ובזכות התהליך שלו הבנתי פתאום שאני מזדהה עם הדרך ושבעצם השתניתי לגמרי.</strong> והגילוי הגדול הוא, שבטח עוד אגלה בהמשך פרטים נוספים, שהכלל שהוא גילה, המבניות הזאת עזרה לי לגלות את שלי!
           <br>
           עד אז חייתי כל פרט בסבל רב. היו נחמות בדרך, אבל כל עוד לא התחברו הפרטים והנקודות שעבדתי עליהן — הייתי ההולכת באפילה, אוחזת בשלט האמת ומגששת כדי לחפש רמזים ופירורים כדי להתקיים. הישרדות.
           <br>
@@ -1725,7 +1731,7 @@ function closeVideoLightbox() {
           <br>
           ועכשיו! הלידה של רוני האירה אצלי את שלי! אני מרגישה משהו בטוח. משהו שונה. אין לי עדיין שם. וכנראה מה שלא נדע לא נוכל לשיים — ואני חוקרת את ההמשך בגרסה שלי אחרת ב"ה.
           <br>
-          כמובן שבתוכי אני יודעת שהמקום הוא הקשר שלי עם הקב"ה. וזה מרגש אותי להתאהב בו כאילו עכשיו חיזקנו את הקשר.
+          <strong style="color:var(--ink);font-weight:800;">כמובן שבתוכי אני יודעת שהמקום הוא הקשר שלי עם הקב"ה.</strong> וזה מרגש אותי להתאהב בו כאילו עכשיו חיזקנו את הקשר.
         </p>
         <div class="testimonial-author">
           <div class="t-avatar">ר</div>
@@ -1810,13 +1816,25 @@ function closeVideoLightbox() {
 
 <!-- CONTINUE -->
 <section class="continue-section">
-  <div style="width:180px;max-width:70%;aspect-ratio:9/16;margin:0 auto 20px;border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(0,102,255,0.2);border:3px solid rgba(0,102,255,0.15);">
-    <iframe src="https://www.youtube.com/embed/mngHTE7-8Og" title="הרב אדם סיני" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="width:100%;height:100%;border:0;display:block;"></iframe>
+  <div id="rav-video-frame" onclick="loadRavVideo(this)" style="cursor:pointer;width:180px;max-width:70%;aspect-ratio:9/16;margin:0 auto 20px;border-radius:20px;overflow:hidden;position:relative;box-shadow:0 8px 32px rgba(245,158,11,0.25);border:3px solid var(--gold);background:#1a2333 url('rabbi_photo.jpg') center 15%/cover no-repeat;">
+    <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,15,30,0.55), rgba(10,15,30,0.05) 45%);"></div>
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+      <div style="width:52px;height:52px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.35);">
+        <span style="color:#fff;font-size:1.3rem;margin-right:-3px;">&#9658;</span>
+      </div>
+    </div>
   </div>
   <h2 class="continue-title">רוצים להעמיק?</h2>
   <p class="continue-body">שיעורים, הרצאות וכתבים של הרב אדם סיני — כל התכנים של בית המדרש "הסולם" במקום אחד.</p>
   <a href="https://www.hasulam.co.il/" class="continue-btn" target="_blank" rel="noopener">לתכנים נוספים של הרב ›</a>
 </section>
+<script>
+function loadRavVideo(el) {
+  el.innerHTML = '<iframe src="https://www.youtube.com/embed/mngHTE7-8Og?autoplay=1" title="הרב אדם סיני" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="width:100%;height:100%;border:0;display:block;"></iframe>';
+  el.style.cursor = 'default';
+  el.onclick = null;
+}
+</script>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -2000,7 +2018,7 @@ window.heroTestimonials = [
 ];
 window._heroCarouselIndex = 0;
 window._heroCarouselTimer = null;
-window._heroCarouselInterval = 5000;
+window._heroCarouselInterval = 7000;
 
 function renderHeroDots() {
   const wrap = document.getElementById('hero-testimonial-dots');
