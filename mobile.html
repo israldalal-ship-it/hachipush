@@ -1667,8 +1667,8 @@ body {
         <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
         <span class="rating-text" style="margin-right:10px;">4.9 / 5</span>
       </div>
-      <div id="hero-testimonial-card" class="htc-card" style="background:linear-gradient(135deg, #eaf2ff 0%, #ffffff 55%, #fff6e6 100%);border-radius:20px;padding:24px 28px;box-shadow:0 4px 24px rgba(0,102,255,0.12);border-right:4px solid var(--blue);">
-        <p id="hero-testimonial-text" style="font-size:1.1rem;line-height:1.75;color:var(--ink-soft);font-style:italic;font-weight:400;margin-bottom:14px;">
+      <div id="hero-testimonial-card" class="htc-card" style="background:linear-gradient(135deg, #eaf2ff 0%, #ffffff 55%, #fff6e6 100%);border-radius:20px;padding:24px 28px;box-shadow:0 4px 24px rgba(0,102,255,0.12);border-right:4px solid var(--blue);min-height:230px;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box;">
+        <p id="hero-testimonial-text" style="font-size:1.1rem;line-height:1.75;color:var(--ink-soft);font-style:italic;font-weight:400;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;">
           &ldquo;קראתי את הספר החיפוש, והוא נגע בי מאוד. דרך מסע החיפוש של רוני מצאתי גם חיפוש פנימי בתוכי, וקיבלתי ממנו כוחות נפש רבים. תודה.&rdquo;
         </p>
         <div style="display:flex;align-items:center;gap:10px;">
@@ -1688,7 +1688,7 @@ body {
 <!-- WHAT SECTION (merged with atmosphere) -->
 <section id="what" style="background: var(--cream); width:100%;">
   <div style="display:flex;align-items:center;justify-content:center;text-align:center;padding:30px 40px 0;">
-    <h2 class="atmosphere-headline" style="color:var(--ink);">זה לא רק הסיפור על נער בשם רוני &#x2014;<br><span>זה הסיפור שלך</span></h2>
+    <h2 class="atmosphere-headline" style="color:var(--ink);">זה הסיפור על נער בשם רוני &#x2014;<br><span>וגם הסיפור של כל אחד מאיתנו</span></h2>
   </div>
   <div class="what-grid" style="padding-top:20px !important;padding-bottom:20px !important;">
     <div class="reveal">
@@ -1702,7 +1702,7 @@ body {
         <br>
         במהלך מסעו הוא מתמודד עם אכזבות, התנגשויות, שאלות זהות, מאבקי אגו, קשרים אנושיים ורגעים מטלטלים שמאלצים אותו לבחון מחדש את כל מה שחשב שהוא יודע על עצמו ועל העולם.
         <br>
-        אך "החיפוש" אינו רק סיפור על נער אחד. זהו סיפור על החיפוש האנושי אחרי אמת בלתי מתפשרת.
+        ומעבר לכך, "החיפוש" הוא סיפור על החיפוש האנושי אחרי אמת בלתי מתפשרת.
         <br>
         דרך עלילה סוחפת ודמויות מעוררות הזדהות, נחשף הקורא לתובנות על נפש האדם,<br><strong style="color:#000 !important;font-weight:800 !important;">על ההתמודדות בין הרצון להיות צודק לבין הרצון לגלות אמת</strong>, ועל המסע שכל אדם עובר בדרכו להבין מי הוא באמת.
         <br>
@@ -1754,7 +1754,7 @@ body {
   <div style="position:absolute;top:-80px;left:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle, rgba(245,158,11,0.16), rgba(245,158,11,0) 70%);pointer-events:none;"></div>
   <div class="video-section-inner">
     <div style="text-align:center;">
-      <h2 class="section-title" style="color:#fff;">במילים שלהם &#x2014; מה הספר עורר אצלם</h2>
+      <h2 class="section-title" style="color:#fff;">ככה זה מרגיש לקרוא את &#x201C;החיפוש&#x201D;</h2>
     </div>
     <div class="video-grid">
       <div class="video-card reveal">
@@ -1765,7 +1765,6 @@ body {
         </video>
         <div class="video-card-info">
           <div class="video-card-name">שלמה</div>
-          <div class="video-card-role">קורא &#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
         </div>
       </div>
       <div class="video-card reveal" style="transition-delay:0.15s;">
@@ -1776,7 +1775,6 @@ body {
         </video>
         <div class="video-card-info">
           <div class="video-card-name">עמינדב</div>
-          <div class="video-card-role">קורא</div>
         </div>
       </div>
       <div class="video-card reveal" style="transition-delay:0.3s;">
@@ -1787,7 +1785,6 @@ body {
         </video>
         <div class="video-card-info">
           <div class="video-card-name">ישראל</div>
-          <div class="video-card-role">קורא</div>
         </div>
       </div>
     </div>
@@ -1857,7 +1854,7 @@ function closeVideoLightbox() {
       <p>כבר בנערותי בער בי הרצון להבין מה נמצא מעבר לחיים הרגילים, מעבר לשגרה האפורה, מעבר למרוץ היומיומי שמעסיק את האדם אך לא תמיד ממלא את נפשו. הרגשתי שיש בחיים עומק גדול יותר, אמת גדולה יותר, משמעות שממתינה להתגלות.</p>
       <p><strong style="color:var(--ink);font-weight:800;">במהלך השנים ראיתי את אותו חיפוש מתעורר גם אצל בני.</strong> ראיתי את ההתמודדות שלו עם העולם, עם מערכת החינוך, עם שאלות של זהות, אמת, גאווה, אכזבה, רצון להיות גדול באמת — ועם הכאב שמתעורר כאשר האדם מרגיש שהחיים סביבו אינם נותנים מענה לנשמה שלו.</p>
       <p>המפגש הזה, בין החיפוש שלי לבין החיפוש של הדור הצעיר, עורר בי רצון עמוק לכתוב רומן.<br><strong style="color:var(--ink);font-weight:800;">סיפור שיהיה מעניין, חי ונוגע ללב, ובתוכו ישתלבו תובנות חיים, שאלות פנימיות, מאבקי נפש, אמת שמתבררת, וגיבור שעובר דרך משמעותית אל עצמו.</strong></p>
-      <p>"החיפוש" נכתב בתחילה עבור בני נוער, במיוחד עבור נערים ונערות שמרגישים בתוכם בקשה לחיים גדולים יותר. לשמחתי, עם הזמן גיליתי שהספר מדבר גם אל מבוגרים — אנשים בני שלושים, ארבעים, חמישים ומעלה — שכל אחד מהם נושא בתוכו את אותו רצון: לא להסתפק בקיום חיצוני, אלא למצוא דרך לחיים עם משמעות, עומק, אמת ואהבה.</p>
+      <p>"החיפוש" נכתב בתחילה עבור בני נוער, במיוחד עבור נערים ונערות שמרגישים בתוכם בקשה לחיים גדולים יותר. לשמחתי, עם הזמן גיליתי שהספר מדבר גם אל מבוגרים — אנשים בני שלושים, ארבעים, חמישים ומעלה — שכל אחד מהם נושא בתוכו את אותו רצון: למצוא דרך לחיים עם משמעות, עומק, אמת ואהבה, מעבר לקיום החיצוני הרגיל.</p>
     </div>
     <div class="origin-closing reveal">
       <p>זהו ספר על נער, אך בעצם הוא ספר על כולנו.</p>
