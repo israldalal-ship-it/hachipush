@@ -209,7 +209,7 @@ body {
   top: 50%; left: 50%;
   width: 220px; height: 220px;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(0,102,255,0.35), rgba(0,102,255,0) 70%);
+  background: radial-gradient(circle, rgba(245,158,11,0.4), rgba(245,158,11,0) 70%);
   border-radius: 50%;
   z-index: -1;
   animation: htc-glow-pulse 4s ease-in-out infinite;
@@ -784,6 +784,8 @@ body {
 .video-section {
   background: var(--ink);
   padding: 80px 40px;
+  position: relative;
+  overflow: hidden;
 }
 .video-section-inner {
   max-width: 1100px;
@@ -817,7 +819,7 @@ body {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(0,0,0,0.55);
+  background: rgba(245,158,11,0.85);
   color: #fff;
   display: flex;
   align-items: center;
@@ -1094,15 +1096,19 @@ body {
   background: linear-gradient(135deg, #001a4d 0%, #0033a0 60%, #0066ff 100%);
   padding: 80px 40px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 .lead-inner {
   max-width: 600px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 .lead-badge {
   display: inline-block;
-  background: rgba(255,255,255,0.15);
-  color: #fff;
+  background: var(--gold);
+  color: var(--ink);
   border-radius: 50px;
   padding: 6px 18px;
   font-size: 0.82rem;
@@ -1249,8 +1255,8 @@ body {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: var(--blue-light);
-  color: var(--blue);
+  background: rgba(245,158,11,0.15);
+  color: var(--gold);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1482,7 +1488,8 @@ body {
 </nav>
 
 <!-- HERO -->
-<section style="background:linear-gradient(135deg, #1c3f73 0%, #0a1d3b 100%); width:100%;">
+<section style="background:linear-gradient(135deg, #1c3f73 0%, #0a1d3b 100%); width:100%;position:relative;overflow:hidden;">
+  <div style="position:absolute;top:-100px;right:-100px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle, rgba(245,158,11,0.22), rgba(245,158,11,0) 70%);pointer-events:none;"></div>
   <div class="hero">
   <div class="hero-grid">
     <!-- Text col -->
@@ -1585,6 +1592,7 @@ body {
 
 <!-- VIDEO TESTIMONIALS -->
 <section class="video-section">
+  <div style="position:absolute;top:-80px;left:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle, rgba(245,158,11,0.16), rgba(245,158,11,0) 70%);pointer-events:none;"></div>
   <div class="video-section-inner">
     <div style="text-align:center;">
       <h2 class="section-title" style="color:#fff;">במילים שלהם &#x2014; מה הספר עורר אצלם</h2>
@@ -1665,7 +1673,7 @@ function closeVideoLightbox() {
 
   <div class="reveal" style="width:100%;">
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
-      <img src="rabbi_photo.jpg" alt="הרב אדם סיני" style="width:90px;height:90px;border-radius:50%;box-shadow:0 8px 24px rgba(15,23,42,0.15);object-fit:cover;object-position:center top;display:block;flex-shrink:0;">
+      <img src="rabbi_photo.jpg" alt="הרב אדם סיני" style="width:90px;height:90px;border-radius:50%;box-shadow:0 8px 24px rgba(15,23,42,0.15);object-fit:cover;object-position:center top;display:block;flex-shrink:0;border:3px solid var(--gold);">
       <h2 class="author-name" style="color:var(--ink);margin:0;">הרב אדם סיני</h2>
     </div>
     <p class="author-bio" style="text-align:right;">
@@ -1684,7 +1692,7 @@ function closeVideoLightbox() {
 <section class="origin-section" id="origin">
   <div class="origin-inner">
     <div class="reveal">
-      <div style="width:70px;height:3px;background:var(--ink);margin:0 auto 24px;"></div>
+      <div style="width:70px;height:3px;background:var(--gold);margin:0 auto 24px;"></div>
       <h2 class="origin-title" style="color:var(--ink);">כיצד נולד הספר?</h2>
     </div>
     <div class="origin-body reveal">
@@ -1771,6 +1779,7 @@ function closeVideoLightbox() {
 
 <!-- LEAD MAGNET -->
 <section class="lead-section" id="lead">
+  <div style="position:absolute;bottom:-90px;left:-90px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle, rgba(245,158,11,0.2), rgba(245,158,11,0) 70%);pointer-events:none;"></div>
   <div class="lead-inner">
     <div class="lead-badge">&#x1F381; מתנה בחינם</div>
     <h2 class="lead-title">קבלו את הפרק הראשון של &#x201C;החיפוש&#x201D; במתנה</h2>
@@ -1818,25 +1827,10 @@ function closeVideoLightbox() {
 
 <!-- CONTINUE -->
 <section class="continue-section">
-  <div id="rav-video-frame" onclick="loadRavVideo(this)" style="cursor:pointer;width:180px;max-width:70%;aspect-ratio:9/16;margin:0 auto 20px;border-radius:20px;overflow:hidden;position:relative;box-shadow:0 8px 32px rgba(245,158,11,0.25);border:3px solid var(--gold);background:#1a2333 url('rabbi_photo.jpg') center 15%/cover no-repeat;">
-    <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,15,30,0.55), rgba(10,15,30,0.05) 45%);"></div>
-    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-      <div style="width:52px;height:52px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.35);">
-        <span style="color:#fff;font-size:1.3rem;margin-right:-3px;">&#9658;</span>
-      </div>
-    </div>
-  </div>
   <h2 class="continue-title">רוצים להעמיק?</h2>
   <p class="continue-body">שיעורים, הרצאות וכתבים של הרב אדם סיני — כל התכנים של בית המדרש "הסולם" במקום אחד.</p>
-  <a href="https://www.hasulam.co.il/" class="continue-btn" target="_blank" rel="noopener">לתכנים נוספים של הרב ›</a>
+  <a href="https://www.facebook.com/ravadamsinay/?locale=he_IL" class="continue-btn" target="_blank" rel="noopener">לתכנים נוספים של הרב ›</a>
 </section>
-<script>
-function loadRavVideo(el) {
-  el.innerHTML = '<iframe src="https://www.youtube.com/embed/mngHTE7-8Og?autoplay=1" title="הרב אדם סיני" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="width:100%;height:100%;border:0;display:block;"></iframe>';
-  el.style.cursor = 'default';
-  el.onclick = null;
-}
-</script>
 
 <!-- FOOTER -->
 <footer class="footer">
