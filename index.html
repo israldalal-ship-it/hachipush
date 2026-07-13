@@ -1565,7 +1565,7 @@ body {
     </div>
   </div>
   <div style="max-width:1100px;margin:0 auto;padding:20px 40px 80px;">
-    <h2 class="section-title" style="text-align:center;margin-bottom:24px;color:var(--ink);">משוטט ברחובות, אבוד בתוך עצמו</h2>
+    <h2 class="section-title" style="text-align:center;margin-bottom:24px;color:var(--ink);">פגישה בלב הלילה</h2>
     <div class="excerpt-card reveal" style="background:linear-gradient(rgba(10,15,30,0.62),rgba(10,15,30,0.62)),url('art4.png') center/cover no-repeat;min-height:280px;">
       <div class="excerpt-overlay"></div>
       <div class="excerpt-content">
@@ -1786,6 +1786,7 @@ function closeVideoLightbox() {
       <input type="email" id="lead-email" placeholder="כתובת אימייל" required>
       <input type="tel" id="lead-phone" placeholder="טלפון (אופציונלי)">
       <button type="submit" class="lead-submit">שלחו לי את הפרק הראשון &#x1F4E8;</button>
+      <div id="lead-error" style="display:none;text-align:center;padding-top:6px;color:#ffc4c4;font-size:0.88rem;line-height:1.6;">אופס, לא הצלחנו לשלוח כרגע. בדקו את החיבור ונסו שוב &#x2014; אם זה ממשיך לקרות, אפשר לפנות אלינו ישירות.</div>
     </form>
     <div id="lead-success" style="display:none;text-align:center;padding:32px 0;">
       <div style="font-size:3rem;margin-bottom:16px;">🙏</div>
@@ -1826,7 +1827,7 @@ function closeVideoLightbox() {
 <section class="continue-section">
   <h2 class="continue-title">רוצים להעמיק?</h2>
   <p class="continue-body">שיעורים, הרצאות וכתבים של הרב אדם סיני — כל התכנים של בית המדרש "הסולם" במקום אחד.</p>
-  <a href="https://www.facebook.com/ravadamsinay/?locale=he_IL" class="continue-btn" target="_blank" rel="noopener">לתכנים נוספים של הרב ›</a>
+  <a href="https://www.facebook.com/ravadamsinai/" class="continue-btn" target="_blank" rel="noopener">לתכנים נוספים של הרב ›</a>
 </section>
 
 <!-- FOOTER -->
@@ -1902,6 +1903,8 @@ function submitLead(e) {
   const phoneRaw = document.getElementById('lead-phone') ? document.getElementById('lead-phone').value.trim() : '';
   const phone = formatPhoneIL(phoneRaw);
   const btn = e.target.querySelector('button[type="submit"]') || e.target.querySelector('button');
+  const errorEl = document.getElementById('lead-error');
+  if (errorEl) errorEl.style.display = 'none';
   if (btn) { btn.disabled = true; btn.textContent = 'שולח...'; }
 
   fetch('https://hooks.zapier.com/hooks/catch/27835371/4bgyffg/', {
@@ -1909,13 +1912,15 @@ function submitLead(e) {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({ name, email, phone })
   })
-  .then(() => {
+  .then(res => {
+    if (!res.ok) throw new Error('Zapier responded with status ' + res.status);
     document.getElementById('lead-form').style.display = 'none';
-    document.getElementById('lead-success').classList.add('show');
+    document.getElementById('lead-success').style.display = 'block';
   })
-  .catch(() => {
-    document.getElementById('lead-form').style.display = 'none';
-    document.getElementById('lead-success').classList.add('show');
+  .catch(err => {
+    console.error('submitLead failed:', err);
+    if (btn) { btn.disabled = false; btn.textContent = 'שלחו לי את הפרק הראשון \u{1F4E8}'; }
+    if (errorEl) errorEl.style.display = 'block';
   });
 }
 
@@ -2212,16 +2217,23 @@ function loadEndorsements() {
       const phoneRaw = document.getElementById('lead-phone') ? document.getElementById('lead-phone').value.trim() : '';
       const phone = formatPhoneIL(phoneRaw);
       const btn = e.target.querySelector('button[type="submit"]');
+      const errorEl = document.getElementById('lead-error');
+      if (errorEl) errorEl.style.display = 'none';
       if (btn) { btn.disabled = true; btn.textContent = 'שולח...'; }
       try {
-        await fetch('https://hooks.zapier.com/hooks/catch/27835371/4bgyffg/', {
+        const res = await fetch('https://hooks.zapier.com/hooks/catch/27835371/4bgyffg/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams({ name, email, phone })
         });
-      } catch(err) { console.log('Zapier:', err); }
-      document.getElementById('lead-form').style.display = 'none';
-      document.getElementById('lead-success').style.display = 'block';
+        if (!res.ok) throw new Error('Zapier responded with status ' + res.status);
+        document.getElementById('lead-form').style.display = 'none';
+        document.getElementById('lead-success').style.display = 'block';
+      } catch(err) {
+        console.error('submitLead failed:', err);
+        if (btn) { btn.disabled = false; btn.textContent = 'שלחו לי את הפרק הראשון \u{1F4E8}'; }
+        if (errorEl) errorEl.style.display = 'block';
+      }
     };
 
     window._fbReady = true;
