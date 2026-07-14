@@ -2085,7 +2085,7 @@ function submitLead(e) {
   if (errorEl) errorEl.style.display = 'none';
   if (btn) { btn.disabled = true; btn.textContent = 'שולח...'; }
 
-  fetch('https://hooks.zapier.com/hooks/catch/27835371/4bgyffg/', {
+  fetch('https://hook.eu1.make.com/l9vrip411d5ylxushyvv9g1ytam1chde', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({ name, email, phone })
@@ -2399,7 +2399,7 @@ function loadEndorsements() {
       if (errorEl) errorEl.style.display = 'none';
       if (btn) { btn.disabled = true; btn.textContent = 'שולח...'; }
       try {
-        const res = await fetch('https://hooks.zapier.com/hooks/catch/27835371/4bgyffg/', {
+        const res = await fetch('https://hook.eu1.make.com/l9vrip411d5ylxushyvv9g1ytam1chde', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams({ name, email, phone })
