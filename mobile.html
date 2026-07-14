@@ -1670,8 +1670,8 @@ h1, h2, h3, .hero-title, .section-title, .atmosphere-headline, .author-name, .co
         <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
         <span class="rating-text" style="margin-right:10px;">4.9 / 5</span>
       </div>
-      <div id="hero-testimonial-card" class="htc-card" style="background:linear-gradient(135deg, #eaf2ff 0%, #ffffff 55%, #fff6e6 100%);border-radius:20px;padding:24px 28px;box-shadow:0 4px 24px rgba(0,102,255,0.12);border-right:4px solid var(--blue);min-height:230px;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box;">
-        <p id="hero-testimonial-text" style="font-size:1.1rem;line-height:1.75;color:var(--ink-soft);font-style:italic;font-weight:400;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;">
+      <div id="hero-testimonial-card" class="htc-card" style="background:linear-gradient(135deg, #eaf2ff 0%, #ffffff 55%, #fff6e6 100%);border-radius:20px;padding:24px 28px;box-shadow:0 4px 24px rgba(0,102,255,0.12);border-right:4px solid var(--blue);min-height:250px;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box;">
+        <p id="hero-testimonial-text" style="font-size:1.1rem;line-height:1.75;color:var(--ink-soft);font-style:italic;font-weight:400;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;">
           &ldquo;קראתי את הספר החיפוש, והוא נגע בי מאוד. דרך מסע החיפוש של רוני מצאתי גם חיפוש פנימי בתוכי, וקיבלתי ממנו כוחות נפש רבים. תודה.&rdquo;
         </p>
         <div style="display:flex;align-items:center;gap:10px;">
@@ -2208,9 +2208,9 @@ function submitEndorsement() {
 
 // ===== HERO TESTIMONIAL CAROUSEL =====
 window.heroTestimonials = [
-  { text: 'קראתי את הספר החיפוש, והוא נגע בי מאוד. דרך מסע החיפוש של רוני מצאתי גם חיפוש פנימי בתוכי, וקיבלתי ממנו כוחות נפש רבים. תודה.', name: 'גיל', role: 'קורא', avatar: 'ג' },
-  { text: 'התענגתי על הספר בשבת... קשה היה להפסיק מדי פעם שהמוח היה צריך לעכל מי זה רוני ואיך הוא מכיר אותי... התמכרתי.', name: 'מעיין', role: 'קוראת', avatar: 'מ' },
-  { text: 'מצאתי בתוך הסיפור של רוני תוך כדי הקריאה תובנות עמוקות על החיים ותפיסת המציאות, ובו בזמן נפשגתי עם מקומות עמוקים שבתוכי שלא ידעתי איך לקרוא להם לפני כן.', name: 'שלמה', role: 'קורא', avatar: 'ש' }
+  { text: 'קראתי את הספר החיפוש והוא נגע בי מאוד. דרך המסע של רוני מצאתי גם חיפוש פנימי בתוכי, וקיבלתי כוחות נפש רבים.', name: 'גיל', role: 'קורא', avatar: 'ג' },
+  { text: 'התענגתי על הספר בשבת... קשה היה להפסיק, המוח היה צריך לעכל מי זה רוני ואיך הוא מכיר אותי. התמכרתי.', name: 'מעיין', role: 'קוראת', avatar: 'מ' },
+  { text: 'מצאתי בתוך הסיפור של רוני תובנות עמוקות על החיים, ובו בזמן נפגשתי עם מקומות עמוקים בתוכי שלא ידעתי איך לקרוא להם.', name: 'שלמה', role: 'קורא', avatar: 'ש' }
 ];
 window._heroCarouselIndex = 0;
 window._heroCarouselTimer = null;
@@ -2384,9 +2384,9 @@ function loadEndorsements() {
         const snap = await getDocs(q);
         const container = document.getElementById('dynamic-endorsements');
         const heroItems = [
-          { text: 'קראתי את הספר החיפוש, והוא נגע בי מאוד. דרך מסע החיפוש של רוני מצאתי גם חיפוש פנימי בתוכי, וקיבלתי ממנו כוחות נפש רבים. תודה.', name: 'גיל', role: 'קורא', avatar: 'ג' },
-          { text: 'התענגתי על הספר בשבת... קשה היה להפסיק מדי פעם שהמוח היה צריך לעכל מי זה רוני ואיך הוא מכיר אותי... התמכרתי.', name: 'מעיין', role: 'קוראת', avatar: 'מ' },
-          { text: 'מצאתי בתוך הסיפור של רוני תוך כדי הקריאה תובנות עמוקות על החיים ותפיסת המציאות, ובו בזמן נפשגתי עם מקומות עמוקים שבתוכי שלא ידעתי איך לקרוא להם לפני כן.', name: 'שלמה', role: 'קורא', avatar: 'ש' }
+          { text: 'קראתי את הספר החיפוש והוא נגע בי מאוד. דרך המסע של רוני מצאתי גם חיפוש פנימי בתוכי, וקיבלתי כוחות נפש רבים.', name: 'גיל', role: 'קורא', avatar: 'ג' },
+          { text: 'התענגתי על הספר בשבת... קשה היה להפסיק, המוח היה צריך לעכל מי זה רוני ואיך הוא מכיר אותי. התמכרתי.', name: 'מעיין', role: 'קוראת', avatar: 'מ' },
+          { text: 'מצאתי בתוך הסיפור של רוני תובנות עמוקות על החיים, ובו בזמן נפגשתי עם מקומות עמוקים בתוכי שלא ידעתי איך לקרוא להם.', name: 'שלמה', role: 'קורא', avatar: 'ש' }
         ];
         if (container) container.innerHTML = '';
         snap.forEach(doc => {
