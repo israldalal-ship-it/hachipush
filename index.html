@@ -1478,7 +1478,6 @@ body {
     </a>
     <ul class="nav-links">
       <li><a href="#what">על הספר</a></li>
-      <li><a href="#questions">שאלות</a></li>
       <li><a href="#testimonials">המלצות</a></li>
       <li><a href="#author">הרב אדם סיני</a></li>
       <li><a href="#lead">פרק ראשון</a></li>
@@ -1855,11 +1854,12 @@ function closeVideoLightbox() {
   <ul class="footer-links">
     <li><a href="#">בית</a></li>
     <li><a href="#what">על הספר</a></li>
+    <li><a href="#testimonials">המלצות</a></li>
     <li><a href="#author">הרב אדם סיני</a></li>
     <li><a href="#lead">פרק ראשון</a></li>
     <li><a href="#">יצירת קשר</a></li>
   </ul>
-  <p>&#169; 2024 הרב אדם סיני &#x2014; כל הזכויות שמורות</p>
+  <p>&#169; <span id="footer-year">2026</span> הרב אדם סיני &#x2014; כל הזכויות שמורות</p>
   <p style="margin-top:8px"><a href="#">מדיניות פרטיות</a> &#x2022; <a href="#">תנאי שימוש</a></p>
 </footer>
 
@@ -1904,6 +1904,16 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Safety net: never leave content permanently invisible if the observer doesn't fire
+// (e.g. elements already in view on first paint, before any scroll event happens)
+setTimeout(() => {
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => el.classList.add('visible'));
+}, 1200);
+
+// Keep footer copyright year always current
+const footerYearEl = document.getElementById('footer-year');
+if (footerYearEl) footerYearEl.textContent = new Date().getFullYear();
 
 // ===== LEAD FORM =====
 function formatPhoneIL(raw) {
