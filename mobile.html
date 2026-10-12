@@ -12,7 +12,9 @@
   }
 })();
 </script>
-<title>החיפוש – הרב אדם סיני</title>
+<title>החיפוש – רומן מאת הרב אדם סיני | פרק ראשון במתנה</title>
+<meta name="description" content="החיפוש – רומן מרתק מאת הרב אדם סיני על נער בשם רוני ועל השאלות האמיתיות של החיים. קראו קטעים מהספר והמלצות קוראים, והזמינו את הספר או קבלו פרק ראשון במתנה.">
+<link rel="canonical" href="https://hachipus.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -1610,10 +1612,10 @@ h1, h2, h3, .hero-title, .section-title, .atmosphere-headline, .author-name, .co
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar">
+<nav class="navbar" aria-label="ניווט ראשי">
   <div class="navbar-inner">
     <div class="nav-connector"></div>
-    <a href="#" class="nav-logo">
+    <a href="./" class="nav-logo" aria-label="החיפוש – לעמוד הבית">
       <img src="logo_new.png" alt="החיפוש">
       <span>החיפוש</span>
     </a>
@@ -1635,13 +1637,13 @@ h1, h2, h3, .hero-title, .section-title, .atmosphere-headline, .author-name, .co
 </nav>
 
 <!-- MOBILE NAV DRAWER -->
-<div class="mobile-nav" id="mobile-nav">
+<nav class="mobile-nav" id="mobile-nav" aria-label="תפריט ניווט">
   <a href="#what" onclick="closeMobileNav()">על הספר</a>
   <a href="#testimonials" onclick="closeMobileNav()">המלצות</a>
   <a href="#author" onclick="closeMobileNav()">הרב אדם סיני</a>
   <a href="#lead" onclick="closeMobileNav()">פרק ראשון בחינם</a>
   <a href="https://hasulam.store/checkout/?add-to-cart=1569" class="mobile-cta" target="_blank" rel="noopener" onclick="closeMobileNav()">&larr; הזמן עכשיו</a>
-</div>
+</nav>
 
 <!-- HERO -->
 <section style="background:linear-gradient(135deg, #1c3f73 0%, #0a1d3b 100%); width:100%;position:relative;overflow:hidden;">
@@ -2005,19 +2007,21 @@ function closeVideoLightbox() {
 <section class="continue-section">
   <h2 class="continue-title">רוצים להעמיק?</h2>
   <p class="continue-body">שיעורים, הרצאות וכתבים של הרב אדם סיני — כל התכנים של בית המדרש "הסולם" במקום אחד.</p>
-  <a href="https://www.facebook.com/ravadamsinai/" class="continue-btn" target="_blank" rel="noopener">לתכנים נוספים של הרב ›</a>
+  <a href="https://www.facebook.com/ravadamsinai/" class="continue-btn" target="_blank" rel="noopener">לתכנים נוספים של הרב אדם סיני בפייסבוק ›</a>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
+  <nav aria-label="ניווט תחתון">
   <ul class="footer-links">
-    <li><a href="#">בית</a></li>
+    <li><a href="./">עמוד הבית</a></li>
     <li><a href="#what">על הספר</a></li>
-    <li><a href="#testimonials">המלצות</a></li>
-    <li><a href="#author">הרב אדם סיני</a></li>
-    <li><a href="#lead">פרק ראשון</a></li>
+    <li><a href="#testimonials">המלצות קוראים</a></li>
+    <li><a href="#author">על הרב אדם סיני</a></li>
+    <li><a href="#lead">פרק ראשון במתנה</a></li>
     <li><a href="#">יצירת קשר</a></li>
   </ul>
+  </nav>
   <p>&#169; <span id="footer-year">2026</span> הרב אדם סיני &#x2014; כל הזכויות שמורות</p>
   <p style="margin-top:8px"><a href="#">מדיניות פרטיות</a> &#x2022; <a href="#">תנאי שימוש</a></p>
 </footer>
